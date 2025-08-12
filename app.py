@@ -25,6 +25,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
+    font-size: 18px;
 }
 
 section {
@@ -39,17 +40,17 @@ section {
 }
 
 .section-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 1.5rem;
     text-align: center;
     color: var(--text-dark);
 }
 
 .section-subtitle {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: var(--text-light);
     text-align: center;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto 3rem;
     line-height: 1.8;
 }
@@ -291,24 +292,24 @@ section {
 }
 
 .step-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 0.8rem;
 }
 
 .step-card p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.3rem;
+    line-height: 1.7;
 }
 
 .step-number {
     display: inline-block;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
     background: var(--primary-teal);
     color: white;
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 1rem;
 }
@@ -446,7 +447,12 @@ section {
 }
 
 .testimonial-card p {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+}
+
+.testimonial-card p:first-child {
+    font-size: 1.5rem;
+    line-height: 1.8;
 }
 
 .testimonial-card::before {
