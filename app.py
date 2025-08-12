@@ -233,11 +233,19 @@ section {
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
     
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.3rem;
     }
 }
 
@@ -545,29 +553,40 @@ section {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 3rem;
 }
 
 .footer-column h3 {
     color: var(--primary-pink);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.6rem;
 }
 
 .footer-column p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     opacity: 0.9;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 1.2rem;
 }
 
 .footer-column a {
     color: white;
     text-decoration: none;
     display: block;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     transition: color 0.3s ease;
     opacity: 0.9;
+    font-size: 1.2rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0.7;
+    font-size: 1.1rem;
 }
 
 .footer-column a:hover {
@@ -628,24 +647,24 @@ section {
 .bg-white { background: white; }
 .bg-gray { background: var(--gray-light); }
 
-@media (max-width: 768px) {
-    .event-card {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-    }
-    
-    .cards-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
+.expandable {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.expandable.show {
+    max-height: 500px;
+}
+
+.bg-white { 
+    background: white;
+    border: none;
+}
+
+.bg-gray { 
+    background: #F8F9FA;
+    border: none;
 }
 """
 
@@ -803,6 +822,7 @@ def HowItWorksSection():
             ),
             cls="container"
         ),
+        id="how",
         cls="section bg-gray"
     )
 
@@ -962,18 +982,10 @@ def FooterSection():
                 H3("Spinfood"),
                 P("Running Dinner Events für Studenten in Deutschland."),
                 Div(
-                    A("📘 Facebook", href="#"),
+                    A("📺 YouTube", href="#"),
                     A("📷 Instagram", href="#"),
                     cls="social-links"
                 ),
-                cls="footer-column"
-            ),
-            Div(
-                H3("Events"),
-                A("Berlin", href="#"),
-                A("München", href="#"),
-                A("Hamburg", href="#"),
-                A("Köln", href="#"),
                 cls="footer-column"
             ),
             Div(
