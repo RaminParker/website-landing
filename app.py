@@ -359,53 +359,55 @@ section {
 
 .event-card {
     background: white;
-    padding: 2rem;
-    border-radius: 15px;
+    padding: 2.5rem;
+    border-radius: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s ease;
-    border-left: 5px solid var(--primary-teal);
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-left: 6px solid var(--primary-teal);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    min-height: 140px;
 }
 
 .event-card:hover {
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    transform: translateX(8px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    transform: translateX(10px);
 }
 
 .event-date {
     background: var(--light-teal);
     color: var(--dark-teal);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 1rem;
+    padding: 0.6rem 1.3rem;
+    border-radius: 25px;
+    font-size: 1.1rem;
     display: inline-block;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     font-weight: 600;
 }
 
 .event-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    margin-bottom: 0.6rem;
 }
 
 .event-card p {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
 }
 
 .event-cta {
     background: var(--text-dark);
     color: white;
-    padding: 0.7rem 1.5rem;
+    padding: 0.9rem 2rem;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     font-weight: 600;
     white-space: nowrap;
+    font-size: 1.3rem;
 }
 
 .event-cta:hover {
@@ -802,19 +804,19 @@ def HowItWorksSection():
             Div(
                 StepCard(
                     1, "📝", 
-                    "Anmelden & gematcht werden",
+                    "Anmelden & Matchen",
                     "Melde dich online an und werde einem Kochteam zugeteilt.",
                     "Du meldest dich als 2er-Team oder alleine an. Wir teilen dich einem Gang zu (Vorspeise, Hauptgang oder Dessert) und matchen dich mit anderen Teilnehmern. Keine Sorge - auch Kochanfänger sind willkommen!"
                 ),
                 StepCard(
                     2, "🍽️",
-                    "1 Gang kochen, 2 Häuser besuchen",
+                    "Kochen & Besuchen",
                     "Koche einen Gang zuhause und besuche zwei andere Teams.",
                     "Du kochst nur einen Gang für 4-6 Personen bei dir zuhause. Die anderen beiden Gänge genießt du bei anderen Teilnehmern. So lernst du verschiedene Wohnungen und Stadtteile kennen!"
                 ),
                 StepCard(
                     3, "🎉",
-                    "After-Party mit allen",
+                    "After Party",
                     "Triff alle Teilnehmer bei der gemeinsamen Party.",
                     "Nach dem Dinner treffen sich alle Teilnehmer zur After-Party. Hier kannst du die Leute wiedertreffen und neue Kontakte knüpfen. Die Party geht oft bis in die Nacht!"
                 ),
@@ -992,7 +994,6 @@ def FooterSection():
                 H3("Support"),
                 A("FAQ", href="#faq"),
                 A("Kontakt", href="#"),
-                A("Hilfe", href="#"),
                 cls="footer-column"
             ),
             Div(
@@ -1005,7 +1006,7 @@ def FooterSection():
             cls="footer-container"
         ),
         Div(
-            P("© 2024 Spinfood. Made with ❤️ in Germany"),
+            P("© 2025 Spinfood. Made with ❤️ in Germany"),
             cls="footer-bottom"
         ),
         cls="footer-section"
