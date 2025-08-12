@@ -12,5 +12,6 @@ dependencies:
     - httpx
     - jinja2
     - python-dotenv
+    - monsterui
 variables:
   PYTHONUNBUFFERED: 1
