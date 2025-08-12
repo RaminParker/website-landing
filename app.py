@@ -616,23 +616,108 @@ section {
     opacity: 0.7;
 }
 
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    max-width: 500px;
+    margin: 20px;
+    position: relative;
+    animation: slideUp 0.3s ease;
+    text-align: center;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-light);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--primary-pink);
+}
+
+.modal-content h3 {
+    color: var(--primary-pink);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.modal-content p {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.modal-email {
+    color: var(--primary-teal);
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.modal-email:hover {
+    color: var(--primary-pink);
+    text-decoration: underline;
+}
+
 @media (max-width: 768px) {
-    .footer-container {
-        grid-template-columns: 1fr;
-        text-align: center;
+    .modal-content {
+        padding: 2rem;
+        margin: 15px;
     }
     
-    .social-links {
-        justify-content: center;
+    .modal-content h3 {
+        font-size: 1.6rem;
     }
     
-    .cta-section h2 {
-        font-size: 2rem;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
+    .modal-content p {
+        font-size: 1.1rem;
     }
 }
 
@@ -694,6 +779,15 @@ function toggleFAQ(id) {
     }
 }
 
+// Modal functionality
+function showContactModal() {
+    document.getElementById('contactModal').classList.add('show');
+}
+
+function closeContactModal() {
+    document.getElementById('contactModal').classList.remove('show');
+}
+
 // Smooth scrolling for anchor links
 document.addEventListener('DOMContentLoaded', function() {
     // Get all links that start with #
@@ -715,6 +809,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('contactModal');
+        if (event.target === modal) {
+            closeContactModal();
+        }
+    }
 });
 """
 
@@ -977,7 +1079,7 @@ def CTASection():
         P("Melde dich jetzt für das nächste Event an und erlebe einen unvergesslichen Abend voller neuer Freundschaften!"),
         Div(
             A("Event auswählen", href="#events", cls="cta-button-primary"),
-            A("Noch Fragen?", href="#faq", cls="cta-button-secondary"),
+            Button("Noch Fragen?", onclick="showContactModal()", cls="cta-button-secondary"),
             cls="cta-buttons"
         ),
         cls="cta-section"
@@ -999,7 +1101,7 @@ def FooterSection():
             ),
             Div(
                 H3("Support"),
-                A("Kontakt", href="#"),
+                A("Kontakt", href="#", onclick="showContactModal(); return false;"),
                 cls="footer-column"
             ),
             Div(
@@ -1018,6 +1120,20 @@ def FooterSection():
         cls="footer-section"
     )
 
+# Contact Modal Component
+def ContactModal():
+    return Div(
+        Div(
+            Button("×", onclick="closeContactModal()", cls="modal-close"),
+            H3("Kontakt 📬"),
+            P("Wenn Du weitere Fragen, Anregungen oder Wünsche hast, kannst du uns jeder Zeit eine Email schicken an"),
+            A("hi@spinfood.de", href="mailto:hi@spinfood.de", cls="modal-email"),
+            cls="modal-content"
+        ),
+        id="contactModal",
+        cls="modal"
+    )
+
 # Main route
 @rt("/")
 def get():
@@ -1034,7 +1150,8 @@ def get():
         TestimonialsSection(), \
         FAQSection(), \
         CTASection(), \
-        FooterSection()
+        FooterSection(), \
+        ContactModal()
 
 # Serve the app
 serve()
