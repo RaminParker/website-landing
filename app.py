@@ -56,7 +56,7 @@ section {
 
 .hero {
     min-height: 100vh;
-    background: linear-gradient(135deg, #F48FB1 0%, #81C784 100%);
+    background: linear-gradient(135deg, #E91E63 0%, #4CAF50 100%);
     display: flex;
     align-items: center;
     position: relative;
@@ -85,19 +85,22 @@ section {
     margin-bottom: 2rem;
     color: white;
     font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 .hero-title .highlight {
-    color: #FFE082;
+    color: #FFEB3B;
     display: block;
+    text-shadow: 0 2px 15px rgba(255,235,59,0.3);
 }
 
 .hero-subtitle {
     font-size: 1.5rem;
-    color: rgba(255,255,255,0.9);
+    color: rgba(255,255,255,0.95);
     margin-bottom: 3rem;
     line-height: 1.6;
     font-weight: 400;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.15);
 }
 
 .hero-buttons {
@@ -107,7 +110,7 @@ section {
 }
 
 .hero-cta-primary {
-    background: var(--primary-pink);
+    background: #E91E63;
     color: white;
     padding: 1.2rem 2.8rem;
     font-size: 1.2rem;
@@ -120,33 +123,37 @@ section {
     align-items: center;
     gap: 0.5rem;
     font-weight: 600;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 25px rgba(233,30,99,0.4);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .hero-cta-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-    background: #D81B60;
+    box-shadow: 0 8px 30px rgba(233,30,99,0.5);
+    background: #C2185B;
 }
 
 .hero-cta-secondary {
-    background: transparent;
+    background: rgba(255,255,255,0.15);
     color: white;
     padding: 1.2rem 2.8rem;
     font-size: 1.2rem;
-    border: 2px solid rgba(255,255,255,0.8);
+    border: 2px solid rgba(255,255,255,0.9);
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
     font-weight: 600;
+    backdrop-filter: blur(10px);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .hero-cta-secondary:hover {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.25);
     border-color: white;
     transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255,255,255,0.2);
 }
 
 .hero-image {
@@ -154,9 +161,10 @@ section {
     height: 600px;
     border-radius: 20px;
     overflow: hidden;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .hero-image img {
@@ -169,18 +177,20 @@ section {
 .hero-image-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     color: white;
     font-size: 1.2rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .hero-image-icon {
     font-size: 4rem;
     margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
 }
 
 .logo {
@@ -189,13 +199,15 @@ section {
     color: white;
     margin-bottom: 3rem;
     letter-spacing: -1px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .tagline {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.9);
     font-size: 1rem;
     margin-top: -2.5rem;
     margin-bottom: 2rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }
 
 @media (max-width: 968px) {
