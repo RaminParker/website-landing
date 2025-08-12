@@ -696,12 +696,19 @@ function toggleFAQ(id) {
 
 // Smooth scrolling for anchor links
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    // Get all links that start with #
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
@@ -992,7 +999,6 @@ def FooterSection():
             ),
             Div(
                 H3("Support"),
-                A("FAQ", href="#faq"),
                 A("Kontakt", href="#"),
                 cls="footer-column"
             ),
