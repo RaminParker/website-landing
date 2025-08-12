@@ -59,95 +59,173 @@ section {
     background: linear-gradient(135deg, #F48FB1 0%, #81C784 100%);
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
     position: relative;
     overflow: hidden;
-    border: none;
-    margin: 0;
+    padding: 0;
 }
 
-.hero::before, .hero::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.1;
-    animation: float 6s ease-in-out infinite;
+.hero-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
 }
 
-.hero::before {
-    width: 300px;
-    height: 300px;
-    background: var(--primary-pink);
-    top: -150px;
-    right: -150px;
+.hero-content {
+    text-align: left;
 }
 
-.hero::after {
-    width: 400px;
-    height: 400px;
-    background: var(--primary-teal);
-    bottom: -200px;
-    left: -200px;
-    animation-direction: reverse;
-    animation-duration: 8s;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-.logo {
-    font-size: 3rem;
-    font-weight: bold;
-    color: var(--primary-pink);
-    margin-bottom: 1rem;
-    letter-spacing: -1px;
-}
-
-.tagline {
-    color: var(--primary-teal);
-    font-size: 1.2rem;
+.hero-title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 1.1;
     margin-bottom: 2rem;
-}
-
-.hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-    color: var(--text-dark);
+    color: white;
     font-weight: 700;
 }
 
-.hero-subtitle {
-    font-size: 1.4rem;
-    color: var(--text-dark);
-    margin-bottom: 2.5rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: 500;
+.hero-title .highlight {
+    color: #FFE082;
+    display: block;
 }
 
-.cta-primary {
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.hero-cta-primary {
     background: var(--primary-pink);
     color: white;
-    padding: 1rem 2.5rem;
+    padding: 1.2rem 2.8rem;
     font-size: 1.2rem;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.hero-cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+    background: #D81B60;
+}
+
+.hero-cta-secondary {
+    background: transparent;
+    color: white;
+    padding: 1.2rem 2.8rem;
+    font-size: 1.2rem;
+    border: 2px solid rgba(255,255,255,0.8);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
     font-weight: 600;
 }
 
-.cta-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+.hero-cta-secondary:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: white;
+    transform: translateY(-3px);
+}
+
+.hero-image {
+    position: relative;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.hero-image-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 3rem;
+    letter-spacing: -1px;
+}
+
+.tagline {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    margin-top: -2.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 968px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .hero-image {
+        height: 400px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
 }
 
 .section {
@@ -601,14 +679,42 @@ app, rt = fast_app()
 def HeroSection():
     return Div(
         Div(
-            Div("SPINFOOD", cls="logo"),
-            Div("Food. Fun. Friends.", cls="tagline"),
-            H1("Neu in der Stadt?", Br(), "Lerne 12 neue Leute an einem Abend kennen!"),
-            P(
-                "Beim Running Dinner kochst du einen Gang und erlebst ein kulinarisches Abenteuer durch deine Stadt",
-                cls="hero-subtitle"
+            Div(
+                Div("SPINFOOD", cls="logo"),
+                Div("Food. Fun. Friends.", cls="tagline"),
+                H1(
+                    "Neue Freunde beim ",
+                    Span("Running Dinner", cls="highlight"),
+                    cls="hero-title"
+                ),
+                P(
+                    "Koche einen Gang, besuche zwei Häuser und lerne 6-12 neue Leute bei einem unvergesslichen Abend kennen.",
+                    cls="hero-subtitle"
+                ),
+                Div(
+                    A(
+                        "📍 Nächstes Event finden",
+                        href="#events",
+                        cls="hero-cta-primary"
+                    ),
+                    A(
+                        "Wie es funktioniert",
+                        href="#how",
+                        cls="hero-cta-secondary"
+                    ),
+                    cls="hero-buttons"
+                ),
+                cls="hero-content"
             ),
-            A("Nächstes Event finden →", href="#events", cls="cta-primary")
+            Div(
+                Div(
+                    Div("👥", cls="hero-image-icon"),
+                    P("Studenten beim gemeinsamen Kochen"),
+                    cls="hero-image-placeholder"
+                ),
+                cls="hero-image"
+            ),
+            cls="hero-container"
         ),
         cls="hero"
     )
