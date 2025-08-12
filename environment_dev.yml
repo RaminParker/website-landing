@@ -1,0 +1,16 @@
+name: landingpage_spinfood
+# channels:
+#   - conda-forge
+#   - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - python-fasthtml
+    - uvicorn[standard]
+    - python-multipart
+    - httpx
+    - jinja2
+    - python-dotenv
+variables:
+  PYTHONUNBUFFERED: 1
