@@ -1,212 +1,583 @@
 from fasthtml.common import *
 
-# CSS styles
-css = """
+# Custom CSS as a string
+custom_css = """
 :root {
-    --spinfood-pink: #E91E63;
-    --spinfood-green: #4CAF50;
-    --spinfood-dark: #2D3748;
+    --primary-pink: #E91E63;
+    --primary-teal: #4CAF50;
+    --dark-teal: #2E7D32;
+    --light-pink: #FCE4EC;
+    --light-teal: #E8F5E9;
+    --text-dark: #212121;
+    --text-light: #757575;
+    --white: #FFFFFF;
+    --gray-light: #F5F5F5;
 }
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-dark);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-.gradient-bg {
-    background: linear-gradient(135deg, var(--spinfood-pink) 0%, var(--spinfood-green) 100%);
-}
-
-.text-gradient {
-    background: linear-gradient(135deg, var(--spinfood-pink), var(--spinfood-green));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.smooth-scroll {
-    scroll-behavior: smooth;
-}
-
-.fade-in {
-    animation: fadeIn 0.6s ease-in;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.hover-scale {
-    transition: transform 0.3s ease;
-}
-
-.hover-scale:hover {
-    transform: scale(1.05);
-}
-
-.btn-primary {
-    background: var(--spinfood-pink) !important;
-    color: white !important;
-    padding: 16px 32px !important;
-    border-radius: 50px !important;
-    font-weight: 600 !important;
-    text-decoration: none !important;
-    display: inline-block !important;
-    transition: all 0.3s ease !important;
+section {
     border: none !important;
-    cursor: pointer !important;
-    font-size: 18px !important;
-    text-align: center !important;
-    min-width: 200px !important;
+    outline: none !important;
 }
 
-.btn-primary:hover {
-    background: #C2185B;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.btn-secondary {
-    background: transparent;
-    color: var(--spinfood-green);
-    border: 2px solid var(--spinfood-green);
-    padding: 14px 30px;
-    border-radius: 50px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.3s ease;
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--text-dark);
 }
 
-.btn-secondary:hover {
-    background: var(--spinfood-green);
-    color: white;
+.section-subtitle {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
 }
 
-.card {
-    background: white !important;
-    border-radius: 20px !important;
-    padding: 32px !important;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1) !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-    margin: 16px 8px !important;
-    border: 1px solid #f0f0f0 !important;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-}
-
-.icon-circle {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #F48FB1 0%, #81C784 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
-    margin: 0 auto 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    margin: 0;
+}
+
+.hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero::before {
+    width: 300px;
+    height: 300px;
+    background: var(--primary-pink);
+    top: -150px;
+    right: -150px;
+}
+
+.hero::after {
+    width: 400px;
+    height: 400px;
+    background: var(--primary-teal);
+    bottom: -200px;
+    left: -200px;
+    animation-direction: reverse;
+    animation-duration: 8s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-pink);
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.tagline {
+    color: var(--primary-teal);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+}
+
+.cta-primary {
+    background: var(--primary-pink);
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+}
+
+.section {
+    padding: 100px 20px;
+    border: none;
+    margin: 0;
+}
+
+.bg-white { 
+    background: white;
+    border: none;
+}
+
+.bg-gray { 
+    background: #F5F5F5;
+    border: none;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.step-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    position: relative;
+}
+
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-teal));
+    border-radius: 20px 20px 0 0;
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
+
+.step-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.step-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.step-number {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: var(--primary-teal);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.step-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.benefit-card {
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-teal));
+    padding: 3rem;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.benefit-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.benefit-icon {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.benefit-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.benefit-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.event-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-left: 5px solid var(--primary-teal);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.event-card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transform: translateX(8px);
+}
+
+.event-date {
+    background: var(--light-teal);
+    color: var(--dark-teal);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.event-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.event-card p {
+    font-size: 1.1rem;
+}
+
+.event-cta {
+    background: var(--text-dark);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.event-cta:hover {
+    background: var(--primary-pink);
+    transform: scale(1.05);
 }
 
 .faq-item {
-    border-bottom: 1px solid #E2E8F0;
-    padding: 24px 0;
+    background: white;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .faq-question {
-    font-weight: 600;
-    color: var(--spinfood-dark);
+    padding: 1.5rem;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+    background: var(--light-teal);
 }
 
 .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    color: #64748B;
+    padding: 0 1.5rem 1.5rem;
+    color: var(--text-light);
+    display: none;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    margin: 2rem auto;
+    max-width: 900px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.testimonial-card p {
+    font-size: 1.2rem;
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 4rem;
+    color: var(--primary-pink);
+    opacity: 0.3;
+}
+
+.cta-section {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-teal) 100%);
+    text-align: center;
+    color: white;
+}
+
+.cta-section h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.cta-section p {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button-primary {
+    background: var(--primary-pink);
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.cta-button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    background: #D81B60;
+}
+
+.cta-button-secondary {
+    background: transparent;
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    border: 2px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.cta-button-secondary:hover {
+    background: white;
+    color: var(--primary-pink);
+    transform: translateY(-2px);
+}
+
+.footer-section {
+    background: #2C3E50;
+    color: white;
+    padding: 60px 20px 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+}
+
+.footer-column h3 {
+    color: var(--primary-pink);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.footer-column p {
+    margin-bottom: 1rem;
+    opacity: 0.9;
     line-height: 1.6;
 }
 
-.faq-answer.open {
-    max-height: 200px;
-    padding-top: 16px;
+.footer-column a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
+    opacity: 0.9;
 }
 
-.event-card {
-    background: white !important;
-    border-radius: 16px !important;
-    padding: 24px !important;
-    border-left: 4px solid var(--spinfood-pink) !important;
-    margin-bottom: 16px !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+.footer-column a:hover {
+    color: var(--primary-teal);
+    opacity: 1;
 }
 
-.container {
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 0 24px !important;
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-.text-center {
-    text-align: center !important;
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.grid {
-    display: grid !important;
-}
-
-.gap-8 {
-    gap: 2rem !important;
-}
-
-.gap-12 {
-    gap: 3rem !important;
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0.7;
 }
 
 @media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
     }
     
-    .btn-primary, .btn-secondary {
-        display: block;
+    .social-links {
+        justify-content: center;
+    }
+    
+    .cta-section h2 {
+        font-size: 2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.expandable {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.expandable.show {
+    max-height: 500px;
+}
+
+.bg-white { background: white; }
+.bg-gray { background: var(--gray-light); }
+
+@media (max-width: 768px) {
+    .event-card {
+        flex-direction: column;
         text-align: center;
-        margin: 8px 0;
+        gap: 1rem;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
     }
 }
 """
 
-# JavaScript for interactivity
-js = """
-function toggleFaq(element) {
-    const answer = element.nextElementSibling;
-    const icon = element.querySelector('span:last-child');
-    
-    if (answer.classList.contains('open')) {
-        answer.classList.remove('open');
-        icon.textContent = '+';
+# JavaScript code
+js_code = """
+function toggleExpand(id) {
+    const element = document.getElementById(id);
+    element.classList.toggle('show');
+    const button = element.previousElementSibling;
+    if (element.classList.contains('show')) {
+        button.textContent = 'Weniger ↑';
     } else {
-        document.querySelectorAll('.faq-answer.open').forEach(item => {
-            item.classList.remove('open');
-            item.previousElementSibling.querySelector('span:last-child').textContent = '+';
-        });
-        
-        answer.classList.add('open');
-        icon.textContent = '−';
+        button.textContent = 'Mehr erfahren ↓';
     }
 }
 
+function toggleFAQ(id) {
+    const faqItem = document.getElementById(id);
+    faqItem.classList.toggle('active');
+    const answer = document.getElementById('faq-answer-' + id);
+    if (faqItem.classList.contains('active')) {
+        answer.style.display = 'block';
+    } else {
+        answer.style.display = 'none';
+    }
+}
+
+// Smooth scrolling for anchor links
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -220,490 +591,307 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
-    });
 });
 """
 
 # Initialize FastHTML app
 app, rt = fast_app()
 
-def hero_section():
-    return Section(
+# Hero Section Component
+def HeroSection():
+    return Div(
         Div(
-            Div(
-                Div(
-                    H1("Neue Freunde beim ", Span("Running Dinner", cls="text-yellow-300"), 
-                       cls="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white"),
-                    P("Koche einen Gang, besuche zwei Häuser und lerne 6-12 neue Leute bei einem unvergesslichen Abend kennen.",
-                      cls="text-xl mb-8 opacity-90 leading-relaxed text-white"),
-                    Div(
-                        A("Nächstes Event finden 🍽️", href="#events", cls="btn-primary"),
-                        A("Wie es funktioniert", href="#how-it-works", cls="btn-secondary"),
-                        cls="flex flex-col sm:flex-row gap-4"
-                    ),
-                    cls="hero-content fade-in"
-                ),
-                Div(
-                    Div(
-                        Img(src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                            alt="Studenten beim gemeinsamen Kochen",
-                            cls="rounded-2xl w-full h-80 object-cover"),
-                        cls="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-8"
-                    ),
-                    cls="fade-in"
-                ),
-                cls="grid lg:grid-cols-2 gap-12 items-center"
+            Div("SPINFOOD", cls="logo"),
+            Div("Food. Fun. Friends.", cls="tagline"),
+            H1("Neu in der Stadt?", Br(), "Lerne 12 neue Leute an einem Abend kennen!"),
+            P(
+                "Beim Running Dinner kochst du einen Gang und erlebst ein kulinarisches Abenteuer durch deine Stadt",
+                cls="hero-subtitle"
             ),
-            cls="container mx-auto px-6 py-20"
+            A("Nächstes Event finden →", href="#events", cls="cta-primary")
         ),
-        cls="gradient-bg min-h-screen flex items-center relative overflow-hidden"
+        cls="hero"
     )
 
-def problem_section():
-    return Section(
+# Problem Section Component
+def ProblemSection():
+    return Div(
         Div(
-            Div(
-                H2("Kennst du das auch? 🤔", cls="text-4xl font-bold text-gray-800 mb-8"),
-                Div(
-                    Div(
-                        Div("😔", cls="text-6xl mb-4"),
-                        H3("Einsam im Studium", cls="text-xl font-semibold mb-4"),
-                        P("Neue Stadt, neue Uni - aber wo sind die neuen Freunde?", cls="text-gray-600"),
-                        cls="bg-white rounded-2xl p-8 shadow-lg"
-                    ),
-                    Div(
-                        Div("🏠", cls="text-6xl mb-4"),
-                        H3("Immer zuhause", cls="text-xl font-semibold mb-4"),
-                        P("Netflix und Nudeln - jeden Abend das gleiche?", cls="text-gray-600"),
-                        cls="bg-white rounded-2xl p-8 shadow-lg"
-                    ),
-                    Div(
-                        Div("💭", cls="text-6xl mb-4"),
-                        H3("Oberflächliche Kontakte", cls="text-xl font-semibold mb-4"),
-                        P("Dating-Apps und Partys führen nur zu kurzen Begegnungen.", cls="text-gray-600"),
-                        cls="bg-white rounded-2xl p-8 shadow-lg"
-                    ),
-                    cls="grid md:grid-cols-3 gap-8"
-                ),
-                cls="max-w-4xl mx-auto text-center"
+            Div("😔", style="font-size: 4rem; text-align: center; margin-bottom: 1rem;"),
+            H2("Kennst du das?", cls="section-title"),
+            P(
+                "Neue Stadt, neues Studium, aber keine neuen Freunde? "
+                "Die immer gleichen Leute im Hörsaal und in der Mensa? "
+                "Zeit, das zu ändern!",
+                cls="section-subtitle"
             ),
-            cls="container mx-auto px-6"
+            cls="container"
         ),
-        cls="py-20 bg-gray-50"
+        cls="section bg-white"
     )
 
-def solution_section():
-    return Section(
-        Div(
-            Div(
-                H2("So funktioniert's", cls="text-4xl font-bold text-gray-800 mb-4"),
-                P("Ein Running Dinner ist dein Ticket zu echten Verbindungen und unvergesslichen Abenden.",
-                  cls="text-xl text-gray-600 max-w-2xl mx-auto"),
-                cls="text-center mb-16"
-            ),
-            Div(
-                Div(
-                    Div("👥", cls="icon-circle gradient-bg text-white"),
-                    H3("1. Anmelden & Matchen", cls="text-2xl font-bold mb-4", style="color: var(--spinfood-pink)"),
-                    P("Melde dich für das nächste Event an. Wir matchen dich mit anderen Teilnehmern in deiner Nähe.",
-                      cls="text-gray-600 mb-6"),
-                    Details(
-                        Summary("Mehr erfahren", cls="cursor-pointer text-green-600 font-semibold"),
-                        Div(
-                            P("Du gibst deine Präferenzen an (vegetarisch, Allergien, etc.) und wir sorgen dafür, dass du mit passenden Leuten gematcht wirst. Jede Gruppe besteht aus 2-4 Personen.",
-                              cls="text-sm text-gray-600"),
-                            cls="mt-4 p-4 bg-gray-50 rounded-lg"
-                        ),
-                        cls="text-left"
-                    ),
-                    cls="text-center fade-in"
-                ),
-                Div(
-                    Div("🍳", cls="icon-circle", style="background: var(--spinfood-green); color: white;"),
-                    H3("2. Kochen & Besuchen", cls="text-2xl font-bold mb-4", style="color: var(--spinfood-green)"),
-                    P("Koche eine Vorspeise, Hauptgang oder Dessert und besuche zwei andere Häuser für die anderen Gänge.",
-                      cls="text-gray-600 mb-6"),
-                    Details(
-                        Summary("Mehr erfahren", cls="cursor-pointer text-green-600 font-semibold"),
-                        Div(
-                            P("Du bekommst einfache Rezepte und eine genaue Anleitung. Keine Sorge - du musst kein Profikoch sein! Jeder Gang dauert etwa 1,5 Stunden.",
-                              cls="text-sm text-gray-600"),
-                            cls="mt-4 p-4 bg-gray-50 rounded-lg"
-                        ),
-                        cls="text-left"
-                    ),
-                    cls="text-center fade-in"
-                ),
-                Div(
-                    Div("🎉", cls="icon-circle text-white", style="background: var(--spinfood-pink);"),
-                    H3("3. After-Party", cls="text-2xl font-bold mb-4", style="color: var(--spinfood-pink)"),
-                    P("Alle Teilnehmer treffen sich zum Abschluss in einer Bar oder einem Café und feiern den gelungenen Abend.",
-                      cls="text-gray-600 mb-6"),
-                    Details(
-                        Summary("Mehr erfahren", cls="cursor-pointer text-green-600 font-semibold"),
-                        Div(
-                            P("Bei der After-Party lernst du alle anderen Teilnehmer kennen und tauschst Kontakte aus. Hier entstehen oft die besten Freundschaften!",
-                              cls="text-sm text-gray-600"),
-                            cls="mt-4 p-4 bg-gray-50 rounded-lg"
-                        ),
-                        cls="text-left"
-                    ),
-                    cls="text-center fade-in"
-                ),
-                cls="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto"
-            ),
-            cls="container mx-auto px-6"
+# Step Card Component
+def StepCard(number, icon, title, description, details):
+    card_id = f"step-{number}"
+    return Div(
+        Div(str(number), cls="step-number"),
+        Div(icon, cls="step-icon"),
+        H3(title),
+        P(description, style="color: var(--text-light); margin-bottom: 1rem;"),
+        Button(
+            "Mehr erfahren ↓",
+            onclick=f"toggleExpand('{card_id}')",
+            style="background: none; border: none; color: var(--primary-pink); cursor: pointer; font-weight: 600; font-size: 1.1rem;"
         ),
-        id="how-it-works",
-        cls="py-20 bg-white"
+        Div(
+            P(details, style="margin-top: 1rem; color: var(--text-light);"),
+            id=card_id,
+            cls="expandable"
+        ),
+        cls="step-card"
     )
 
-def benefits_section():
-    return Section(
+# How It Works Section
+def HowItWorksSection():
+    return Div(
         Div(
+            H2("So funktioniert's", cls="section-title"),
             Div(
-                H2("Warum Running Dinner?", cls="text-4xl font-bold text-gray-800 mb-4"),
-                cls="text-center mb-16"
+                StepCard(
+                    1, "📝", 
+                    "Anmelden & gematcht werden",
+                    "Melde dich online an und werde einem Kochteam zugeteilt.",
+                    "Du meldest dich als 2er-Team oder alleine an. Wir teilen dich einem Gang zu (Vorspeise, Hauptgang oder Dessert) und matchen dich mit anderen Teilnehmern. Keine Sorge - auch Kochanfänger sind willkommen!"
+                ),
+                StepCard(
+                    2, "🍽️",
+                    "1 Gang kochen, 2 Häuser besuchen",
+                    "Koche einen Gang zuhause und besuche zwei andere Teams.",
+                    "Du kochst nur einen Gang für 4-6 Personen bei dir zuhause. Die anderen beiden Gänge genießt du bei anderen Teilnehmern. So lernst du verschiedene Wohnungen und Stadtteile kennen!"
+                ),
+                StepCard(
+                    3, "🎉",
+                    "After-Party mit allen",
+                    "Triff alle Teilnehmer bei der gemeinsamen Party.",
+                    "Nach dem Dinner treffen sich alle Teilnehmer zur After-Party. Hier kannst du die Leute wiedertreffen und neue Kontakte knüpfen. Die Party geht oft bis in die Nacht!"
+                ),
+                cls="cards-grid"
             ),
-            Div(
-                Div(
-                    Div("🍽️", cls="text-6xl mb-6"),
-                    H3("Food", cls="text-2xl font-bold mb-4 text-gradient"),
-                    P("Entdecke neue Gerichte und lerne kochen von anderen. Jeder Gang ist eine kulinarische Überraschung!",
-                      cls="text-gray-600"),
-                    cls="card text-center hover-scale"
-                ),
-                Div(
-                    Div("🎊", cls="text-6xl mb-6"),
-                    H3("Fun", cls="text-2xl font-bold mb-4 text-gradient"),
-                    P("Vergiss langweilige Partys! Bei uns erlebst du authentische Momente in gemütlicher Atmosphäre.",
-                      cls="text-gray-600"),
-                    cls="card text-center hover-scale"
-                ),
-                Div(
-                    Div("👫", cls="text-6xl mb-6"),
-                    H3("Friends", cls="text-2xl font-bold mb-4 text-gradient"),
-                    P("Echte Verbindungen entstehen beim gemeinsamen Kochen und Essen. Nicht oberflächlich, sondern echt!",
-                      cls="text-gray-600"),
-                    cls="card text-center hover-scale"
-                ),
-                cls="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
-            ),
-            cls="container mx-auto px-6"
+            cls="container"
         ),
-        cls="py-20 bg-gray-50"
+        cls="section bg-gray"
     )
 
-def events_section():
+# Benefit Card Component
+def BenefitCard(icon, title, text):
+    return Div(
+        Div(icon, cls="benefit-icon"),
+        H3(title),
+        P(text),
+        cls="benefit-card"
+    )
+
+# Benefits Section
+def BenefitsSection():
     return Section(
         Div(
+            H2("Was erwartet dich?", cls="section-title"),
             Div(
-                H2("Nächste Events", cls="text-4xl font-bold text-gray-800 mb-4"),
-                P("Melde dich jetzt für das nächste Running Dinner in deiner Stadt an!",
-                  cls="text-xl text-gray-600"),
-                cls="text-center mb-16"
+                BenefitCard("🍝", "Food", "Leckere Gerichte bei dir und anderen. Von einfach bis extravagant - alles dabei!"),
+                BenefitCard("✨", "Fun", "Ein Abend voller Überraschungen und die legendäre After-Party zum Abschluss."),
+                BenefitCard("👥", "Friends", "6-12 neue Leute an einem Abend. Perfekt um dein Netzwerk zu erweitern!"),
+                cls="cards-grid"
+            ),
+            cls="container"
+        ),
+        cls="section bg-white"
+    )
+
+# Event Card Component
+def EventCard(date, title, description):
+    return Div(
+        Div(
+            Span(date, cls="event-date"),
+            H3(title),
+            P(description, style="color: var(--text-light);")
+        ),
+        A("Mehr →", href="#", cls="event-cta"),
+        cls="event-card"
+    )
+
+# Events Section
+def EventsSection():
+    events = [
+        ("Sommersemester 2025", "Gießen-kocht!", "Das Gießener Kult-Event - seit Jahren einmal pro Semester"),
+        ("Wintersemester 24/25", "Marburg-kocht!", "Organisiert durch die Studiengruppe der Uni Marburg"),
+        ("Sommersemester 2025", "BamBuS Dinner", "Organisiert durch die Studierendengruppe BamBuS"),
+        ("Sommersemester 2025", "Laufgelage Erlangen", "Hochschulgruppe Erlangen-Nürnberg"),
+        ("Sommersemester 2025", "Running Dinner Würzburg", "Studierendenvertretung der Uni Würzburg")
+    ]
+    
+    return Section(
+        Div(
+            H2("Aktuelle Events", cls="section-title"),
+            P(
+                "Finde das nächste Running Dinner in deiner Stadt",
+                style="text-align: center; color: var(--text-light); margin-bottom: 2rem;"
             ),
             Div(
-                Div(
-                    Div(
-                        Div(
-                            H3("Berlin - Mitte", cls="text-2xl font-bold text-gray-800 mb-2"),
-                            P("📅 Samstag, 24. August 2025 | 18:00 Uhr", cls="text-gray-600 mb-2"),
-                            P("Noch 8 Plätze frei", cls="text-sm text-gray-500"),
-                            cls="mb-4 md:mb-0"
-                        ),
-                        A("Jetzt anmelden - 25€", href="#signup", cls="btn-primary"),
-                        cls="flex flex-col md:flex-row justify-between items-start md:items-center"
-                    ),
-                    cls="event-card"
-                ),
-                Div(
-                    Div(
-                        Div(
-                            H3("München - Maxvorstadt", cls="text-2xl font-bold text-gray-800 mb-2"),
-                            P("📅 Sonntag, 25. August 2025 | 17:30 Uhr", cls="text-gray-600 mb-2"),
-                            P("Noch 12 Plätze frei", cls="text-sm text-gray-500"),
-                            cls="mb-4 md:mb-0"
-                        ),
-                        A("Jetzt anmelden - 25€", href="#signup", cls="btn-primary"),
-                        cls="flex flex-col md:flex-row justify-between items-start md:items-center"
-                    ),
-                    cls="event-card"
-                ),
-                Div(
-                    Div(
-                        Div(
-                            H3("Hamburg - Sternschanze", cls="text-2xl font-bold text-gray-800 mb-2"),
-                            P("📅 Freitag, 30. August 2025 | 18:30 Uhr", cls="text-gray-600 mb-2"),
-                            P("⚡ Nur noch 3 Plätze!", cls="text-sm text-red-500"),
-                            cls="mb-4 md:mb-0"
-                        ),
-                        A("Jetzt anmelden - 25€", href="#signup", cls="btn-primary"),
-                        cls="flex flex-col md:flex-row justify-between items-start md:items-center"
-                    ),
-                    cls="event-card"
-                ),
-                cls="max-w-4xl mx-auto"
+                *[EventCard(date, title, desc) for date, title, desc in events],
+                style="max-width: 800px; margin: 0 auto;"
             ),
-            cls="container mx-auto px-6"
+            cls="container"
         ),
         id="events",
-        cls="py-20 bg-white"
+        cls="section bg-gray"
     )
 
-def social_proof_section():
+# Testimonial Component
+def TestimonialCard(text, author):
+    return Div(
+        P(text, style="font-style: italic; margin-bottom: 1rem;"),
+        P(f"- {author}", style="color: var(--text-light);"),
+        cls="testimonial-card"
+    )
+
+# Testimonials Section
+def TestimonialsSection():
     return Section(
         Div(
-            Div(
-                H2("Das sagen unsere Teilnehmer", cls="text-4xl font-bold text-gray-800 mb-4"),
-                cls="text-center mb-16"
+            H2("Das sagen Teilnehmer", cls="section-title"),
+            TestimonialCard(
+                "Ich war neu in der Stadt und kannte niemanden. Nach dem Running Dinner hatte ich direkt eine Gruppe von Freunden, mit denen ich heute noch regelmäßig was unternehme!",
+                "Lisa, Teilnehmerin in Marburg"
             ),
-            Div(
-                Div(
-                    Div(
-                        Img(src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-                            alt="Sarah", cls="w-12 h-12 rounded-full mr-4"),
-                        Div(
-                            H4("Sarah, 22", cls="font-semibold"),
-                            P("Medizinstudentin, Berlin", cls="text-sm text-gray-500"),
-                        ),
-                        cls="flex items-center mb-4"
-                    ),
-                    P("\"Ich war super nervös, aber alle waren so freundlich! Habe drei neue Freundinnen gefunden und wir treffen uns jetzt regelmäßig.\"",
-                      cls="text-gray-600 italic"),
-                    cls="bg-white rounded-2xl p-8 shadow-lg"
-                ),
-                Div(
-                    Div(
-                        Img(src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-                            alt="Marco", cls="w-12 h-12 rounded-full mr-4"),
-                        Div(
-                            H4("Marco, 24", cls="font-semibold"),
-                            P("BWL-Student, München", cls="text-sm text-gray-500"),
-                        ),
-                        cls="flex items-center mb-4"
-                    ),
-                    P("\"Endlich mal was anderes als Bars und Clubs! Die Atmosphäre war entspannt und ich habe richtig coole Leute kennengelernt.\"",
-                      cls="text-gray-600 italic"),
-                    cls="bg-white rounded-2xl p-8 shadow-lg"
-                ),
-                Div(
-                    Div(
-                        Img(src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80",
-                            alt="Lisa", cls="w-12 h-12 rounded-full mr-4"),
-                        Div(
-                            H4("Lisa, 21", cls="font-semibold"),
-                            P("Psychologie, Hamburg", cls="text-sm text-gray-500"),
-                        ),
-                        cls="flex items-center mb-4"
-                    ),
-                    P("\"Ich kann gar nicht kochen, aber das war kein Problem! Alle haben sich gegenseitig geholfen und es war einfach lustig.\"",
-                      cls="text-gray-600 italic"),
-                    cls="bg-white rounded-2xl p-8 shadow-lg"
-                ),
-                cls="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            TestimonialCard(
+                "Die Mischung aus Kochen, neuen Leuten und Party ist einfach perfekt. Ich war schon bei 3 Events dabei und es war jedes Mal großartig!",
+                "Tom, Teilnehmer in Gießen"
             ),
-            Div(
-                Div(
-                    Div(
-                        Div("2,500+", cls="text-3xl font-bold text-gradient"),
-                        Div("Teilnehmer", cls="text-sm"),
-                        cls="text-center"
-                    ),
-                    Div(
-                        Div("180+", cls="text-3xl font-bold text-gradient"),
-                        Div("Events", cls="text-sm"),
-                        cls="text-center"
-                    ),
-                    Div(
-                        Div("95%", cls="text-3xl font-bold text-gradient"),
-                        Div("Weiterempfehlung", cls="text-sm"),
-                        cls="text-center"
-                    ),
-                    cls="flex justify-center items-center space-x-8 text-gray-600"
-                ),
-                cls="text-center mt-12"
-            ),
-            cls="container mx-auto px-6"
+            cls="container"
         ),
-        cls="py-20 bg-gray-50"
+        cls="section bg-white"
     )
 
-def faq_section():
+# FAQ Item Component
+def FAQItem(question, answer, item_id):
+    return Div(
+        Div(
+            Span(question),
+            Span("▼", style="color: var(--primary-teal);"),
+            cls="faq-question",
+            onclick=f"toggleFAQ('{item_id}')"
+        ),
+        Div(
+            P(answer),
+            cls="faq-answer",
+            id=f"faq-answer-{item_id}"
+        ),
+        cls="faq-item",
+        id=item_id
+    )
+
+# FAQ Section
+def FAQSection():
+    faqs = [
+        ("Muss ich gut kochen können?", 
+         "Nein! Es geht nicht um Perfektion, sondern um Spaß. Auch einfache Gerichte sind willkommen. Viele kochen Pasta, Salat oder bestellen sogar Pizza - Hauptsache, ihr habt eine gute Zeit!"),
+        ("Kann ich mich auch alleine anmelden?",
+         "Ja, absolut! Viele melden sich alleine an. Wir matchen dich dann mit einem anderen Single zu einem Kochteam. So lernst du direkt noch mehr Leute kennen!"),
+        ("Was ist mit Allergien oder vegetarisch/vegan?",
+         "Bei der Anmeldung kannst du alle Allergien und Präferenzen angeben. Wir berücksichtigen das beim Matching und informieren deine Gastgeber. Vegetarische und vegane Optionen sind mittlerweile Standard!"),
+        ("Wie viel kostet die Teilnahme?",
+         "Die Teilnahmegebühr variiert je nach Stadt, liegt aber meist zwischen 3-5€. Das deckt die Organisationskosten und manchmal einen Welcome-Drink bei der After-Party."),
+        ("Ist das sicher?",
+         "Ja! Alle Teilnehmer sind verifizierte Studierende. Du bekommst die Adressen erst kurz vorher und gehst nie alleine zu einem Haus. Bei Problemen ist das Orga-Team immer erreichbar.")
+    ]
+    
     return Section(
         Div(
+            H2("Häufige Fragen", cls="section-title"),
             Div(
-                H2("Häufige Fragen", cls="text-4xl font-bold text-gray-800 mb-4"),
-                cls="text-center mb-16"
+                *[FAQItem(q, a, f"faq-{i}") for i, (q, a) in enumerate(faqs)],
+                style="max-width: 800px; margin: 0 auto;"
             ),
-            Div(
-                Div(
-                    Div("Muss ich gut kochen können?", Span("+", cls="text-2xl"), 
-                        cls="faq-question", onclick="toggleFaq(this)"),
-                    Div(P("Nein! Du bekommst einfache Rezepte und Anleitungen. Es geht um den Spaß, nicht um Perfektion. Auch Anfänger sind herzlich willkommen!"),
-                        cls="faq-answer"),
-                    cls="faq-item"
-                ),
-                Div(
-                    Div("Was kostet die Teilnahme?", Span("+", cls="text-2xl"), 
-                        cls="faq-question", onclick="toggleFaq(this)"),
-                    Div(P("Die Teilnahme kostet 25€. Darin enthalten sind die Organisation, Rezepte, ein kleines Starter-Kit und der Eintritt zur After-Party."),
-                        cls="faq-answer"),
-                    cls="faq-item"
-                ),
-                Div(
-                    Div("Ist das sicher?", Span("+", cls="text-2xl"), 
-                        cls="faq-question", onclick="toggleFaq(this)"),
-                    Div(P("Ja! Alle Teilnehmer werden verifiziert und wir haben ein Support-Team, das während des Events erreichbar ist. Du bekommst vorher alle Kontaktdaten."),
-                        cls="faq-answer"),
-                    cls="faq-item"
-                ),
-                Div(
-                    Div("Was ist mit Allergien und Unverträglichkeiten?", Span("+", cls="text-2xl"), 
-                        cls="faq-question", onclick="toggleFaq(this)"),
-                    Div(P("Gib deine Allergien und Ernährungsgewohnheiten bei der Anmeldung an. Wir matchen dich entsprechend und stellen passende Rezepte zur Verfügung."),
-                        cls="faq-answer"),
-                    cls="faq-item"
-                ),
-                Div(
-                    Div("Kann ich mich auch mit Freunden anmelden?", Span("+", cls="text-2xl"), 
-                        cls="faq-question", onclick="toggleFaq(this)"),
-                    Div(P("Klar! Du kannst dich mit bis zu 3 Freunden als Gruppe anmelden. Ihr werdet dann gemeinsam gematcht und kocht zusammen."),
-                        cls="faq-answer"),
-                    cls="faq-item"
-                ),
-                cls="max-w-3xl mx-auto"
-            ),
-            cls="container mx-auto px-6"
+            cls="container"
         ),
-        cls="py-20 bg-white"
+        cls="section bg-gray"
     )
 
-def cta_section():
-    return Section(
+# CTA Section Component
+def CTASection():
+    return Div(
+        H2("Bereit für dein erstes Running Dinner?"),
+        P("Melde dich jetzt für das nächste Event an und erlebe einen unvergesslichen Abend voller neuer Freundschaften!"),
         Div(
-            H2("Bereit für dein erstes Running Dinner?", cls="text-4xl lg:text-5xl font-bold text-white mb-6"),
-            P("Melde dich jetzt für das nächste Event an und erlebe einen unvergesslichen Abend voller neuer Freundschaften!",
-              cls="text-xl text-white opacity-90 mb-8 max-w-2xl mx-auto"),
-            Div(
-                A("Event auswählen", href="#events", cls="btn-primary bg-white text-pink-600 hover:bg-gray-100"),
-                A("Noch Fragen?", href="#how-it-works", cls="btn-secondary border-white text-white hover:bg-white hover:text-pink-600"),
-                cls="flex flex-col sm:flex-row gap-4 justify-center"
-            ),
-            cls="container mx-auto px-6 text-center"
+            A("Event auswählen", href="#events", cls="cta-button-primary"),
+            A("Noch Fragen?", href="#faq", cls="cta-button-secondary"),
+            cls="cta-buttons"
         ),
-        id="signup",
-        cls="py-20 gradient-bg"
+        cls="cta-section"
     )
 
-def footer_section():
-    return Footer(
+# Footer Component
+def FooterSection():
+    return Div(
         Div(
             Div(
+                H3("Spinfood"),
+                P("Running Dinner Events für Studenten in Deutschland."),
                 Div(
-                    H3("Spinfood", cls="text-2xl font-bold mb-4 text-gradient"),
-                    P("Running Dinner Events für Studenten in Deutschland.", cls="text-gray-400 mb-4"),
-                    Div(
-                        A("📘 Facebook", href="#", cls="text-gray-400 hover:text-white"),
-                        A("📷 Instagram", href="#", cls="text-gray-400 hover:text-white"),
-                        cls="flex space-x-4"
-                    )
+                    A("📘 Facebook", href="#"),
+                    A("📷 Instagram", href="#"),
+                    cls="social-links"
                 ),
-                Div(
-                    H4("Events", cls="font-semibold mb-4"),
-                    Ul(
-                        Li(A("Berlin", href="#", cls="hover:text-white")),
-                        Li(A("München", href="#", cls="hover:text-white")),
-                        Li(A("Hamburg", href="#", cls="hover:text-white")),
-                        Li(A("Köln", href="#", cls="hover:text-white")),
-                        cls="space-y-2 text-gray-400"
-                    )
-                ),
-                Div(
-                    H4("Support", cls="font-semibold mb-4"),
-                    Ul(
-                        Li(A("FAQ", href="#", cls="hover:text-white")),
-                        Li(A("Kontakt", href="#", cls="hover:text-white")),
-                        Li(A("Hilfe", href="#", cls="hover:text-white")),
-                        cls="space-y-2 text-gray-400"
-                    )
-                ),
-                Div(
-                    H4("Rechtliches", cls="font-semibold mb-4"),
-                    Ul(
-                        Li(A("Impressum", href="#", cls="hover:text-white")),
-                        Li(A("Datenschutz", href="#", cls="hover:text-white")),
-                        Li(A("AGB", href="#", cls="hover:text-white")),
-                        cls="space-y-2 text-gray-400"
-                    )
-                ),
-                cls="grid md:grid-cols-4 gap-8"
+                cls="footer-column"
             ),
             Div(
-                P("© 2025 Spinfood. Alle Rechte vorbehalten.", cls="text-center text-gray-400"),
-                cls="border-t border-gray-700 mt-12 pt-8"
+                H3("Events"),
+                A("Berlin", href="#"),
+                A("München", href="#"),
+                A("Hamburg", href="#"),
+                A("Köln", href="#"),
+                cls="footer-column"
             ),
-            cls="container mx-auto px-6"
+            Div(
+                H3("Support"),
+                A("FAQ", href="#faq"),
+                A("Kontakt", href="#"),
+                A("Hilfe", href="#"),
+                cls="footer-column"
+            ),
+            Div(
+                H3("Rechtliches"),
+                A("Impressum", href="#"),
+                A("Datenschutz", href="#"),
+                A("AGB", href="#"),
+                cls="footer-column"
+            ),
+            cls="footer-container"
         ),
-        cls="bg-gray-800 text-white py-16"
+        Div(
+            P("© 2024 Spinfood. Made with ❤️ in Germany"),
+            cls="footer-bottom"
+        ),
+        cls="footer-section"
     )
 
+# Main route
 @rt("/")
 def get():
-    return Html(
-        Head(
-            Title("Spinfood - Running Dinner Events für Studenten"),
-            Meta(name="description", content="Lerne neue Leute bei Running Dinner Events kennen. Koche, esse und feiere mit anderen Studenten in deiner Stadt."),
-            Meta(name="viewport", content="width=device-width, initial-scale=1.0"),
-            Meta(charset="UTF-8"),
-            Link(rel="stylesheet", href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"),
-            Link(rel="preconnect", href="https://fonts.googleapis.com"),
-            Link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin=""),
-            Link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"),
-            Style(css),
-            Script(js)
-        ),
-        Body(
-            hero_section(),
-            problem_section(),
-            solution_section(),
-            benefits_section(),
-            events_section(),
-            social_proof_section(),
-            faq_section(),
-            cta_section(),
-            footer_section(),
-            cls="smooth-scroll"
-        ),
-        lang="de"
-    )
+    return Title("Spinfood - Running Dinner für Studierende"), \
+        Meta(name="viewport", content="width=device-width, initial-scale=1.0"), \
+        Meta(name="description", content="Triff 6-12 neue Leute an einem Abend beim Running Dinner in deiner Uni-Stadt. Food, Fun & Friends - Jetzt anmelden!"), \
+        Style(custom_css), \
+        Script(js_code), \
+        HeroSection(), \
+        ProblemSection(), \
+        HowItWorksSection(), \
+        BenefitsSection(), \
+        EventsSection(), \
+        TestimonialsSection(), \
+        FAQSection(), \
+        CTASection(), \
+        FooterSection()
 
-# Additional routes for form handling
-@rt("/signup")
-def post(name: str, email: str, event: str):
-    return Div(
-        H2("Anmeldung erhalten!", cls="text-2xl font-bold text-green-600 mb-4"),
-        P(f"Danke {name}! Wir haben deine Anmeldung für {event} erhalten."),
-        P(f"Eine Bestätigungsmail wurde an {email} gesendet."),
-        A("Zurück zur Startseite", href="/", cls="btn-primary mt-4"),
-        cls="container mx-auto px-6 py-20 text-center"
-    )
-
-if __name__ == "__main__":
-    serve()
+# Serve the app
+serve()
