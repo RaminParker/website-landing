@@ -649,8 +649,9 @@ section {
 
 .navbar-menu {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem; /* Gap between menu items */
     align-items: center;
+    margin-left: 3rem; /* Add left margin to create space from logo */
 }
 
 .navbar-link {
@@ -699,7 +700,7 @@ section {
     margin-top: 70px; /* Space for fixed navbar */
 }
 
-/* Organizer Section */
+/* Organizer Section - IMPROVED */
 .organizer-section {
     padding: 100px 20px;
     background: linear-gradient(135deg, var(--light-teal) 0%, var(--light-pink) 100%);
@@ -714,18 +715,25 @@ section {
     align-items: center;
 }
 
+/* IMPROVED: Better contrast and readability for the title */
 .organizer-text h2 {
-    font-size: 3rem;
+    font-size: 3.5rem; /* Increased from 3rem */
     color: var(--text-dark);
     margin-bottom: 1.5rem;
+    font-weight: 800; /* Increased weight for better visibility */
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for better readability */
 }
 
 .organizer-text h2 span {
     color: var(--primary-teal);
+    display: block; /* Makes "veranstalten" appear on its own line */
+    margin-top: 0.2rem;
 }
 
+/* IMPROVED: Increased font sizes in organizer section */
 .organizer-text p {
-    font-size: 1.3rem;
+    font-size: 1.4rem; /* Increased from 1.3rem */
     color: var(--text-light);
     margin-bottom: 2rem;
     line-height: 1.7;
@@ -738,7 +746,7 @@ section {
 
 .organizer-benefits li {
     padding: 0.8rem 0;
-    font-size: 1.2rem;
+    font-size: 1.3rem; /* Increased from 1.2rem */
     color: var(--text-dark);
     display: flex;
     align-items: center;
@@ -749,14 +757,14 @@ section {
     content: "✓";
     color: var(--primary-teal);
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Increased from 1.5rem */
 }
 
 .organizer-cta {
     background: var(--primary-teal);
     color: white;
     padding: 1.2rem 2.5rem;
-    font-size: 1.3rem;
+    font-size: 1.4rem; /* Increased from 1.3rem */
     border-radius: 50px;
     text-decoration: none;
     display: inline-block;
@@ -777,6 +785,15 @@ section {
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
 }
 
+.organizer-image h3 {
+    font-size: 1.9rem; /* Increased font size */
+}
+
+.organizer-image p {
+    font-size: 1.3rem; /* Increased font size */
+    line-height: 1.7;
+}
+
 @media (max-width: 968px) {
     .navbar-menu {
         flex-direction: column;
@@ -789,9 +806,15 @@ section {
     }
     
     .organizer-text h2 {
-        font-size: 2.2rem;
+        font-size: 2.5rem; /* Adjusted for mobile */
+    }
+    
+    .organizer-text h2 span {
+        display: inline; /* On mobile, keep it inline */
+        margin-left: 0.3rem;
     }
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -998,7 +1021,7 @@ document.addEventListener('DOMContentLoaded', function() {
 # Initialize FastHTML app
 app, rt = fast_app()
 
-# Navigation Bar Component
+# Navigation Bar Component - IMPROVED with better spacing
 def NavigationBar():
     return Nav(
         Div(
@@ -1012,22 +1035,6 @@ def NavigationBar():
             cls="navbar-container"
         ),
         cls="navbar"
-    )
-
-# Navigation Bar Component
-def NavigationBar():
-    return Nav(
-        Div(
-            A("🍝 SPINFOOD", href="#", style="font-size: 1.8rem; font-weight: bold; color: var(--primary-pink); text-decoration: none;"),
-            Div(
-                A("Für Teilnehmer", href="#", style="color: var(--text-dark); text-decoration: none; font-weight: 500; font-size: 1.1rem; padding: 0.5rem 1rem; background: var(--light-pink); border-radius: 25px;"),
-                A("Für Veranstalter", href="#organizer", style="color: var(--text-dark); text-decoration: none; font-weight: 500; font-size: 1.1rem; padding: 0.5rem 1rem;"),
-                A("Event finden", href="#events", style="background: var(--primary-teal); color: white; padding: 0.7rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 600;"),
-                style="display: flex; gap: 2rem; align-items: center;"
-            ),
-            style="max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center;"
-        ),
-        style="position: fixed; top: 0; left: 0; right: 0; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 999; padding: 1rem 0;"
     )
 
 # Hero Section Component
@@ -1327,44 +1334,42 @@ def FooterSection():
         cls="footer-section"
     )
 
-# Organizer Section Component
+# Organizer Section Component - IMPROVED
 def OrganizerSection():
     return Div(
         Div(
             Div(
                 H2(
                     "Running Dinner Events",
-                    Span("veranstalten", style="color: var(--primary-teal);"),
-                    style="font-weight: 700; font-size: 3rem; margin-bottom: 1.5rem;"
+                    Span("veranstalten", cls="organizer-highlight"),
+                    cls="organizer-text"
                 ),
-                P("Spinfood ist die Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir übernehmen die komplette technische Abwicklung für deine Organisation.",
-                  style="font-size: 1.3rem; color: var(--text-light); margin-bottom: 2rem; line-height: 1.7;"),
+                P("Spinfood ist die Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir übernehmen die komplette technische Abwicklung für deine Organisation."),
                 Ul(
-                    Li("✓ Vollautomatische Organisation", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
-                    Li("✓ Intelligentes Pärchen-Matching", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
-                    Li("✓ Nie den Überblick verlieren", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
-                    Li("✓ Integriertes Zahlungssystem", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
-                    Li("✓ Erfahrene Ansprechpartner", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
-                    style="list-style: none; padding: 0; margin-bottom: 2rem;"
+                    Li("✓ Vollautomatische Organisation"),
+                    Li("✓ Intelligentes Pärchen-Matching"),
+                    Li("✓ Nie den Überblick verlieren"),
+                    Li("✓ Integriertes Zahlungssystem"),
+                    Li("✓ Erfahrene Ansprechpartner"),
+                    cls="organizer-benefits"
                 ),
                 P("Keine mühsame Handarbeit bei der Planung. Wir stellen das System - ihr organisiert das Event!", 
-                  style="font-size: 1.2rem; color: var(--text-dark); font-weight: 500; margin-bottom: 2rem;"),
-                Button("Jetzt Kontakt aufnehmen", onclick="showContactModal()", 
-                       style="background: var(--primary-teal); color: white; padding: 1.2rem 2.5rem; font-size: 1.3rem; border-radius: 50px; border: none; font-weight: 600; cursor: pointer;"),
-                style="max-width: 600px;"
+                  style="font-size: 1.3rem; color: var(--text-dark); font-weight: 500; margin-bottom: 2rem;"),
+                Button("Jetzt Kontakt aufnehmen", onclick="showContactModal()", cls="organizer-cta"),
+                cls="organizer-text"
             ),
             Div(
-                H3("Was ist Spinfood?", style="color: var(--primary-pink); margin-bottom: 1rem; font-size: 1.8rem;"),
+                H3("Was ist Spinfood?", style="color: var(--primary-pink); margin-bottom: 1rem; font-size: 1.9rem;"),
                 P("Spinfood ist eine Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir organisieren die komplette Logistik: von der Anmeldung über die automatische Teamzuteilung bis hin zur Erstellung individueller Dinner-Routen.",
-                  style="margin-bottom: 1.5rem; font-size: 1.2rem; line-height: 1.6;"),
+                  style="margin-bottom: 1.5rem; font-size: 1.3rem; line-height: 1.7;"),
                 P("Wir übernehmen den kompletten technischen Part, damit ihr euch auf das Wesentliche konzentrieren könnt: die Organisation des Events und das Marketing.",
-                  style="font-weight: 500; font-size: 1.2rem; line-height: 1.6;"),
-                style="padding: 2.5rem; background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 600px;"
+                  style="font-weight: 500; font-size: 1.3rem; line-height: 1.7;"),
+                cls="organizer-image"
             ),
-            style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto;"
+            cls="organizer-content"
         ),
         id="organizer",
-        style="padding: 100px 20px; background: linear-gradient(135deg, var(--light-teal) 0%, var(--light-pink) 100%);"
+        cls="organizer-section"
     )
 
 # Contact Modal Component
