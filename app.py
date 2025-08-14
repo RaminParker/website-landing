@@ -795,6 +795,16 @@ section {
 .organizer-image p {
     font-size: 1.3rem; /* Increased font size */
     line-height: 1.7;
+    color: #495057; /* Darker gray for better contrast */
+}
+
+.organizer-image p:first-of-type {
+    color: #6c757d; /* Slightly lighter for the first paragraph */
+}
+
+.organizer-image p:last-of-type {
+    color: #343a40; /* Darker for emphasis on the last paragraph */
+    font-weight: 500;
 }
 
 @media (max-width: 968px) {
