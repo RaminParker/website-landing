@@ -616,7 +616,182 @@ section {
     opacity: 0.7;
 }
 
-/* Modal styles */
+/* Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+    padding: 1rem 0;
+}
+
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-pink);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.navbar-link {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+}
+
+.navbar-link:hover {
+    color: var(--primary-pink);
+}
+
+.navbar-link.active {
+    background: var(--light-pink);
+    color: var(--primary-pink);
+}
+
+.navbar-cta {
+    background: var(--primary-teal);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.navbar-cta:hover {
+    background: var(--dark-teal);
+    transform: translateY(-2px);
+}
+
+/* Adjust hero for navbar */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #E91E63 0%, #4CAF50 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin-top: 70px; /* Space for fixed navbar */
+}
+
+/* Organizer Section */
+.organizer-section {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, var(--light-teal) 0%, var(--light-pink) 100%);
+}
+
+.organizer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.organizer-text h2 {
+    font-size: 3rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.organizer-text h2 span {
+    color: var(--primary-teal);
+}
+
+.organizer-text p {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.organizer-benefits {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.organizer-benefits li {
+    padding: 0.8rem 0;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.organizer-benefits li::before {
+    content: "✓";
+    color: var(--primary-teal);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.organizer-cta {
+    background: var(--primary-teal);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.organizer-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.organizer-image {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 968px) {
+    .navbar-menu {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .organizer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .organizer-text h2 {
+        font-size: 2.2rem;
+    }
+}
 .modal {
     display: none;
     position: fixed;
@@ -823,6 +998,38 @@ document.addEventListener('DOMContentLoaded', function() {
 # Initialize FastHTML app
 app, rt = fast_app()
 
+# Navigation Bar Component
+def NavigationBar():
+    return Nav(
+        Div(
+            A("🍝 SPINFOOD", href="#", cls="navbar-logo"),
+            Div(
+                A("Für Teilnehmer", href="#", cls="navbar-link active"),
+                A("Für Veranstalter", href="#organizer", cls="navbar-link"),
+                A("Event finden", href="#events", cls="navbar-cta"),
+                cls="navbar-menu"
+            ),
+            cls="navbar-container"
+        ),
+        cls="navbar"
+    )
+
+# Navigation Bar Component
+def NavigationBar():
+    return Nav(
+        Div(
+            A("🍝 SPINFOOD", href="#", style="font-size: 1.8rem; font-weight: bold; color: var(--primary-pink); text-decoration: none;"),
+            Div(
+                A("Für Teilnehmer", href="#", style="color: var(--text-dark); text-decoration: none; font-weight: 500; font-size: 1.1rem; padding: 0.5rem 1rem; background: var(--light-pink); border-radius: 25px;"),
+                A("Für Veranstalter", href="#organizer", style="color: var(--text-dark); text-decoration: none; font-weight: 500; font-size: 1.1rem; padding: 0.5rem 1rem;"),
+                A("Event finden", href="#events", style="background: var(--primary-teal); color: white; padding: 0.7rem 1.5rem; border-radius: 25px; text-decoration: none; font-weight: 600;"),
+                style="display: flex; gap: 2rem; align-items: center;"
+            ),
+            style="max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center;"
+        ),
+        style="position: fixed; top: 0; left: 0; right: 0; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 999; padding: 1rem 0;"
+    )
+
 # Hero Section Component
 def HeroSection():
     return Div(
@@ -846,8 +1053,8 @@ def HeroSection():
                         cls="hero-cta-primary"
                     ),
                     A(
-                        "Wie es funktioniert",
-                        href="#how",
+                        "🎓 Event organisieren",
+                        href="#organizer",
                         cls="hero-cta-secondary"
                     ),
                     cls="hero-buttons"
@@ -954,7 +1161,7 @@ def BenefitsSection():
             Div(
                 BenefitCard("🍝", "Food", "Leckere Gerichte bei dir und anderen. Von einfach bis extravagant - alles dabei!"),
                 BenefitCard("✨", "Fun", "Ein Abend voller Überraschungen und die legendäre After-Party zum Abschluss."),
-                BenefitCard("👥", "Friends", "6-12 neue Leute an einem Abend. Perfekt um dein Netzwerk zu erweitern!"),
+                BenefitCard("👥", "Friends", "Echte Verbindungen entstehen beim gemeinsamen Kochen und Essen. Nicht oberflächlich, sondern echt!"),
                 cls="cards-grid"
             ),
             cls="container"
@@ -1120,6 +1327,46 @@ def FooterSection():
         cls="footer-section"
     )
 
+# Organizer Section Component
+def OrganizerSection():
+    return Div(
+        Div(
+            Div(
+                H2(
+                    "Running Dinner Events",
+                    Span("veranstalten", style="color: var(--primary-teal);"),
+                    style="font-weight: 700; font-size: 3rem; margin-bottom: 1.5rem;"
+                ),
+                P("Spinfood ist die Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir übernehmen die komplette technische Abwicklung für deine Organisation.",
+                  style="font-size: 1.3rem; color: var(--text-light); margin-bottom: 2rem; line-height: 1.7;"),
+                Ul(
+                    Li("✓ Vollautomatische Organisation", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
+                    Li("✓ Intelligentes Pärchen-Matching", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
+                    Li("✓ Nie den Überblick verlieren", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
+                    Li("✓ Integriertes Zahlungssystem", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
+                    Li("✓ Erfahrene Ansprechpartner", style="padding: 0.8rem 0; font-size: 1.2rem; color: var(--text-dark);"),
+                    style="list-style: none; padding: 0; margin-bottom: 2rem;"
+                ),
+                P("Keine mühsame Handarbeit bei der Planung. Wir stellen das System - ihr organisiert das Event!", 
+                  style="font-size: 1.2rem; color: var(--text-dark); font-weight: 500; margin-bottom: 2rem;"),
+                Button("Jetzt Kontakt aufnehmen", onclick="showContactModal()", 
+                       style="background: var(--primary-teal); color: white; padding: 1.2rem 2.5rem; font-size: 1.3rem; border-radius: 50px; border: none; font-weight: 600; cursor: pointer;"),
+                style="max-width: 600px;"
+            ),
+            Div(
+                H3("Was ist Spinfood?", style="color: var(--primary-pink); margin-bottom: 1rem; font-size: 1.8rem;"),
+                P("Spinfood ist eine Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir organisieren die komplette Logistik: von der Anmeldung über die automatische Teamzuteilung bis hin zur Erstellung individueller Dinner-Routen.",
+                  style="margin-bottom: 1.5rem; font-size: 1.2rem; line-height: 1.6;"),
+                P("Wir übernehmen den kompletten technischen Part, damit ihr euch auf das Wesentliche konzentrieren könnt: die Organisation des Events und das Marketing.",
+                  style="font-weight: 500; font-size: 1.2rem; line-height: 1.6;"),
+                style="padding: 2.5rem; background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); max-width: 600px;"
+            ),
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto;"
+        ),
+        id="organizer",
+        style="padding: 100px 20px; background: linear-gradient(135deg, var(--light-teal) 0%, var(--light-pink) 100%);"
+    )
+
 # Contact Modal Component
 def ContactModal():
     return Div(
@@ -1142,11 +1389,13 @@ def get():
         Meta(name="description", content="Triff 6-12 neue Leute an einem Abend beim Running Dinner in deiner Uni-Stadt. Food, Fun & Friends - Jetzt anmelden!"), \
         Style(custom_css), \
         Script(js_code), \
+        NavigationBar(), \
         HeroSection(), \
         ProblemSection(), \
         HowItWorksSection(), \
         BenefitsSection(), \
         EventsSection(), \
+        OrganizerSection(), \
         TestimonialsSection(), \
         FAQSection(), \
         CTASection(), \
