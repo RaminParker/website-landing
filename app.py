@@ -751,13 +751,16 @@ section {
     display: flex;
     align-items: center;
     gap: 1rem;
+    list-style: none;
 }
 
 .organizer-benefits li::before {
     content: "✓";
     color: var(--primary-teal);
     font-weight: bold;
-    font-size: 1.6rem; /* Increased from 1.5rem */
+    font-size: 1.8rem;
+    display: inline-block;
+    width: 25px;
 }
 
 .organizer-cta {
@@ -1346,11 +1349,11 @@ def OrganizerSection():
                 ),
                 P("Spinfood ist die Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir übernehmen die komplette technische Abwicklung für deine Organisation."),
                 Ul(
-                    Li("✓ Vollautomatische Organisation"),
-                    Li("✓ Intelligentes Pärchen-Matching"),
-                    Li("✓ Nie den Überblick verlieren"),
-                    Li("✓ Integriertes Zahlungssystem"),
-                    Li("✓ Erfahrene Ansprechpartner"),
+                    Li("Vollautomatische Organisation"),
+                    Li("Intelligentes Pärchen-Matching"),
+                    Li("Nie den Überblick verlieren"),
+                    Li("Integriertes Zahlungssystem"),
+                    Li("Erfahrene Ansprechpartner"),
                     cls="organizer-benefits"
                 ),
                 P("Keine mühsame Handarbeit bei der Planung. Wir stellen das System - ihr organisiert das Event!", 
