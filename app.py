@@ -688,7 +688,281 @@ section {
     transform: translateY(-2px);
 }
 
-/* Adjust hero for navbar */
+/* Partner Section */
+.partner-section {
+    background: white;
+    padding: 80px 20px;
+    border-top: 1px solid #E0E0E0;
+}
+
+.partner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.partner-label {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.partner-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+}
+
+.partner-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.partner-logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.partner-logo {
+    width: 180px;
+    height: 80px;
+    background: #F5F5F5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #999;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.partner-logo:hover {
+    border-color: var(--primary-teal);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.partner-name {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Team/About Section */
+.team-section {
+    background: linear-gradient(135deg, #FFF5F7 0%, #F0FFF4 100%);
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.team-image-wrapper {
+    position: relative;
+}
+
+.team-image {
+    width: 100%;
+    max-width: 450px;
+    height: 450px;
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-teal));
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.team-image::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-teal));
+    opacity: 0.1;
+    border-radius: 30px;
+    z-index: -1;
+}
+
+.team-photo-placeholder {
+    font-size: 8rem;
+    color: white;
+    opacity: 0.9;
+}
+
+.team-content {
+    padding-left: 2rem;
+}
+
+.team-content h2 {
+    font-size: 3rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.team-content h2 span {
+    color: var(--primary-pink);
+}
+
+.team-divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-teal));
+    margin: 2rem 0;
+    border-radius: 2px;
+}
+
+.team-description {
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.team-highlight {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 3rem;
+}
+
+.team-buttons {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.team-btn-primary {
+    background: var(--text-dark);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.team-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    background: #1a1a1a;
+}
+
+.team-btn-secondary {
+    background: transparent;
+    color: var(--text-dark);
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--text-dark);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.team-btn-secondary:hover {
+    background: var(--text-dark);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.team-locations {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.team-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+.team-location span {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+@media (max-width: 968px) {
+    .team-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .team-content {
+        padding-left: 0;
+    }
+    
+    .team-image {
+        margin: 0 auto;
+        max-width: 350px;
+        height: 350px;
+    }
+    
+    .team-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .team-divider {
+        margin: 2rem auto;
+    }
+    
+    .team-buttons {
+        justify-content: center;
+    }
+    
+    .team-locations {
+        justify-content: center;
+    }
+    
+    .partner-logos {
+        gap: 2rem;
+    }
+    
+    .partner-logo {
+        width: 150px;
+        height: 70px;
+    }
+    
+    .partner-label {
+        font-size: 2rem;
+    }
+}
+
+/* Adjust hero for navbar only */
 .hero {
     min-height: 100vh;
     background: linear-gradient(135deg, #E91E63 0%, #4CAF50 100%);
@@ -1048,6 +1322,77 @@ def NavigationBar():
             cls="navbar-container"
         ),
         cls="navbar"
+    )
+
+# Partner Section Component
+def PartnerSection():
+    return Div(
+        Div(
+            H2("Vertraut von führenden Universitäten", cls="partner-label"),
+            P("Tausende Studierende haben bereits an unseren Events teilgenommen", cls="partner-subtitle"),
+            Div(
+                Div(
+                    # Placeholder for Uni Gießen logo
+                    Div("🎓", cls="partner-logo"),
+                    Span("Universität Gießen", cls="partner-name"),
+                    cls="partner-logo-item"
+                ),
+                Div(
+                    # Placeholder for Uni Erlangen logo
+                    Div("🏛️", cls="partner-logo"),
+                    Span("Universität Erlangen", cls="partner-name"),
+                    cls="partner-logo-item"
+                ),
+                cls="partner-logos"
+            ),
+            cls="partner-container"
+        ),
+        cls="partner-section"
+    )
+
+# Team/About Section Component
+def TeamSection():
+    return Div(
+        Div(
+            Div(
+                Div(
+                    # Placeholder for team photo - in production, use Img()
+                    Div("👥", cls="team-photo-placeholder"),
+                    cls="team-image"
+                ),
+                cls="team-image-wrapper"
+            ),
+            Div(
+                H2(
+                    "Und wer steckt hinter ",
+                    Span("Spinfood?"),
+                    cls="team-title"
+                ),
+                Div(cls="team-divider"),
+                P(
+                    "Wir sind drei Hobby-Köche aus Berlin, Dresden und Nürnberg und arbeiten in unserer Freizeit an diesem Projekt. Wenn du Fragen oder Anregungen hast, melde dich gerne bei uns. Wir wollen Spinfood kontinuierlich verbessern!",
+                    cls="team-description"
+                ),
+                P(
+                    "Unser Ziel: Running Dinner Events in jeder deutschen Uni-Stadt etablieren.",
+                    cls="team-highlight"
+                ),
+                Div(
+                    Button("✉️ Schreib uns", onclick="showContactModal()", cls="team-btn-primary"),
+                    A("💡 Mehr über uns", href="#", cls="team-btn-secondary"),
+                    cls="team-buttons"
+                ),
+                Div(
+                    Div("📍", Span("Berlin"), cls="team-location"),
+                    Div("📍", Span("Dresden"), cls="team-location"),
+                    Div("📍", Span("Nürnberg"), cls="team-location"),
+                    cls="team-locations"
+                ),
+                cls="team-content"
+            ),
+            cls="team-container"
+        ),
+        cls="team-section"
     )
 
 # Hero Section Component
@@ -1417,6 +1762,8 @@ def get():
         TestimonialsSection(), \
         FAQSection(), \
         CTASection(), \
+        TeamSection(), \
+        PartnerSection(), \
         FooterSection(), \
         ContactModal()
 
