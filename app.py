@@ -731,6 +731,103 @@ section {
     border-top: 1px solid #E0E0E0;
 }
 
+/* Sponsors Section */
+.sponsors-section {
+    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+    padding: 80px 20px;
+    position: relative;
+}
+
+.sponsors-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sponsors-label {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.sponsors-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.sponsor-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sponsor-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    border-color: var(--primary-pink);
+}
+
+.sponsor-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--light-pink), var(--light-teal));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.sponsor-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.sponsor-type {
+    font-size: 0.9rem;
+    color: var(--primary-teal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .sponsors-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .sponsor-item {
+        padding: 1.5rem;
+    }
+    
+    .sponsors-label {
+        font-size: 2rem;
+    }
+}
+
 .partner-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -1347,6 +1444,38 @@ def PartnerSection():
         cls="partner-section"
     )
 
+# Sponsors Section Component
+def SponsorsSection():
+    sponsors = [
+        ("🏪", "REWE", "Hauptsponsor"),
+        ("🍕", "Domino's Pizza", "Food Partner"),
+        ("🍺", "Krombacher", "Getränke Partner"),
+        ("🏦", "Sparkasse", "Finanzieller Partner"),
+        ("🎭", "Studentenwerk", "Unterstützer"),
+        ("📱", "TechStart GmbH", "Tech Partner")
+    ]
+    
+    return Div(
+        Div(
+            H2("Unsere Partner & Sponsoren", cls="sponsors-label"),
+            P(
+                "Diese Unternehmen unterstützen uns dabei, unvergessliche Events für Studierende zu schaffen",
+                cls="sponsors-subtitle"
+            ),
+            Div(
+                *[Div(
+                    Div(icon, cls="sponsor-icon"),
+                    Div(name, cls="sponsor-name"),
+                    Div(sponsor_type, cls="sponsor-type"),
+                    cls="sponsor-item"
+                ) for icon, name, sponsor_type in sponsors],
+                cls="sponsors-grid"
+            ),
+            cls="sponsors-container"
+        ),
+        cls="sponsors-section"
+    )
+
 # Team/About Section Component
 def TeamSection():
     return Div(
@@ -1760,6 +1889,7 @@ def get():
         CTASection(), \
         TeamSection(), \
         PartnerSection(), \
+        SponsorsSection(), \
         FooterSection(), \
         ContactModal()
 
