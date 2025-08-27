@@ -1,19 +1,88 @@
+#!/usr/bin/env python3
+"""
+Spinfood Landing Page
+======================
+A FastHTML-based landing page for Spinfood - a platform for organizing
+Running Dinner events at German universities.
+
+Running Dinners are social events where participants cook one course at home
+and visit other participants for the remaining courses, meeting 6-12 new people.
+
+Author: Spinfood Team
+Created: 2025
+License: Proprietary
+"""
+
 from fasthtml.common import *
 
-# Custom CSS as a string
+# ============================================================================
+# CONFIGURATION & CONSTANTS
+# ============================================================================
+
+APP_TITLE = "Spinfood - Running Dinner für Studierende"
+APP_DESCRIPTION = "Triff 6-12 neue Leute an einem Abend beim Running Dinner in deiner Uni-Stadt. Food, Fun & Friends - Jetzt anmelden!"
+CONTACT_EMAIL = "hi@spinfood.de"
+
+# Event data - in production, this would come from a database
+CURRENT_EVENTS = [
+    ("Sommersemester 2025", "Gießen-kocht!", "Das Gießener Kult-Event - seit Jahren einmal pro Semester"),
+    ("Wintersemester 24/25", "Marburg-kocht!", "Organisiert durch die Studiengruppe der Uni Marburg"),
+    ("Sommersemester 2025", "BamBuS Dinner", "Organisiert durch die Studierendengruppe BamBuS"),
+    ("Sommersemester 2025", "Laufgelage Erlangen", "Hochschulgruppe Erlangen-Nürnberg"),
+    ("Sommersemester 2025", "Running Dinner Würzburg", "Studierendenvertretung der Uni Würzburg")
+]
+
+SPONSOR_LIST = [
+    ("🏪", "REWE", "Hauptsponsor"),
+    ("🍕", "Domino's Pizza", "Food Partner"),
+    ("🍺", "Krombacher", "Getränke Partner"),
+    ("🏦", "Sparkasse", "Finanzieller Partner"),
+    ("🎭", "Studentenwerk", "Unterstützer"),
+    ("📱", "TechStart GmbH", "Tech Partner")
+]
+
+FAQ_LIST = [
+    ("Muss ich gut kochen können?", 
+     "Nein! Es geht nicht um Perfektion, sondern um Spaß. Auch einfache Gerichte sind willkommen. Viele kochen Pasta, Salat oder bestellen sogar Pizza - Hauptsache, ihr habt eine gute Zeit!"),
+    ("Kann ich mich auch alleine anmelden?",
+     "Ja, absolut! Viele melden sich alleine an. Wir matchen dich dann mit einem anderen Single zu einem Kochteam. So lernst du direkt noch mehr Leute kennen!"),
+    ("Was ist mit Allergien oder vegetarisch/vegan?",
+     "Bei der Anmeldung kannst du alle Allergien und Präferenzen angeben. Wir berücksichtigen das beim Matching und informieren deine Gastgeber. Vegetarische und vegane Optionen sind mittlerweile Standard!"),
+    ("Wie viel kostet die Teilnahme?",
+     "Die Teilnahmegebühr variiert je nach Stadt, liegt aber meist zwischen 3-5€. Das deckt die Organisationskosten und manchmal einen Welcome-Drink bei der After-Party."),
+    ("Ist das sicher?",
+     "Ja! Alle Teilnehmer sind verifizierte Studierende. Du bekommst die Adressen erst kurz vorher und gehst nie alleine zu einem Haus. Bei Problemen ist das Orga-Team immer erreichbar.")
+]
+
+# ============================================================================
+# CSS STYLES
+# ============================================================================
+
+# CSS is organized into logical sections for easier maintenance
 custom_css = """
+/* ==========================================================================
+   CSS Variables & Root Styles
+   ========================================================================== */
 :root {
+    /* Brand Colors */
     --primary-pink: #E91E63;
     --primary-teal: #4CAF50;
     --dark-teal: #2E7D32;
     --light-pink: #FCE4EC;
     --light-teal: #E8F5E9;
+    
+    /* Text Colors */
     --text-dark: #212121;
     --text-light: #757575;
+    
+    /* Background Colors */
     --white: #FFFFFF;
     --gray-light: #F5F5F5;
 }
 
+/* ==========================================================================
+   Global Styles
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -33,12 +102,42 @@ section {
     outline: none !important;
 }
 
+/* ==========================================================================
+   Layout & Container Classes
+   ========================================================================== */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
+.section {
+    padding: 100px 20px;
+    border: none;
+    margin: 0;
+}
+
+.bg-white { 
+    background: white;
+    border: none;
+}
+
+.bg-gray { 
+    background: #F5F5F5;
+    border: none;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
 .section-title {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
@@ -55,6 +154,83 @@ section {
     line-height: 1.8;
 }
 
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+    padding: 1rem 0;
+}
+
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-pink);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-left: 3rem; /* Space between logo and menu */
+}
+
+.navbar-link {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+}
+
+.navbar-link:hover {
+    color: var(--primary-pink);
+}
+
+.navbar-link.active {
+    background: var(--light-pink);
+    color: var(--primary-pink);
+}
+
+.navbar-cta {
+    background: var(--primary-teal);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.navbar-cta:hover {
+    background: var(--dark-teal);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
 .hero {
     min-height: 100vh;
     background: linear-gradient(135deg, #E91E63 0%, #4CAF50 100%);
@@ -169,13 +345,6 @@ section {
     border: 1px solid rgba(255,255,255,0.2);
 }
 
-.hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-}
-
 .hero-image-placeholder {
     width: 100%;
     height: 100%;
@@ -212,68 +381,9 @@ section {
     text-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }
 
-@media (max-width: 968px) {
-    .hero-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 40px 20px;
-    }
-    
-    .hero-content {
-        text-align: center;
-    }
-    
-    .hero-buttons {
-        justify-content: center;
-    }
-    
-    .hero-image {
-        height: 400px;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-    
-    .hero-title {
-        font-size: 3rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.4rem;
-    }
-    
-    .section-title {
-        font-size: 2.5rem;
-    }
-    
-    .section-subtitle {
-        font-size: 1.3rem;
-    }
-}
-
-.section {
-    padding: 100px 20px;
-    border: none;
-    margin: 0;
-}
-
-.bg-white { 
-    background: white;
-    border: none;
-}
-
-.bg-gray { 
-    background: #F5F5F5;
-    border: none;
-}
-
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
+/* ==========================================================================
+   Step Cards (How It Works Section)
+   ========================================================================== */
 .step-card {
     background: white;
     padding: 2.5rem;
@@ -328,6 +438,20 @@ section {
     margin-bottom: 1rem;
 }
 
+/* Expandable content for step cards */
+.expandable {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.expandable.show {
+    max-height: 500px;
+}
+
+/* ==========================================================================
+   Benefit Cards (Was erwartet dich Section)
+   ========================================================================== */
 .benefit-card {
     background: white;
     padding: 3rem;
@@ -353,6 +477,7 @@ section {
     animation: float 3s ease-in-out infinite;
 }
 
+/* Stagger animation for visual interest */
 .benefit-card:nth-child(1) .benefit-icon {
     animation-delay: 0s;
 }
@@ -401,6 +526,9 @@ section {
     color: var(--text-light);
 }
 
+/* ==========================================================================
+   Event Cards
+   ========================================================================== */
 .event-card {
     background: white;
     padding: 2.5rem;
@@ -459,6 +587,9 @@ section {
     transform: scale(1.05);
 }
 
+/* ==========================================================================
+   FAQ Section
+   ========================================================================== */
 .faq-item {
     background: white;
     margin-bottom: 1rem;
@@ -490,6 +621,9 @@ section {
     display: block;
 }
 
+/* ==========================================================================
+   Testimonial Cards
+   ========================================================================== */
 .testimonial-card {
     background: white;
     padding: 2.5rem;
@@ -519,6 +653,9 @@ section {
     opacity: 0.3;
 }
 
+/* ==========================================================================
+   CTA Section
+   ========================================================================== */
 .cta-section {
     padding: 100px 20px;
     background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-teal) 100%);
@@ -589,306 +726,9 @@ section {
     transform: translateY(-2px);
 }
 
-.footer-section {
-    background: #2C3E50;
-    color: white;
-    padding: 60px 20px 40px;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 3rem;
-}
-
-.footer-column h3 {
-    color: var(--primary-pink);
-    margin-bottom: 1.2rem;
-    font-size: 1.6rem;
-}
-
-.footer-column p {
-    margin-bottom: 1.2rem;
-    opacity: 0.9;
-    line-height: 1.7;
-    font-size: 1.2rem;
-}
-
-.footer-column a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 1rem;
-    transition: color 0.3s ease;
-    opacity: 0.9;
-    font-size: 1.2rem;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    opacity: 0.7;
-    font-size: 1.1rem;
-}
-
-.footer-column a:hover {
-    color: var(--primary-teal);
-    opacity: 1;
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.social-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* Navigation Bar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    z-index: 999;
-    padding: 1rem 0;
-}
-
-.navbar-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar-logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--primary-pink);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.navbar-menu {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    margin-left: 3rem;
-}
-
-.navbar-link {
-    color: var(--text-dark);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-}
-
-.navbar-link:hover {
-    color: var(--primary-pink);
-}
-
-.navbar-link.active {
-    background: var(--light-pink);
-    color: var(--primary-pink);
-}
-
-.navbar-cta {
-    background: var(--primary-teal);
-    color: white;
-    padding: 0.7rem 1.5rem;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.navbar-cta:hover {
-    background: var(--dark-teal);
-    transform: translateY(-2px);
-}
-
-/* Partner Section */
-.partner-section {
-    background: white;
-    padding: 80px 20px;
-    border-top: 1px solid #E0E0E0;
-}
-
-/* Sponsors Section */
-.sponsors-section {
-    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
-    padding: 80px 20px;
-    position: relative;
-}
-
-.sponsors-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.sponsors-label {
-    font-size: 2.5rem;
-    color: var(--text-dark);
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.sponsors-subtitle {
-    font-size: 1.3rem;
-    color: var(--text-light);
-    margin-bottom: 3rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.sponsors-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.sponsor-item {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.sponsor-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    border-color: var(--primary-pink);
-}
-
-.sponsor-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--light-pink), var(--light-teal));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-}
-
-.sponsor-name {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-
-.sponsor-type {
-    font-size: 0.9rem;
-    color: var(--primary-teal);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 500;
-}
-
-@media (max-width: 768px) {
-    .sponsors-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1.5rem;
-    }
-    
-    .sponsor-item {
-        padding: 1.5rem;
-    }
-    
-    .sponsors-label {
-        font-size: 2rem;
-    }
-}
-
-.partner-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.partner-label {
-    font-size: 2.5rem;
-    color: var(--text-dark);
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.partner-subtitle {
-    font-size: 1.3rem;
-    color: var(--text-light);
-    margin-bottom: 3rem;
-}
-
-.partner-logos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4rem;
-    flex-wrap: wrap;
-}
-
-.partner-logo-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.partner-logo {
-    width: 180px;
-    height: 80px;
-    background: #F5F5F5;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: #999;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.partner-logo:hover {
-    border-color: var(--primary-teal);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.partner-name {
-    font-size: 1.1rem;
-    color: var(--text-light);
-    font-weight: 500;
-}
-
-/* Team/About Section */
+/* ==========================================================================
+   Team/About Section
+   ========================================================================== */
 .team-section {
     background: linear-gradient(135deg, #FFF5F7 0%, #F0FFF4 100%);
     padding: 100px 20px;
@@ -1048,59 +888,162 @@ section {
     color: var(--text-dark);
 }
 
-@media (max-width: 968px) {
-    .team-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
-    }
-    
-    .team-content {
-        padding-left: 0;
-    }
-    
-    .team-image {
-        margin: 0 auto;
-        max-width: 350px;
-        height: 350px;
-    }
-    
-    .team-content h2 {
-        font-size: 2.5rem;
-    }
-    
-    .team-divider {
-        margin: 2rem auto;
-    }
-    
-    .team-buttons {
-        justify-content: center;
-    }
-    
-    .team-locations {
-        justify-content: center;
-    }
-    
-    .partner-logos {
-        gap: 2rem;
-    }
-    
-    .partner-logo {
-        width: 150px;
-        height: 70px;
-    }
-    
-    .partner-label {
-        font-size: 2rem;
-    }
-    
-    .navbar-menu {
-        flex-direction: column;
-        gap: 1rem;
-    }
+/* ==========================================================================
+   Partner Section (Universities)
+   ========================================================================== */
+.partner-section {
+    background: white;
+    padding: 80px 20px;
+    border-top: 1px solid #E0E0E0;
 }
 
-/* Organizer Section */
+.partner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.partner-label {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.partner-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+}
+
+.partner-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.partner-logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.partner-logo {
+    width: 180px;
+    height: 80px;
+    background: #F5F5F5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #999;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.partner-logo:hover {
+    border-color: var(--primary-teal);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.partner-name {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Sponsors Section
+   ========================================================================== */
+.sponsors-section {
+    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+    padding: 80px 20px;
+    position: relative;
+}
+
+.sponsors-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sponsors-label {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.sponsors-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.sponsor-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sponsor-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    border-color: var(--primary-pink);
+}
+
+.sponsor-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--light-pink), var(--light-teal));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.sponsor-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.sponsor-type {
+    font-size: 0.9rem;
+    color: var(--primary-teal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Organizer Section
+   ========================================================================== */
 .organizer-section {
     padding: 100px 20px;
     background: linear-gradient(135deg, var(--light-teal) 0%, var(--light-pink) 100%);
@@ -1205,22 +1148,75 @@ section {
     font-weight: 500;
 }
 
-@media (max-width: 968px) {
-    .organizer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .organizer-text h2 {
-        font-size: 2.5rem;
-    }
-    
-    .organizer-text h2 span {
-        display: inline;
-        margin-left: 0.3rem;
-    }
+/* ==========================================================================
+   Footer Section
+   ========================================================================== */
+.footer-section {
+    background: #2C3E50;
+    color: white;
+    padding: 60px 20px 40px;
 }
 
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+}
+
+.footer-column h3 {
+    color: var(--primary-pink);
+    margin-bottom: 1.2rem;
+    font-size: 1.6rem;
+}
+
+.footer-column p {
+    margin-bottom: 1.2rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    font-size: 1.2rem;
+}
+
+.footer-column a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+    opacity: 0.9;
+    font-size: 1.2rem;
+}
+
+.footer-column a:hover {
+    color: var(--primary-teal);
+    opacity: 1;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0.7;
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   Modal (Contact)
+   ========================================================================== */
 .modal {
     display: none;
     position: fixed;
@@ -1310,7 +1306,133 @@ section {
     text-decoration: underline;
 }
 
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 968px) {
+    /* Navigation */
+    .navbar-menu {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* Hero Section */
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .hero-image {
+        height: 400px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+    
+    /* Typography */
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    /* Team Section */
+    .team-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .team-content {
+        padding-left: 0;
+    }
+    
+    .team-image {
+        margin: 0 auto;
+        max-width: 350px;
+        height: 350px;
+    }
+    
+    .team-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .team-divider {
+        margin: 2rem auto;
+    }
+    
+    .team-buttons {
+        justify-content: center;
+    }
+    
+    .team-locations {
+        justify-content: center;
+    }
+    
+    /* Partners */
+    .partner-logos {
+        gap: 2rem;
+    }
+    
+    .partner-logo {
+        width: 150px;
+        height: 70px;
+    }
+    
+    .partner-label {
+        font-size: 2rem;
+    }
+    
+    /* Organizer Section */
+    .organizer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .organizer-text h2 {
+        font-size: 2.5rem;
+    }
+    
+    .organizer-text h2 span {
+        display: inline;
+        margin-left: 0.3rem;
+    }
+}
+
 @media (max-width: 768px) {
+    /* Sponsors */
+    .sponsors-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .sponsor-item {
+        padding: 1.5rem;
+    }
+    
+    .sponsors-label {
+        font-size: 2rem;
+    }
+    
+    /* Modal */
     .modal-content {
         padding: 2rem;
         margin: 15px;
@@ -1324,24 +1446,28 @@ section {
         font-size: 1.1rem;
     }
 }
-
-.expandable {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease;
-}
-
-.expandable.show {
-    max-height: 500px;
-}
 """
 
-# JavaScript code
+# ============================================================================
+# JAVASCRIPT CODE
+# ============================================================================
+
 js_code = """
+/**
+ * JavaScript functionality for Spinfood Landing Page
+ * Handles interactive elements like expandable content, FAQ toggles, and modal
+ */
+
+/**
+ * Toggle expandable content (used in step cards)
+ * @param {string} id - The element ID to toggle
+ */
 function toggleExpand(id) {
     const element = document.getElementById(id);
     element.classList.toggle('show');
     const button = element.previousElementSibling;
+    
+    // Update button text based on state
     if (element.classList.contains('show')) {
         button.textContent = 'Weniger ↑';
     } else {
@@ -1349,10 +1475,16 @@ function toggleExpand(id) {
     }
 }
 
+/**
+ * Toggle FAQ item visibility
+ * @param {string} id - The FAQ item ID to toggle
+ */
 function toggleFAQ(id) {
     const faqItem = document.getElementById(id);
     faqItem.classList.toggle('active');
     const answer = document.getElementById('faq-answer-' + id);
+    
+    // Show/hide answer based on active state
     if (faqItem.classList.contains('active')) {
         answer.style.display = 'block';
     } else {
@@ -1360,18 +1492,25 @@ function toggleFAQ(id) {
     }
 }
 
-// Modal functionality
+/**
+ * Show the contact modal
+ */
 function showContactModal() {
     document.getElementById('contactModal').classList.add('show');
 }
 
+/**
+ * Close the contact modal
+ */
 function closeContactModal() {
     document.getElementById('contactModal').classList.remove('show');
 }
 
-// Smooth scrolling for anchor links
+/**
+ * Initialize page functionality when DOM is ready
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all links that start with #
+    // Smooth scrolling for anchor links
     const links = document.querySelectorAll('a[href^="#"]');
     
     links.forEach(link => {
@@ -1401,11 +1540,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 """
 
+# ============================================================================
+# COMPONENT BUILDERS
+# ============================================================================
+
 # Initialize FastHTML app
 app, rt = fast_app()
 
-# Navigation Bar Component
 def NavigationBar():
+    """
+    Creates the fixed navigation bar at the top of the page.
+    Contains logo, menu items, and CTA button.
+    """
     return Nav(
         Div(
             A("🍝 SPINFOOD", href="#", cls="navbar-logo"),
@@ -1420,64 +1566,344 @@ def NavigationBar():
         cls="navbar"
     )
 
-# Partner Section Component
-def PartnerSection():
+def HeroSection():
+    """
+    Creates the main hero section with gradient background.
+    Split layout with content on left and image placeholder on right.
+    """
     return Div(
         Div(
-            H2("Vertraut von führenden Universitäten", cls="partner-label"),
-            P("Tausende Studierende haben bereits an unseren Events teilgenommen", cls="partner-subtitle"),
+            Div(
+                Div("SPINFOOD", cls="logo"),
+                Div("Food. Fun. Friends.", cls="tagline"),
+                H1(
+                    "Neue Freunde beim ",
+                    Span("Running Dinner", cls="highlight"),
+                    cls="hero-title"
+                ),
+                P(
+                    "Koche einen Gang, besuche zwei Häuser und lerne 6-12 neue Leute bei einem unvergesslichen Abend kennen.",
+                    cls="hero-subtitle"
+                ),
+                Div(
+                    A("📍 Nächstes Event finden", href="#events", cls="hero-cta-primary"),
+                    A("🎓 Event organisieren", href="#organizer", cls="hero-cta-secondary"),
+                    cls="hero-buttons"
+                ),
+                cls="hero-content"
+            ),
             Div(
                 Div(
-                    Div("🎓", cls="partner-logo"),
-                    Span("Universität Gießen", cls="partner-name"),
-                    cls="partner-logo-item"
+                    Div("👥", cls="hero-image-icon"),
+                    P("Studenten beim gemeinsamen Kochen"),
+                    cls="hero-image-placeholder"
                 ),
-                Div(
-                    Div("🏛️", cls="partner-logo"),
-                    Span("Universität Erlangen", cls="partner-name"),
-                    cls="partner-logo-item"
-                ),
-                cls="partner-logos"
+                cls="hero-image"
             ),
-            cls="partner-container"
+            cls="hero-container"
         ),
-        cls="partner-section"
+        cls="hero"
     )
 
-# Sponsors Section Component
-def SponsorsSection():
-    sponsors = [
-        ("🏪", "REWE", "Hauptsponsor"),
-        ("🍕", "Domino's Pizza", "Food Partner"),
-        ("🍺", "Krombacher", "Getränke Partner"),
-        ("🏦", "Sparkasse", "Finanzieller Partner"),
-        ("🎭", "Studentenwerk", "Unterstützer"),
-        ("📱", "TechStart GmbH", "Tech Partner")
-    ]
-    
+def ProblemSection():
+    """
+    Creates the problem statement section.
+    Addresses the pain point of making new friends as a student.
+    """
     return Div(
         Div(
-            H2("Unsere Partner & Sponsoren", cls="sponsors-label"),
+            Div("😔", style="font-size: 4rem; text-align: center; margin-bottom: 1rem;"),
+            H2("Kennst du das?", cls="section-title"),
             P(
-                "Diese Unternehmen unterstützen uns dabei, unvergessliche Events für Studierende zu schaffen",
-                cls="sponsors-subtitle"
+                "Neue Stadt, neues Studium, aber keine neuen Freunde? "
+                "Die immer gleichen Leute im Hörsaal und in der Mensa? "
+                "Zeit, das zu ändern!",
+                cls="section-subtitle"
             ),
-            Div(
-                *[Div(
-                    Div(icon, cls="sponsor-icon"),
-                    Div(name, cls="sponsor-name"),
-                    Div(sponsor_type, cls="sponsor-type"),
-                    cls="sponsor-item"
-                ) for icon, name, sponsor_type in sponsors],
-                cls="sponsors-grid"
-            ),
-            cls="sponsors-container"
+            cls="container"
         ),
-        cls="sponsors-section"
+        cls="section bg-white"
     )
 
-# Team/About Section Component
+def StepCard(number: int, icon: str, title: str, description: str, details: str):
+    """
+    Creates a single step card with expandable details.
+    
+    Args:
+        number: Step number (1-3)
+        icon: Emoji icon for the step
+        title: Card title
+        description: Short description
+        details: Expandable detailed content
+    """
+    card_id = f"step-{number}"
+    return Div(
+        Div(str(number), cls="step-number"),
+        Div(icon, cls="step-icon"),
+        H3(title),
+        P(description, style="color: var(--text-light); margin-bottom: 1rem;"),
+        Button(
+            "Mehr erfahren ↓",
+            onclick=f"toggleExpand('{card_id}')",
+            style="background: none; border: none; color: var(--primary-pink); cursor: pointer; font-weight: 600; font-size: 1.1rem;"
+        ),
+        Div(
+            P(details, style="margin-top: 1rem; color: var(--text-light);"),
+            id=card_id,
+            cls="expandable"
+        ),
+        cls="step-card"
+    )
+
+def HowItWorksSection():
+    """
+    Creates the "How It Works" section with three step cards.
+    Each card has expandable details for more information.
+    """
+    return Div(
+        Div(
+            H2("So funktioniert's", cls="section-title"),
+            Div(
+                StepCard(
+                    1, "📝", 
+                    "Anmelden & Matchen",
+                    "Melde dich online an und werde einem Kochteam zugeteilt.",
+                    "Du meldest dich als 2er-Team oder alleine an. Wir teilen dich einem Gang zu (Vorspeise, Hauptgang oder Dessert) und matchen dich mit anderen Teilnehmern. Keine Sorge - auch Kochanfänger sind willkommen!"
+                ),
+                StepCard(
+                    2, "🍽️",
+                    "Kochen & Besuchen",
+                    "Koche einen Gang zuhause und besuche zwei andere Teams.",
+                    "Du kochst nur einen Gang für 4-6 Personen bei dir zuhause. Die anderen beiden Gänge genießt du bei anderen Teilnehmern. So lernst du verschiedene Wohnungen und Stadtteile kennen!"
+                ),
+                StepCard(
+                    3, "🎉",
+                    "After Party",
+                    "Triff alle Teilnehmer bei der gemeinsamen Party.",
+                    "Nach dem Dinner treffen sich alle Teilnehmer zur After-Party. Hier kannst du die Leute wiedertreffen und neue Kontakte knüpfen. Die Party geht oft bis in die Nacht!"
+                ),
+                cls="cards-grid"
+            ),
+            cls="container"
+        ),
+        id="how",
+        cls="section bg-gray"
+    )
+
+def BenefitCard(icon: str, title: str, text: str):
+    """
+    Creates a single benefit card with floating animation.
+    
+    Args:
+        icon: Emoji icon
+        title: Benefit title (Food/Fun/Friends)
+        text: Description text
+    """
+    return Div(
+        Div(icon, cls="benefit-icon"),
+        H3(title),
+        P(text),
+        cls="benefit-card"
+    )
+
+def BenefitsSection():
+    """
+    Creates the benefits section showcasing the three main values.
+    Uses animated cards for Food, Fun, and Friends.
+    """
+    return Section(
+        Div(
+            H2("Was erwartet dich?", cls="section-title"),
+            Div(
+                BenefitCard("🍝", "Food", "Leckere Gerichte bei dir und anderen. Von einfach bis extravagant - alles dabei!"),
+                BenefitCard("✨", "Fun", "Ein Abend voller Überraschungen und die legendäre After-Party zum Abschluss."),
+                BenefitCard("👥", "Friends", "Echte Verbindungen entstehen beim gemeinsamen Kochen und Essen. Nicht oberflächlich, sondern echt!"),
+                cls="cards-grid"
+            ),
+            cls="container"
+        ),
+        cls="section bg-white"
+    )
+
+def EventCard(date: str, title: str, description: str):
+    """
+    Creates a single event card.
+    
+    Args:
+        date: Event date/semester
+        title: Event name
+        description: Short event description
+    """
+    return Div(
+        Div(
+            Span(date, cls="event-date"),
+            H3(title),
+            P(description, style="color: var(--text-light);")
+        ),
+        A("Mehr →", href="#", cls="event-cta"),
+        cls="event-card"
+    )
+
+def EventsSection():
+    """
+    Creates the events section listing all current Running Dinner events.
+    Uses data from CURRENT_EVENTS constant.
+    """
+    return Section(
+        Div(
+            H2("Aktuelle Events", cls="section-title"),
+            P(
+                "Finde das nächste Running Dinner in deiner Stadt",
+                style="text-align: center; color: var(--text-light); margin-bottom: 2rem;"
+            ),
+            Div(
+                *[EventCard(date, title, desc) for date, title, desc in CURRENT_EVENTS],
+                style="max-width: 800px; margin: 0 auto;"
+            ),
+            cls="container"
+        ),
+        id="events",
+        cls="section bg-gray"
+    )
+
+def OrganizerSection():
+    """
+    Creates the section for event organizers.
+    Split layout with benefits list and information box.
+    """
+    return Div(
+        Div(
+            Div(
+                H2(
+                    "Running Dinner Events",
+                    Span("veranstalten", cls="organizer-highlight"),
+                    cls="organizer-text"
+                ),
+                P("Spinfood ist die Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir übernehmen die komplette technische Abwicklung für deine Organisation."),
+                Ul(
+                    Li("Vollautomatische Organisation"),
+                    Li("Intelligentes Pärchen-Matching"),
+                    Li("Nie den Überblick verlieren"),
+                    Li("Integriertes Zahlungssystem"),
+                    Li("Erfahrene Ansprechpartner"),
+                    cls="organizer-benefits"
+                ),
+                P("Keine mühsame Handarbeit bei der Planung. Wir stellen das System - ihr organisiert das Event!", 
+                  style="font-size: 1.3rem; color: var(--text-dark); font-weight: 500; margin-bottom: 2rem;"),
+                Button("Jetzt Kontakt aufnehmen", onclick="showContactModal()", cls="organizer-cta"),
+                cls="organizer-text"
+            ),
+            Div(
+                H3("Was ist Spinfood?", style="color: var(--primary-pink); margin-bottom: 1rem; font-size: 1.9rem;"),
+                P("Spinfood ist eine Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir organisieren die komplette Logistik: von der Anmeldung über die automatische Teamzuteilung bis hin zur Erstellung individueller Dinner-Routen.",
+                  style="margin-bottom: 1.5rem; font-size: 1.3rem; line-height: 1.7;"),
+                P("Wir übernehmen den kompletten technischen Part, damit ihr euch auf das Wesentliche konzentrieren könnt: die Organisation des Events und das Marketing.",
+                  style="font-weight: 500; font-size: 1.3rem; line-height: 1.7;"),
+                cls="organizer-image"
+            ),
+            cls="organizer-content"
+        ),
+        id="organizer",
+        cls="organizer-section"
+    )
+
+def TestimonialCard(text: str, author: str):
+    """
+    Creates a single testimonial card.
+    
+    Args:
+        text: Testimonial quote
+        author: Person's name and location
+    """
+    return Div(
+        P(text, style="font-style: italic; margin-bottom: 1rem;"),
+        P(f"- {author}", style="color: var(--text-light);"),
+        cls="testimonial-card"
+    )
+
+def TestimonialsSection():
+    """
+    Creates the testimonials section with participant feedback.
+    """
+    return Section(
+        Div(
+            H2("Das sagen Teilnehmer", cls="section-title"),
+            TestimonialCard(
+                "Ich war neu in der Stadt und kannte niemanden. Nach dem Running Dinner hatte ich direkt eine Gruppe von Freunden, mit denen ich heute noch regelmäßig was unternehme!",
+                "Lisa, Teilnehmerin in Marburg"
+            ),
+            TestimonialCard(
+                "Die Mischung aus Kochen, neuen Leuten und Party ist einfach perfekt. Ich war schon bei 3 Events dabei und es war jedes Mal großartig!",
+                "Tom, Teilnehmer in Gießen"
+            ),
+            cls="container"
+        ),
+        cls="section bg-white"
+    )
+
+def FAQItem(question: str, answer: str, item_id: str):
+    """
+    Creates a single FAQ item with toggle functionality.
+    
+    Args:
+        question: FAQ question text
+        answer: FAQ answer text
+        item_id: Unique ID for the FAQ item
+    """
+    return Div(
+        Div(
+            Span(question),
+            Span("▼", style="color: var(--primary-teal);"),
+            cls="faq-question",
+            onclick=f"toggleFAQ('{item_id}')"
+        ),
+        Div(
+            P(answer),
+            cls="faq-answer",
+            id=f"faq-answer-{item_id}"
+        ),
+        cls="faq-item",
+        id=item_id
+    )
+
+def FAQSection():
+    """
+    Creates the FAQ section with expandable questions and answers.
+    Uses data from FAQ_LIST constant.
+    """
+    return Section(
+        Div(
+            H2("Häufige Fragen", cls="section-title"),
+            Div(
+                *[FAQItem(q, a, f"faq-{i}") for i, (q, a) in enumerate(FAQ_LIST)],
+                style="max-width: 800px; margin: 0 auto;"
+            ),
+            cls="container"
+        ),
+        cls="section bg-gray"
+    )
+
+def CTASection():
+    """
+    Creates the call-to-action section before the footer.
+    Gradient background with prominent action buttons.
+    """
+    return Div(
+        H2("Bereit für dein erstes Running Dinner?"),
+        P("Melde dich jetzt für das nächste Event an und erlebe einen unvergesslichen Abend voller neuer Freundschaften!"),
+        Div(
+            A("Event auswählen", href="#events", cls="cta-button-primary"),
+            Button("Noch Fragen?", onclick="showContactModal()", cls="cta-button-secondary"),
+            cls="cta-buttons"
+        ),
+        cls="cta-section"
+    )
+
 def TeamSection():
+    """
+    Creates the team/about section.
+    Shows team information with locations and contact options.
+    """
     return Div(
         Div(
             Div(
@@ -1520,270 +1946,64 @@ def TeamSection():
         cls="team-section"
     )
 
-# Hero Section Component
-def HeroSection():
+def PartnerSection():
+    """
+    Creates the partner universities section.
+    Shows logos and names of partner universities.
+    """
     return Div(
         Div(
-            Div(
-                Div("SPINFOOD", cls="logo"),
-                Div("Food. Fun. Friends.", cls="tagline"),
-                H1(
-                    "Neue Freunde beim ",
-                    Span("Running Dinner", cls="highlight"),
-                    cls="hero-title"
-                ),
-                P(
-                    "Koche einen Gang, besuche zwei Häuser und lerne 6-12 neue Leute bei einem unvergesslichen Abend kennen.",
-                    cls="hero-subtitle"
-                ),
-                Div(
-                    A(
-                        "📍 Nächstes Event finden",
-                        href="#events",
-                        cls="hero-cta-primary"
-                    ),
-                    A(
-                        "🎓 Event organisieren",
-                        href="#organizer",
-                        cls="hero-cta-secondary"
-                    ),
-                    cls="hero-buttons"
-                ),
-                cls="hero-content"
-            ),
+            H2("Vertraut von führenden Universitäten", cls="partner-label"),
+            P("Tausende Studierende haben bereits an unseren Events teilgenommen", cls="partner-subtitle"),
             Div(
                 Div(
-                    Div("👥", cls="hero-image-icon"),
-                    P("Studenten beim gemeinsamen Kochen"),
-                    cls="hero-image-placeholder"
+                    Div("🎓", cls="partner-logo"),
+                    Span("Universität Gießen", cls="partner-name"),
+                    cls="partner-logo-item"
                 ),
-                cls="hero-image"
+                Div(
+                    Div("🏛️", cls="partner-logo"),
+                    Span("Universität Erlangen", cls="partner-name"),
+                    cls="partner-logo-item"
+                ),
+                cls="partner-logos"
             ),
-            cls="hero-container"
+            cls="partner-container"
         ),
-        cls="hero"
+        cls="partner-section"
     )
 
-# Problem Section Component
-def ProblemSection():
+def SponsorsSection():
+    """
+    Creates the sponsors section with a grid of sponsor cards.
+    Uses data from SPONSOR_LIST constant.
+    """
     return Div(
         Div(
-            Div("😔", style="font-size: 4rem; text-align: center; margin-bottom: 1rem;"),
-            H2("Kennst du das?", cls="section-title"),
+            H2("Unsere Partner & Sponsoren", cls="sponsors-label"),
             P(
-                "Neue Stadt, neues Studium, aber keine neuen Freunde? "
-                "Die immer gleichen Leute im Hörsaal und in der Mensa? "
-                "Zeit, das zu ändern!",
-                cls="section-subtitle"
-            ),
-            cls="container"
-        ),
-        cls="section bg-white"
-    )
-
-# Step Card Component
-def StepCard(number, icon, title, description, details):
-    card_id = f"step-{number}"
-    return Div(
-        Div(str(number), cls="step-number"),
-        Div(icon, cls="step-icon"),
-        H3(title),
-        P(description, style="color: var(--text-light); margin-bottom: 1rem;"),
-        Button(
-            "Mehr erfahren ↓",
-            onclick=f"toggleExpand('{card_id}')",
-            style="background: none; border: none; color: var(--primary-pink); cursor: pointer; font-weight: 600; font-size: 1.1rem;"
-        ),
-        Div(
-            P(details, style="margin-top: 1rem; color: var(--text-light);"),
-            id=card_id,
-            cls="expandable"
-        ),
-        cls="step-card"
-    )
-
-# How It Works Section
-def HowItWorksSection():
-    return Div(
-        Div(
-            H2("So funktioniert's", cls="section-title"),
-            Div(
-                StepCard(
-                    1, "📝", 
-                    "Anmelden & Matchen",
-                    "Melde dich online an und werde einem Kochteam zugeteilt.",
-                    "Du meldest dich als 2er-Team oder alleine an. Wir teilen dich einem Gang zu (Vorspeise, Hauptgang oder Dessert) und matchen dich mit anderen Teilnehmern. Keine Sorge - auch Kochanfänger sind willkommen!"
-                ),
-                StepCard(
-                    2, "🍽️",
-                    "Kochen & Besuchen",
-                    "Koche einen Gang zuhause und besuche zwei andere Teams.",
-                    "Du kochst nur einen Gang für 4-6 Personen bei dir zuhause. Die anderen beiden Gänge genießt du bei anderen Teilnehmern. So lernst du verschiedene Wohnungen und Stadtteile kennen!"
-                ),
-                StepCard(
-                    3, "🎉",
-                    "After Party",
-                    "Triff alle Teilnehmer bei der gemeinsamen Party.",
-                    "Nach dem Dinner treffen sich alle Teilnehmer zur After-Party. Hier kannst du die Leute wiedertreffen und neue Kontakte knüpfen. Die Party geht oft bis in die Nacht!"
-                ),
-                cls="cards-grid"
-            ),
-            cls="container"
-        ),
-        id="how",
-        cls="section bg-gray"
-    )
-
-# Benefit Card Component
-def BenefitCard(icon, title, text):
-    return Div(
-        Div(icon, cls="benefit-icon"),
-        H3(title),
-        P(text),
-        cls="benefit-card"
-    )
-
-# Benefits Section
-def BenefitsSection():
-    return Section(
-        Div(
-            H2("Was erwartet dich?", cls="section-title"),
-            Div(
-                BenefitCard("🍝", "Food", "Leckere Gerichte bei dir und anderen. Von einfach bis extravagant - alles dabei!"),
-                BenefitCard("✨", "Fun", "Ein Abend voller Überraschungen und die legendäre After-Party zum Abschluss."),
-                BenefitCard("👥", "Friends", "Echte Verbindungen entstehen beim gemeinsamen Kochen und Essen. Nicht oberflächlich, sondern echt!"),
-                cls="cards-grid"
-            ),
-            cls="container"
-        ),
-        cls="section bg-white"
-    )
-
-# Event Card Component
-def EventCard(date, title, description):
-    return Div(
-        Div(
-            Span(date, cls="event-date"),
-            H3(title),
-            P(description, style="color: var(--text-light);")
-        ),
-        A("Mehr →", href="#", cls="event-cta"),
-        cls="event-card"
-    )
-
-# Events Section
-def EventsSection():
-    events = [
-        ("Sommersemester 2025", "Gießen-kocht!", "Das Gießener Kult-Event - seit Jahren einmal pro Semester"),
-        ("Wintersemester 24/25", "Marburg-kocht!", "Organisiert durch die Studiengruppe der Uni Marburg"),
-        ("Sommersemester 2025", "BamBuS Dinner", "Organisiert durch die Studierendengruppe BamBuS"),
-        ("Sommersemester 2025", "Laufgelage Erlangen", "Hochschulgruppe Erlangen-Nürnberg"),
-        ("Sommersemester 2025", "Running Dinner Würzburg", "Studierendenvertretung der Uni Würzburg")
-    ]
-    
-    return Section(
-        Div(
-            H2("Aktuelle Events", cls="section-title"),
-            P(
-                "Finde das nächste Running Dinner in deiner Stadt",
-                style="text-align: center; color: var(--text-light); margin-bottom: 2rem;"
+                "Diese Unternehmen unterstützen uns dabei, unvergessliche Events für Studierende zu schaffen",
+                cls="sponsors-subtitle"
             ),
             Div(
-                *[EventCard(date, title, desc) for date, title, desc in events],
-                style="max-width: 800px; margin: 0 auto;"
+                *[Div(
+                    Div(icon, cls="sponsor-icon"),
+                    Div(name, cls="sponsor-name"),
+                    Div(sponsor_type, cls="sponsor-type"),
+                    cls="sponsor-item"
+                ) for icon, name, sponsor_type in SPONSOR_LIST],
+                cls="sponsors-grid"
             ),
-            cls="container"
+            cls="sponsors-container"
         ),
-        id="events",
-        cls="section bg-gray"
+        cls="sponsors-section"
     )
 
-# Testimonial Component
-def TestimonialCard(text, author):
-    return Div(
-        P(text, style="font-style: italic; margin-bottom: 1rem;"),
-        P(f"- {author}", style="color: var(--text-light);"),
-        cls="testimonial-card"
-    )
-
-# Testimonials Section
-def TestimonialsSection():
-    return Section(
-        Div(
-            H2("Das sagen Teilnehmer", cls="section-title"),
-            TestimonialCard(
-                "Ich war neu in der Stadt und kannte niemanden. Nach dem Running Dinner hatte ich direkt eine Gruppe von Freunden, mit denen ich heute noch regelmäßig was unternehme!",
-                "Lisa, Teilnehmerin in Marburg"
-            ),
-            TestimonialCard(
-                "Die Mischung aus Kochen, neuen Leuten und Party ist einfach perfekt. Ich war schon bei 3 Events dabei und es war jedes Mal großartig!",
-                "Tom, Teilnehmer in Gießen"
-            ),
-            cls="container"
-        ),
-        cls="section bg-white"
-    )
-
-# FAQ Item Component
-def FAQItem(question, answer, item_id):
-    return Div(
-        Div(
-            Span(question),
-            Span("▼", style="color: var(--primary-teal);"),
-            cls="faq-question",
-            onclick=f"toggleFAQ('{item_id}')"
-        ),
-        Div(
-            P(answer),
-            cls="faq-answer",
-            id=f"faq-answer-{item_id}"
-        ),
-        cls="faq-item",
-        id=item_id
-    )
-
-# FAQ Section
-def FAQSection():
-    faqs = [
-        ("Muss ich gut kochen können?", 
-         "Nein! Es geht nicht um Perfektion, sondern um Spaß. Auch einfache Gerichte sind willkommen. Viele kochen Pasta, Salat oder bestellen sogar Pizza - Hauptsache, ihr habt eine gute Zeit!"),
-        ("Kann ich mich auch alleine anmelden?",
-         "Ja, absolut! Viele melden sich alleine an. Wir matchen dich dann mit einem anderen Single zu einem Kochteam. So lernst du direkt noch mehr Leute kennen!"),
-        ("Was ist mit Allergien oder vegetarisch/vegan?",
-         "Bei der Anmeldung kannst du alle Allergien und Präferenzen angeben. Wir berücksichtigen das beim Matching und informieren deine Gastgeber. Vegetarische und vegane Optionen sind mittlerweile Standard!"),
-        ("Wie viel kostet die Teilnahme?",
-         "Die Teilnahmegebühr variiert je nach Stadt, liegt aber meist zwischen 3-5€. Das deckt die Organisationskosten und manchmal einen Welcome-Drink bei der After-Party."),
-        ("Ist das sicher?",
-         "Ja! Alle Teilnehmer sind verifizierte Studierende. Du bekommst die Adressen erst kurz vorher und gehst nie alleine zu einem Haus. Bei Problemen ist das Orga-Team immer erreichbar.")
-    ]
-    
-    return Section(
-        Div(
-            H2("Häufige Fragen", cls="section-title"),
-            Div(
-                *[FAQItem(q, a, f"faq-{i}") for i, (q, a) in enumerate(faqs)],
-                style="max-width: 800px; margin: 0 auto;"
-            ),
-            cls="container"
-        ),
-        cls="section bg-gray"
-    )
-
-# CTA Section Component
-def CTASection():
-    return Div(
-        H2("Bereit für dein erstes Running Dinner?"),
-        P("Melde dich jetzt für das nächste Event an und erlebe einen unvergesslichen Abend voller neuer Freundschaften!"),
-        Div(
-            A("Event auswählen", href="#events", cls="cta-button-primary"),
-            Button("Noch Fragen?", onclick="showContactModal()", cls="cta-button-secondary"),
-            cls="cta-buttons"
-        ),
-        cls="cta-section"
-    )
-
-# Footer Component
 def FooterSection():
+    """
+    Creates the footer with three columns of links and information.
+    Includes social links and legal pages.
+    """
     return Div(
         Div(
             Div(
@@ -1817,81 +2037,72 @@ def FooterSection():
         cls="footer-section"
     )
 
-# Organizer Section Component
-def OrganizerSection():
-    return Div(
-        Div(
-            Div(
-                H2(
-                    "Running Dinner Events",
-                    Span("veranstalten", cls="organizer-highlight"),
-                    cls="organizer-text"
-                ),
-                P("Spinfood ist die Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir übernehmen die komplette technische Abwicklung für deine Organisation."),
-                Ul(
-                    Li("Vollautomatische Organisation"),
-                    Li("Intelligentes Pärchen-Matching"),
-                    Li("Nie den Überblick verlieren"),
-                    Li("Integriertes Zahlungssystem"),
-                    Li("Erfahrene Ansprechpartner"),
-                    cls="organizer-benefits"
-                ),
-                P("Keine mühsame Handarbeit bei der Planung. Wir stellen das System - ihr organisiert das Event!", 
-                  style="font-size: 1.3rem; color: var(--text-dark); font-weight: 500; margin-bottom: 2rem;"),
-                Button("Jetzt Kontakt aufnehmen", onclick="showContactModal()", cls="organizer-cta"),
-                cls="organizer-text"
-            ),
-            Div(
-                H3("Was ist Spinfood?", style="color: var(--primary-pink); margin-bottom: 1rem; font-size: 1.9rem;"),
-                P("Spinfood ist eine Plattform für Running Dinner Events in deutschen Universitätsstädten. Wir organisieren die komplette Logistik: von der Anmeldung über die automatische Teamzuteilung bis hin zur Erstellung individueller Dinner-Routen.",
-                  style="margin-bottom: 1.5rem; font-size: 1.3rem; line-height: 1.7;"),
-                P("Wir übernehmen den kompletten technischen Part, damit ihr euch auf das Wesentliche konzentrieren könnt: die Organisation des Events und das Marketing.",
-                  style="font-weight: 500; font-size: 1.3rem; line-height: 1.7;"),
-                cls="organizer-image"
-            ),
-            cls="organizer-content"
-        ),
-        id="organizer",
-        cls="organizer-section"
-    )
-
-# Contact Modal Component
 def ContactModal():
+    """
+    Creates the contact modal that appears when users click contact buttons.
+    Contains email address and contact information.
+    """
     return Div(
         Div(
             Button("×", onclick="closeContactModal()", cls="modal-close"),
             H3("Kontakt 📬"),
             P("Wenn Du weitere Fragen, Anregungen oder Wünsche hast, kannst du uns jeder Zeit eine Email schicken an"),
-            A("hi@spinfood.de", href="mailto:hi@spinfood.de", cls="modal-email"),
+            A(CONTACT_EMAIL, href=f"mailto:{CONTACT_EMAIL}", cls="modal-email"),
             cls="modal-content"
         ),
         id="contactModal",
         cls="modal"
     )
 
-# Main route
+# ============================================================================
+# MAIN ROUTE
+# ============================================================================
+
 @rt("/")
 def get():
-    return Title("Spinfood - Running Dinner für Studierende"), \
-        Meta(name="viewport", content="width=device-width, initial-scale=1.0"), \
-        Meta(name="description", content="Triff 6-12 neue Leute an einem Abend beim Running Dinner in deiner Uni-Stadt. Food, Fun & Friends - Jetzt anmelden!"), \
-        Style(custom_css), \
-        Script(js_code), \
-        NavigationBar(), \
-        HeroSection(), \
-        ProblemSection(), \
-        HowItWorksSection(), \
-        BenefitsSection(), \
-        EventsSection(), \
-        OrganizerSection(), \
-        TestimonialsSection(), \
-        FAQSection(), \
-        CTASection(), \
-        TeamSection(), \
-        PartnerSection(), \
-        SponsorsSection(), \
-        FooterSection(), \
+    """
+    Main route handler for the landing page.
+    Assembles all components in the correct order.
+    
+    Returns:
+        Complete HTML page with all sections and components.
+    """
+    return (
+        # Page metadata
+        Title(APP_TITLE),
+        Meta(name="viewport", content="width=device-width, initial-scale=1.0"),
+        Meta(name="description", content=APP_DESCRIPTION),
+        
+        # Styles and scripts
+        Style(custom_css),
+        Script(js_code),
+        
+        # Page components in order
+        NavigationBar(),
+        HeroSection(),
+        ProblemSection(),
+        HowItWorksSection(),
+        BenefitsSection(),
+        EventsSection(),
+        OrganizerSection(),
+        TestimonialsSection(),
+        FAQSection(),
+        CTASection(),
+        TeamSection(),
+        PartnerSection(),
+        SponsorsSection(),
+        FooterSection(),
         ContactModal()
+    )
 
-# Serve the app
-serve()
+# ============================================================================
+# APPLICATION ENTRY POINT
+# ============================================================================
+
+if __name__ == "__main__":
+    """
+    Run the FastHTML application server.
+    Default port: 5001
+    Debug mode: Enabled for development
+    """
+    serve()
