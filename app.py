@@ -63,6 +63,7 @@ section {
     position: relative;
     overflow: hidden;
     padding: 0;
+    margin-top: 70px; /* Space for fixed navbar */
 }
 
 .hero-container {
@@ -328,33 +329,76 @@ section {
 }
 
 .benefit-card {
-    background: linear-gradient(135deg, var(--primary-pink), var(--primary-teal));
+    background: white;
     padding: 3rem;
     border-radius: 20px;
-    color: white;
     text-align: center;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #f0f0f0;
 }
 
 .benefit-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transform: translateY(-10px);
+    border-color: var(--primary-pink);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .benefit-icon {
-    font-size: 4.5rem;
+    font-size: 5rem;
     margin-bottom: 1.5rem;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+.benefit-card:nth-child(1) .benefit-icon {
+    animation-delay: 0s;
+}
+
+.benefit-card:nth-child(2) .benefit-icon {
+    animation-delay: 1s;
+}
+
+.benefit-card:nth-child(3) .benefit-icon {
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .benefit-card h3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+.benefit-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-teal));
+    border-radius: 2px;
 }
 
 .benefit-card p {
     font-size: 1.2rem;
-    line-height: 1.6;
+    line-height: 1.7;
+    color: var(--text-light);
 }
 
 .event-card {
@@ -608,14 +652,6 @@ section {
     gap: 0.5rem;
 }
 
-.footer-bottom {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    opacity: 0.7;
-}
-
 /* Navigation Bar */
 .navbar {
     position: fixed;
@@ -649,9 +685,9 @@ section {
 
 .navbar-menu {
     display: flex;
-    gap: 1.5rem; /* Gap between menu items */
+    gap: 1.5rem;
     align-items: center;
-    margin-left: 3rem; /* Add left margin to create space from logo */
+    margin-left: 3rem;
 }
 
 .navbar-link {
@@ -960,21 +996,14 @@ section {
     .partner-label {
         font-size: 2rem;
     }
+    
+    .navbar-menu {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }
 
-/* Adjust hero for navbar only */
-.hero {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #E91E63 0%, #4CAF50 100%);
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    padding: 0;
-    margin-top: 70px; /* Space for fixed navbar */
-}
-
-/* Organizer Section - IMPROVED */
+/* Organizer Section */
 .organizer-section {
     padding: 100px 20px;
     background: linear-gradient(135deg, var(--light-teal) 0%, var(--light-pink) 100%);
@@ -989,25 +1018,23 @@ section {
     align-items: center;
 }
 
-/* IMPROVED: Better contrast and readability for the title */
 .organizer-text h2 {
-    font-size: 3.5rem; /* Increased from 3rem */
+    font-size: 3.5rem;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
-    font-weight: 800; /* Increased weight for better visibility */
+    font-weight: 800;
     line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for better readability */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .organizer-text h2 span {
     color: var(--primary-teal);
-    display: block; /* Makes "veranstalten" appear on its own line */
+    display: block;
     margin-top: 0.2rem;
 }
 
-/* IMPROVED: Increased font sizes in organizer section */
 .organizer-text p {
-    font-size: 1.4rem; /* Increased from 1.3rem */
+    font-size: 1.4rem;
     color: var(--text-light);
     margin-bottom: 2rem;
     line-height: 1.7;
@@ -1020,7 +1047,7 @@ section {
 
 .organizer-benefits li {
     padding: 0.8rem 0;
-    font-size: 1.3rem; /* Increased from 1.2rem */
+    font-size: 1.3rem;
     color: var(--text-dark);
     display: flex;
     align-items: center;
@@ -1041,7 +1068,7 @@ section {
     background: var(--primary-teal);
     color: white;
     padding: 1.2rem 2.5rem;
-    font-size: 1.4rem; /* Increased from 1.3rem */
+    font-size: 1.4rem;
     border-radius: 50px;
     text-decoration: none;
     display: inline-block;
@@ -1063,41 +1090,36 @@ section {
 }
 
 .organizer-image h3 {
-    font-size: 1.9rem; /* Increased font size */
+    font-size: 1.9rem;
 }
 
 .organizer-image p {
-    font-size: 1.3rem; /* Increased font size */
+    font-size: 1.3rem;
     line-height: 1.7;
-    color: #495057; /* Darker gray for better contrast */
+    color: #495057;
 }
 
 .organizer-image p:first-of-type {
-    color: #6c757d; /* Slightly lighter for the first paragraph */
+    color: #6c757d;
 }
 
 .organizer-image p:last-of-type {
-    color: #343a40; /* Darker for emphasis on the last paragraph */
+    color: #343a40;
     font-weight: 500;
 }
 
 @media (max-width: 968px) {
-    .navbar-menu {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
     .organizer-content {
         grid-template-columns: 1fr;
         text-align: center;
     }
     
     .organizer-text h2 {
-        font-size: 2.5rem; /* Adjusted for mobile */
+        font-size: 2.5rem;
     }
     
     .organizer-text h2 span {
-        display: inline; /* On mobile, keep it inline */
+        display: inline;
         margin-left: 0.3rem;
     }
 }
@@ -1215,29 +1237,6 @@ section {
 .expandable.show {
     max-height: 500px;
 }
-
-.bg-white { background: white; }
-.bg-gray { background: var(--gray-light); }
-
-.expandable {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease;
-}
-
-.expandable.show {
-    max-height: 500px;
-}
-
-.bg-white { 
-    background: white;
-    border: none;
-}
-
-.bg-gray { 
-    background: #F8F9FA;
-    border: none;
-}
 """
 
 # JavaScript code
@@ -1308,7 +1307,7 @@ document.addEventListener('DOMContentLoaded', function() {
 # Initialize FastHTML app
 app, rt = fast_app()
 
-# Navigation Bar Component - IMPROVED with better spacing
+# Navigation Bar Component
 def NavigationBar():
     return Nav(
         Div(
@@ -1332,13 +1331,11 @@ def PartnerSection():
             P("Tausende Studierende haben bereits an unseren Events teilgenommen", cls="partner-subtitle"),
             Div(
                 Div(
-                    # Placeholder for Uni Gießen logo
                     Div("🎓", cls="partner-logo"),
                     Span("Universität Gießen", cls="partner-name"),
                     cls="partner-logo-item"
                 ),
                 Div(
-                    # Placeholder for Uni Erlangen logo
                     Div("🏛️", cls="partner-logo"),
                     Span("Universität Erlangen", cls="partner-name"),
                     cls="partner-logo-item"
@@ -1356,7 +1353,6 @@ def TeamSection():
         Div(
             Div(
                 Div(
-                    # Placeholder for team photo - in production, use Img()
                     Div("👥", cls="team-photo-placeholder"),
                     cls="team-image"
                 ),
@@ -1692,7 +1688,7 @@ def FooterSection():
         cls="footer-section"
     )
 
-# Organizer Section Component - IMPROVED
+# Organizer Section Component
 def OrganizerSection():
     return Div(
         Div(
