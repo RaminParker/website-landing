@@ -14,6 +14,7 @@ License: Proprietary
 """
 
 from fasthtml.common import *
+from starlette.staticfiles import StaticFiles
 
 # ============================================================================
 # CONFIGURATION & CONSTANTS
@@ -413,11 +414,14 @@ section {
 .step-card h3 {
     font-size: 1.8rem;
     margin-bottom: 0.8rem;
+    color: #212121; /* Dark text matching benefit cards */
+    font-weight: 700;
 }
 
 .step-card p {
     font-size: 1.3rem;
     line-height: 1.7;
+    color: #495057; /* Medium-dark gray matching benefit cards */
 }
 
 .step-number {
@@ -1558,6 +1562,9 @@ document.addEventListener('DOMContentLoaded', function() {
 # Initialize FastHTML app
 app, rt = fast_app()
 
+# Serve static files from the images folder
+app.mount("/images", StaticFiles(directory="images"), name="images")
+
 def NavigationBar():
     """
     Creates the fixed navigation bar at the top of the page.
@@ -1652,14 +1659,14 @@ def StepCard(number: int, icon: str, title: str, description: str, details: str)
         Div(str(number), cls="step-number"),
         Div(icon, cls="step-icon"),
         H3(title),
-        P(description, style="color: var(--text-light); margin-bottom: 1rem;"),
+        P(description, style="color: #495057; margin-bottom: 1rem;"),
         Button(
             "Mehr erfahren ↓",
             onclick=f"toggleExpand('{card_id}')",
             style="background: none; border: none; color: var(--primary-pink); cursor: pointer; font-weight: 600; font-size: 1.1rem;"
         ),
         Div(
-            P(details, style="margin-top: 1rem; color: var(--text-light);"),
+            P(details, style="margin-top: 1rem; color: #495057;"),
             id=card_id,
             cls="expandable"
         ),
@@ -1920,7 +1927,7 @@ def TeamSection():
         Div(
             Div(
                 Div(
-                    Div("👥", cls="team-photo-placeholder"),
+                    Img(src="/images/team.png", alt="Spinfood Team", style="width: 100%; height: 100%; object-fit: cover; border-radius: 30px;"),
                     cls="team-image"
                 ),
                 cls="team-image-wrapper"
@@ -1969,12 +1976,18 @@ def PartnerSection():
             P("Tausende Studierende haben bereits an unseren Events teilgenommen", cls="partner-subtitle"),
             Div(
                 Div(
-                    Div("🎓", cls="partner-logo"),
+                    Div(
+                        Img(src="/images/uni_giessen.png", alt="Universität Gießen Logo", style="width: 100%; height: 100%; object-fit: contain;"),
+                        cls="partner-logo"
+                    ),
                     Span("Universität Gießen", cls="partner-name"),
                     cls="partner-logo-item"
                 ),
                 Div(
-                    Div("🏛️", cls="partner-logo"),
+                    Div(
+                        Img(src="/images/uni_erlangen.svg", alt="Universität Erlangen Logo", style="width: 100%; height: 100%; object-fit: contain;"),
+                        cls="partner-logo"
+                    ),
                     Span("Universität Erlangen", cls="partner-name"),
                     cls="partner-logo-item"
                 ),
