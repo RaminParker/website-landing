@@ -562,10 +562,13 @@ section {
 .event-card h3 {
     font-size: 1.8rem;
     margin-bottom: 0.6rem;
+    color: #212121; /* Ensure title is dark */
 }
 
 .event-card p {
     font-size: 1.3rem;
+    color: #495057; /* Darker gray for better readability */
+    line-height: 1.5;
 }
 
 .event-cta {
@@ -604,6 +607,8 @@ section {
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
+    font-size: 1.2rem; /* Slightly larger */
+    color: #212121; /* Ensure question is dark */
     transition: background 0.3s ease;
 }
 
@@ -613,7 +618,9 @@ section {
 
 .faq-answer {
     padding: 0 1.5rem 1.5rem;
-    color: var(--text-light);
+    color: #495057; /* Darker gray for better readability */
+    font-size: 1.15rem; /* Slightly larger */
+    line-height: 1.7;
     display: none;
 }
 
@@ -636,11 +643,13 @@ section {
 
 .testimonial-card p {
     font-size: 1.4rem;
+    color: #495057; /* Darker gray for better readability */
 }
 
 .testimonial-card p:first-child {
     font-size: 1.5rem;
     line-height: 1.8;
+    color: #343a40; /* Even darker for the main quote */
 }
 
 .testimonial-card::before {
