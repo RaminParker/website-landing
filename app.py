@@ -598,6 +598,7 @@ section {
     margin-bottom: 1rem;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .faq-question {
@@ -607,8 +608,8 @@ section {
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
-    font-size: 1.2rem; /* Slightly larger */
-    color: #212121; /* Ensure question is dark */
+    font-size: 1.25rem;
+    color: #000000; /* Pure black for questions */
     transition: background 0.3s ease;
 }
 
@@ -618,9 +619,10 @@ section {
 
 .faq-answer {
     padding: 0 1.5rem 1.5rem;
-    color: #495057; /* Darker gray for better readability */
-    font-size: 1.15rem; /* Slightly larger */
-    line-height: 1.7;
+    color: #1a1a1a; /* Nearly black for maximum readability */
+    font-size: 1.2rem;
+    line-height: 1.8;
+    font-weight: 400; /* Regular weight for easy reading */
     display: none;
 }
 
@@ -1867,9 +1869,10 @@ def FAQItem(question: str, answer: str, item_id: str):
             onclick=f"toggleFAQ('{item_id}')"
         ),
         Div(
-            P(answer),
+            P(answer, style="color: #000000 !important; font-weight: 400 !important;"),
             cls="faq-answer",
-            id=f"faq-answer-{item_id}"
+            id=f"faq-answer-{item_id}",
+            style="color: #000000 !important;"
         ),
         cls="faq-item",
         id=item_id
