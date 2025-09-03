@@ -26,11 +26,11 @@ CONTACT_EMAIL = "hi@spinfood.de"
 
 # Event data - in production, this would come from a database
 CURRENT_EVENTS = [
-    ("Sommersemester 2025", "Gießen-kocht!", "Das Gießener Kult-Event - seit Jahren einmal pro Semester"),
-    ("Wintersemester 24/25", "Marburg-kocht!", "Organisiert durch die Studiengruppe der Uni Marburg"),
-    ("Sommersemester 2025", "BamBuS Dinner", "Organisiert durch die Studierendengruppe BamBuS"),
-    ("Sommersemester 2025", "Laufgelage Erlangen", "Hochschulgruppe Erlangen-Nürnberg"),
-    ("Sommersemester 2025", "Running Dinner Würzburg", "Studierendenvertretung der Uni Würzburg")
+    ("Sommersemester 2025", "Gießen-kocht!", "Das Gießener Kult-Event - seit Jahren einmal pro Semester", "https://www.giessenkocht.de/"),
+    ("Wintersemester 24/25", "Marburg-kocht!", "Organisiert durch die Studiengruppe der Uni Marburg", "https://www.marburgkocht.de/"),
+    ("Sommersemester 2025", "BamBuS Dinner", "Organisiert durch die Studierendengruppe BamBuS", "https://www.bambusev.de/bambus-dinner"),
+    ("Sommersemester 2025", "Laufgelage Erlangen", "Hochschulgruppe Erlangen-Nürnberg", "https://www.laufgelage.de/"),
+#    ("Sommersemester 2025", "Running Dinner Würzburg", "Studierendenvertretung der Uni Würzburg", "#")
 ]
 
 SPONSOR_LIST = [
@@ -1743,7 +1743,7 @@ def BenefitsSection():
         cls="section bg-white"
     )
 
-def EventCard(date: str, title: str, description: str):
+def EventCard(date: str, title: str, description: str, link: str = "#"):
     """
     Creates a single event card.
     
@@ -1751,14 +1751,15 @@ def EventCard(date: str, title: str, description: str):
         date: Event date/semester
         title: Event name
         description: Short event description
+        link: URL for the "Mehr" button (defaults to "#")
     """
     return Div(
         Div(
             Span(date, cls="event-date"),
             H3(title),
-            P(description, style="color: var(--text-light);")
+            P(description, style="color: #495057;")
         ),
-        A("Mehr →", href="#", cls="event-cta"),
+        A("Mehr →", href=link, cls="event-cta"),
         cls="event-card"
     )
 
@@ -1775,7 +1776,7 @@ def EventsSection():
                 style="text-align: center; color: var(--text-light); margin-bottom: 2rem;"
             ),
             Div(
-                *[EventCard(date, title, desc) for date, title, desc in CURRENT_EVENTS],
+                *[EventCard(date, title, desc, link) for date, title, desc, link in CURRENT_EVENTS],
                 style="max-width: 800px; margin: 0 auto;"
             ),
             cls="container"
