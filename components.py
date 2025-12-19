@@ -11,7 +11,8 @@ from fasthtml.common import (
 
 from config import (
     CLASS, CONTACT_EMAIL, CURRENT_EVENTS, SPONSOR_LIST, FAQ_LIST,
-    PARTNER_UNIVERSITIES, TEAM_LOCATIONS
+    PARTNER_UNIVERSITIES, TEAM_LOCATIONS,
+    HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE
 )
 
 
@@ -48,13 +49,12 @@ def HeroSection():
                 Div("SPINFOOD", cls=CLASS['logo']),
                 Div("Food. Fun. Friends.", cls=CLASS['tagline']),
                 H1(
-                    "Neue Freunde beim ",
-                    Span("Running Dinner", cls=CLASS['highlight']),
+                    HERO_TITLE_LINE1,
+                    Span(HERO_TITLE_LINE2, cls=CLASS['highlight']),
                     cls=CLASS['hero_title']
                 ),
                 P(
-                    "Koche einen Gang, besuche zwei Häuser und lerne 6-12 neue "
-                    "Leute bei einem unvergesslichen Abend kennen.",
+                    HERO_SUBTITLE,
                     cls=CLASS['hero_subtitle']
                 ),
                 Div(
@@ -91,10 +91,16 @@ def ProblemSection():
             Div("😔", style="font-size: 4rem; text-align: center; margin-bottom: 1rem;"),
             H2("Kennst du das?", cls=CLASS['section_title']),
             P(
-                "Neue Stadt, neues Studium, aber keine neuen Freunde? "
-                "Die immer gleichen Leute im Hörsaal und in der Mensa? "
-                "Zeit, das zu ändern!",
+                "Hunderte Anmeldungen in einer Excel-Tabelle. Endlose E-Mail-Ketten "
+                "wegen Absagen und Nachrückern. Stundenlange manuelle Team-Zuteilung "
+                "– und am Ende beschwert sich trotzdem jemand. Die Organisation eines "
+                "Running Dinners kann zur Vollzeitbeschäftigung werden.",
                 cls=CLASS['section_subtitle']
+            ),
+            P(
+                "Muss nicht sein.",
+                style="font-size: 1.8rem; font-weight: 700; text-align: center; "
+                      "color: var(--primary-pink); margin-top: -1rem;"
             ),
             cls=CLASS['container']
         ),

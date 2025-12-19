@@ -9,12 +9,17 @@ Single source of truth for easy maintenance.
 # Application Settings
 # =============================================================================
 
-APP_TITLE = "Spinfood - Running Dinner für Studierende"
+APP_TITLE = "Running Dinner Events - Powered by Spinfood"
 APP_DESCRIPTION = (
-    "Triff 6-12 neue Leute an einem Abend beim Running Dinner in deiner Uni-Stadt. "
-    "Food, Fun & Friends - Jetzt anmelden!"
+    "Schlüsselfertig für Fachschaften, Unis und studentische Gruppen. "
+    "Triff 6-12 neue Leute an einem Abend beim Running Dinner in deiner Uni-Stadt."
 )
 CONTACT_EMAIL = "hi@spinfood.de"
+
+# Hero Section Content
+HERO_TITLE_LINE1 = "Running Dinner Events"
+HERO_TITLE_LINE2 = "Powered by Spinfood"
+HERO_SUBTITLE = "Schlüsselfertig für Fachschaften, Unis und studentische Gruppen."
 
 # =============================================================================
 # CSS Class Names (Single Source of Truth)
