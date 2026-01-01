@@ -220,3 +220,4 @@ cython_debug/
 
 # Outputs from notebooks
 reports/
+.claude/rules/coding_guidelines.md
