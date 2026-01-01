@@ -26,7 +26,6 @@ def NavigationBar():
         Div(
             A("🍝 SPINFOOD", href="#", cls=CLASS['navbar_logo']),
             Div(
-                A("Für Teilnehmende", href="#", cls=f"{CLASS['navbar_link']} active"),
                 A("Für Veranstalter", href="#organizer", cls=CLASS['navbar_link']),
                 A("Event finden", href="#events", cls=CLASS['navbar_cta']),
                 cls=CLASS['navbar_menu']
