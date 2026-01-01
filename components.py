@@ -109,6 +109,36 @@ def ProblemSection():
 
 
 # =============================================================================
+# Solution Section
+# =============================================================================
+
+def SolutionSection():
+    """Create the solution/value proposition section after the problem."""
+    return Div(
+        Div(
+            Div("🚀", style="font-size: 4rem; text-align: center; margin-bottom: 1rem;"),
+            H2(
+                "Running Dinner in deiner Stadt",
+                style="font-size: 3.5rem; margin-bottom: 0.5rem; text-align: center; "
+                      "color: var(--text-dark);"
+            ),
+            P(
+                "Wir liefern die Plattform, ihr den Spaß",
+                style="font-size: 2rem; font-weight: 600; text-align: center; "
+                      "color: var(--primary-teal); margin-bottom: 2rem;"
+            ),
+            P(
+                "Die schlüsselfertige Lösung für Fachschaften, Unis und studentische "
+                "Gruppen. Von der Anmeldung bis zur After-Party – alles aus einer Hand.",
+                cls=CLASS['section_subtitle']
+            ),
+            cls=CLASS['container']
+        ),
+        cls=f"{CLASS['section']} {CLASS['bg_gray']}"
+    )
+
+
+# =============================================================================
 # How It Works Section
 # =============================================================================
 
@@ -209,7 +239,15 @@ def BenefitsSection():
     """Create the benefits section showcasing Food, Fun, Friends."""
     return Section(
         Div(
-            H2("Was erwartet dich?", cls=CLASS['section_title']),
+            H2("Was ist ein Running Dinner Event?", cls=CLASS['section_title']),
+            P(
+                "Bei einem Running Dinner ziehen Teams durch die Stadt und erleben "
+                "drei Gänge in drei verschiedenen Wohnungen – bei jedem Gang mit neuen "
+                "Leuten. Klingt einfach, ist es aber nicht: Hinter einem gelungenen Event "
+                "steckt ein komplexes Puzzle aus Anmeldungen, Team-Matching, Routen-Planung "
+                "und Kommunikation. Genau hier kommt Spinfood ins Spiel.",
+                cls=CLASS['section_subtitle']
+            ),
             Div(
                 BenefitCard(
                     "🍝", "Food",

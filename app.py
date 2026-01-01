@@ -16,10 +16,10 @@ from starlette.staticfiles import StaticFiles
 
 from config import APP_TITLE, APP_DESCRIPTION
 from components import (
-    NavigationBar, HeroSection, ProblemSection, HowItWorksSection,
-    BenefitsSection, EventsSection, OrganizerSection, TestimonialsSection,
-    FAQSection, CTASection, TeamSection, PartnerSection, SponsorsSection,
-    FooterSection, ContactModal
+    NavigationBar, HeroSection, ProblemSection, SolutionSection,
+    HowItWorksSection, BenefitsSection, EventsSection, OrganizerSection,
+    TestimonialsSection, FAQSection, CTASection, TeamSection, PartnerSection,
+    SponsorsSection, FooterSection, ContactModal
 )
 
 # =============================================================================
@@ -70,9 +70,10 @@ def get():
         # Page components
         NavigationBar(),
         HeroSection(),
-        ProblemSection(),
-        HowItWorksSection(),
-        BenefitsSection(),
+        ProblemSection(),          # 1) Kennst du das?
+        SolutionSection(),         # 2) Running Dinner in deiner Stadt
+        BenefitsSection(),         # 3) Was ist ein Running Dinner Event
+        HowItWorksSection(),       # 4) So funktioniert's
         EventsSection(),
         OrganizerSection(),
         TestimonialsSection(),
