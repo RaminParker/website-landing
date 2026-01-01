@@ -222,7 +222,7 @@ FAQ_LIST = [
     ),
     (
         "Ist das sicher?",
-        "Ja! Alle Teilnehmer sind verifizierte Studierende. Du bekommst die Adressen "
+        "Ja! Alle Teilnehmende sind verifizierte Studierende. Du bekommst die Adressen "
         "erst kurz vorher und gehst nie alleine zu einem Haus. Bei Problemen ist das "
         "Orga-Team immer erreichbar."
     ),

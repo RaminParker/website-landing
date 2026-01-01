@@ -26,7 +26,7 @@ def NavigationBar():
         Div(
             A("🍝 SPINFOOD", href="#", cls=CLASS['navbar_logo']),
             Div(
-                A("Für Teilnehmer", href="#", cls=f"{CLASS['navbar_link']} active"),
+                A("Für Teilnehmende", href="#", cls=f"{CLASS['navbar_link']} active"),
                 A("Für Veranstalter", href="#organizer", cls=CLASS['navbar_link']),
                 A("Event finden", href="#events", cls=CLASS['navbar_cta']),
                 cls=CLASS['navbar_menu']
@@ -186,7 +186,7 @@ def HowItWorksSection():
                     "Anmeldung online. Kochpartner wird zugelost oder als Paar anmelden.",
                     "Teilnahme als 2er-Team oder solo möglich. Jedes Team wird einem "
                     "Gang zugewiesen (Vorspeise, Hauptgang oder Dessert) und mit "
-                    "anderen Teilnehmern gematcht. Auch Kochanfänger sind herzlich "
+                    "anderen Teilnehmenden gematcht. Auch Kochanfänger sind herzlich "
                     "willkommen!"
                 ),
                 StepCard(
@@ -194,14 +194,14 @@ def HowItWorksSection():
                     "Kochen & Besuchen",
                     "Ein Gang wird zuhause gekocht, zwei weitere bei anderen Teams genossen.",
                     "Jedes Team kocht einen Gang für insgesamt 6 Personen in der eigenen Küche. "
-                    "Die anderen beiden Gänge werden bei anderen Teilnehmern serviert. "
+                    "Die weiteren beiden Gänge werden bei anderen Teilnehmenden serviert. "
                     "So lernt man verschiedene Wohnungen und Stadtteile kennen!"
                 ),
                 StepCard(
                     3, "🎉",
                     "After Party",
-                    "Zum Abschluss treffen sich alle Teilnehmer zur gemeinsamen Party (optional).",
-                    "Nach dem Dinner kommen alle Teilnehmer zur After-Party zusammen. "
+                    "Zum Abschluss treffen sich alle Teilnehmende zur gemeinsamen Party (optional).",
+                    "Nach dem Dinner kommen alle Teilnehmende zur After-Party zusammen. "
                     "Hier entstehen neue Kontakte und Freundschaften. Die Party geht "
                     "oft bis spät in die Nacht!"
                 ),
@@ -343,7 +343,7 @@ def OrganizerSection():
                 ),
                 Ul(
                     Li("Automatische Benachrichtigungen bei Änderungen"),
-                    Li("Self-Service für Teilnehmer – weniger Rückfragen"),
+                    Li("Self-Service für Teilnehmende – weniger Rückfragen"),
                     Li("Flexibles Teilnehmer-Management mit wenigen Klicks"),
                     Li("Integrierte PayPal-Zahlung mit Überblick"),
                     Li("Event-Statistiken & E-Mail-Protokoll"),
@@ -413,7 +413,7 @@ def TestimonialsSection():
     """Create the testimonials section with participant feedback."""
     return Section(
         Div(
-            H2("Das sagen Teilnehmer", cls=CLASS['section_title']),
+            H2("Das sagen Teilnehmende", cls=CLASS['section_title']),
             TestimonialCard(
                 "Ich war neu in der Stadt und kannte niemanden. Nach dem Running "
                 "Dinner hatte ich direkt eine Gruppe von Freunden, mit denen ich "
