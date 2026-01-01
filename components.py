@@ -129,7 +129,7 @@ def SolutionSection():
             ),
             P(
                 "Die schlüsselfertige Lösung für Fachschaften, Unis und studentische "
-                "Gruppen. Von der Anmeldung bis zur After-Party – alles aus einer Hand.",
+                "Gruppen.",
                 cls=CLASS['section_subtitle']
             ),
             cls=CLASS['container']
@@ -339,21 +339,20 @@ def OrganizerSection():
                     cls=CLASS['organizer_text']
                 ),
                 P(
-                    "Spinfood ist die Plattform für Running Dinner Events in "
-                    "deutschen Universitätsstädten. Wir übernehmen die komplette "
-                    "technische Abwicklung für deine Organisation."
+                    "Konzentriert euch auf die Werbung – die Technik übernehmen wir."
                 ),
                 Ul(
-                    Li("Vollautomatische Organisation"),
-                    Li("Intelligentes Pärchen-Matching"),
-                    Li("Nie den Überblick verlieren"),
-                    Li("Integriertes Zahlungssystem"),
-                    Li("Erfahrene Ansprechpartner"),
+                    Li("Automatische Benachrichtigungen bei Änderungen"),
+                    Li("Self-Service für Teilnehmer – weniger Rückfragen"),
+                    Li("Flexibles Teilnehmer-Management mit wenigen Klicks"),
+                    Li("Integrierte PayPal-Zahlung mit Überblick"),
+                    Li("Event-Statistiken & E-Mail-Protokoll"),
+                    Li("Persönliche Beratung aus jahrelanger Erfahrung"),
                     cls=CLASS['organizer_benefits']
                 ),
                 P(
-                    "Keine mühsame Handarbeit bei der Planung. Wir stellen das "
-                    "System - ihr organisiert das Event!",
+                    "Kein Excel, keine manuellen E-Mails, keine Kopfschmerzen. "
+                    "Wir halten euch den Rücken frei – ihr kümmert euch um das Event.",
                     style="font-size: 1.3rem; color: var(--text-dark); "
                           "font-weight: 500; margin-bottom: 2rem;"
                 ),
@@ -366,21 +365,20 @@ def OrganizerSection():
             ),
             Div(
                 H3(
-                    "Was ist Spinfood?",
+                    "Für wen ist Spinfood?",
                     style="color: var(--primary-pink); margin-bottom: 1rem; "
                           "font-size: 1.9rem;"
                 ),
                 P(
-                    "Spinfood ist eine Plattform für Running Dinner Events in "
-                    "deutschen Universitätsstädten. Wir organisieren die komplette "
-                    "Logistik: von der Anmeldung über die automatische Teamzuteilung "
-                    "bis hin zur Erstellung individueller Dinner-Routen.",
+                    "Fachschaften, studentische Initiativen, AStAs und "
+                    "Hochschulgruppen, die ein Running Dinner in ihrer Stadt "
+                    "veranstalten möchten – ohne sich mit Excel-Tabellen und "
+                    "E-Mail-Chaos herumzuschlagen.",
                     style="margin-bottom: 1.5rem; font-size: 1.3rem; line-height: 1.7;"
                 ),
                 P(
-                    "Wir übernehmen den kompletten technischen Part, damit ihr euch "
-                    "auf das Wesentliche konzentrieren könnt: die Organisation des "
-                    "Events und das Marketing.",
+                    "Wir liefern nicht nur das Tool – wir stehen euch mit "
+                    "Erfahrung zur Seite. Alles im Blick, alles unter Kontrolle.",
                     style="font-weight: 500; font-size: 1.3rem; line-height: 1.7;"
                 ),
                 cls=CLASS['organizer_image']
