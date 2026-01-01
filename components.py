@@ -45,8 +45,6 @@ def HeroSection():
     return Div(
         Div(
             Div(
-                Div("SPINFOOD", cls=CLASS['logo']),
-                Div("Food. Fun. Friends.", cls=CLASS['tagline']),
                 H1(
                     HERO_TITLE_LINE1,
                     Span(HERO_TITLE_LINE2, cls=CLASS['highlight']),
@@ -57,9 +55,9 @@ def HeroSection():
                     cls=CLASS['hero_subtitle']
                 ),
                 Div(
-                    A("📍 Nächstes Event finden", href="#events",
-                      cls=CLASS['hero_cta_primary']),
                     A("🎓 Event organisieren", href="#organizer",
+                      cls=CLASS['hero_cta_primary']),
+                    A("📍 Event finden", href="#events",
                       cls=CLASS['hero_cta_secondary']),
                     cls=CLASS['hero_buttons']
                 ),
@@ -308,8 +306,8 @@ def EventsSection():
         Div(
             H2("Aktuelle Events", cls=CLASS['section_title']),
             P(
-                "Finde das nächste Running Dinner in deiner Stadt",
-                style="text-align: center; color: var(--text-light); margin-bottom: 2rem;"
+                "Finde das nächste Running Dinner in deiner Stadt.",
+                cls=CLASS['section_subtitle']
             ),
             Div(
                 *[EventCard(date, title, desc, link, accent_colors[i % len(accent_colors)])

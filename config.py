@@ -17,9 +17,9 @@ APP_DESCRIPTION = (
 CONTACT_EMAIL = "hi@spinfood.de"
 
 # Hero Section Content
-HERO_TITLE_LINE1 = "Running Dinner Events"
-HERO_TITLE_LINE2 = "Powered by Spinfood"
-HERO_SUBTITLE = "Schlüsselfertig für Fachschaften, Unis und studentische Gruppen."
+HERO_TITLE_LINE1 = "Running Dinner organisieren –"
+HERO_TITLE_LINE2 = "ohne den Stress"
+HERO_SUBTITLE = "Die schlüsselfertige Plattform für Fachschaften und studentische Gruppen."
 
 # =============================================================================
 # CSS Class Names (Single Source of Truth)
@@ -59,8 +59,6 @@ CLASS = {
     'hero_image': 'hero-image',
     'hero_image_placeholder': 'hero-image-placeholder',
     'hero_image_icon': 'hero-image-icon',
-    'logo': 'logo',
-    'tagline': 'tagline',
     'highlight': 'highlight',
 
     # Step Cards
