@@ -147,6 +147,29 @@ CLASS = {
     'modal_content': 'modal-content',
     'modal_close': 'modal-close',
     'modal_email': 'modal-email',
+
+    # Utility Classes (Extracted from Inline Styles)
+    'section_emoji': 'section-emoji',
+    'problem_statement': 'problem-statement',
+    'solution_title': 'solution-title',
+    'solution_tagline': 'solution-tagline',
+    'step_description': 'step-description',
+    'step_expand_btn': 'step-expand-btn',
+    'expandable_content': 'expandable-content',
+    'event_description': 'event-description',
+    'events_list': 'events-list',
+    'organizer_highlight': 'organizer-highlight',
+    'organizer_note': 'organizer-note',
+    'organizer_sidebar_title': 'organizer-sidebar-title',
+    'organizer_sidebar_text': 'organizer-sidebar-text',
+    'organizer_sidebar_emphasis': 'organizer-sidebar-emphasis',
+    'testimonial_text': 'testimonial-text',
+    'testimonial_author': 'testimonial-author',
+    'faq_list': 'faq-list',
+    'faq_answer_text': 'faq-answer-text',
+    'team_title': 'team-title',
+    'team_img': 'team-img',
+    'partner_img': 'partner-img',
 }
 
 # =============================================================================

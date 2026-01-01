@@ -37,6 +37,22 @@ from config import CLASS
 cls=CLASS['navbar']  # statt cls="navbar"
 ```
 
+Das Dictionary ist in logische Gruppen unterteilt:
+- **Layout**: `container`, `section`, `bg_white`, `bg_gray`, `cards_grid`
+- **Typography**: `section_title`, `section_subtitle`
+- **Navigation**: `navbar`, `navbar_logo`, `navbar_menu`, etc.
+- **Hero**: `hero`, `hero_title`, `hero_buttons`, etc.
+- **Components**: `step_card`, `benefit_card`, `event_card`, `faq_item`, etc.
+- **Utility Classes**: `section_emoji`, `problem_statement`, `solution_title`, etc.
+
+### Dynamische Inline-Styles
+
+Einzige Ausnahme für Inline-Styles sind **dynamische Werte**, z.B.:
+```python
+# EventCard - Akzentfarbe wird zur Laufzeit gesetzt
+style = f"border-left-color: {accent_color};" if accent_color else ""
+```
+
 ## Workflows
 
 ### Server starten
@@ -63,3 +79,28 @@ python app.py
 - **CLASS-Dictionary verwenden** für alle CSS-Klassennamen
 - **Config-Änderungen** erfordern Server-Neustart
 - **CSS/JS-Änderungen** werden bei Page-Refresh geladen
+
+## CSS-Struktur (styles.css)
+
+Die CSS-Datei ist in nummerierte Abschnitte gegliedert:
+
+1. CSS Variables & Root Styles
+2. Global Styles & Scroll Animations
+3. Layout & Container Classes
+4. Typography
+5. Navigation Bar
+6. Hero Section
+7. Step Cards (How It Works)
+8. Benefit Cards
+9. Event Cards
+10. FAQ Section
+11. Testimonial Cards
+12. CTA Section
+13. Team/About Section
+14. Partner Section
+15. Sponsors Section
+16. Organizer Section
+17. Footer Section
+18. Modal (Contact)
+19. Utility Classes (aus Inline-Styles extrahiert)
+20. Responsive Design

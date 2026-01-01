@@ -85,7 +85,7 @@ def ProblemSection():
     """Create the problem statement section."""
     return Div(
         Div(
-            Div("😔", style="font-size: 4rem; text-align: center; margin-bottom: 1rem;"),
+            Div("😔", cls=CLASS['section_emoji']),
             H2("Kennst du das?", cls=CLASS['section_title']),
             P(
                 "Hunderte Anmeldungen in einer Excel-Tabelle. Endlose E-Mail-Ketten "
@@ -94,11 +94,7 @@ def ProblemSection():
                 "Running Dinners kann zur Vollzeitbeschäftigung werden.",
                 cls=CLASS['section_subtitle']
             ),
-            P(
-                "Muss nicht sein.",
-                style="font-size: 1.8rem; font-weight: 700; text-align: center; "
-                      "color: var(--primary-pink); margin-top: -1rem;"
-            ),
+            P("Muss nicht sein.", cls=CLASS['problem_statement']),
             cls=CLASS['container']
         ),
         cls=f"{CLASS['section']} {CLASS['bg_white']}"
@@ -113,17 +109,9 @@ def SolutionSection():
     """Create the solution/value proposition section after the problem."""
     return Div(
         Div(
-            Div("🚀", style="font-size: 4rem; text-align: center; margin-bottom: 1rem;"),
-            H2(
-                "Running Dinner in deiner Stadt",
-                style="font-size: 3.5rem; margin-bottom: 0.5rem; text-align: center; "
-                      "color: var(--text-dark);"
-            ),
-            P(
-                "Wir liefern die Plattform, ihr den Spaß",
-                style="font-size: 2rem; font-weight: 600; text-align: center; "
-                      "color: var(--primary-teal); margin-bottom: 2rem;"
-            ),
+            Div("🚀", cls=CLASS['section_emoji']),
+            H2("Running Dinner in deiner Stadt", cls=CLASS['solution_title']),
+            P("Wir liefern die Plattform, ihr den Spaß", cls=CLASS['solution_tagline']),
             P(
                 "Die schlüsselfertige Lösung für Fachschaften, Unis und studentische "
                 "Gruppen.",
@@ -155,15 +143,14 @@ def StepCard(number: int, icon: str, title: str, description: str, details: str)
         Div(str(number), cls=CLASS['step_number']),
         Div(icon, cls=CLASS['step_icon']),
         H3(title),
-        P(description, style="color: #495057; margin-bottom: 1rem;"),
+        P(description, cls=CLASS['step_description']),
         Button(
             "Mehr erfahren ↓",
             onclick=f"toggleExpand('{card_id}')",
-            style="background: none; border: none; color: var(--primary-pink); "
-                  "cursor: pointer; font-weight: 600; font-size: 1.1rem;"
+            cls=CLASS['step_expand_btn']
         ),
         Div(
-            P(details, style="margin-top: 1rem; color: #495057;"),
+            P(details, cls=CLASS['expandable_content']),
             id=card_id,
             cls=CLASS['expandable']
         ),
@@ -282,14 +269,15 @@ def EventCard(date: str, title: str, description: str, link: str = "#", accent_c
         title: Event name
         description: Short event description
         link: URL for the 'Mehr' button
-        accent_color: Optional accent color for the left border
+        accent_color: Optional accent color for the left border (dynamic value)
     """
+    # Dynamic style for accent color - legitimate inline style per CLAUDE.md
     style = f"border-left-color: {accent_color};" if accent_color else ""
     return Div(
         Div(
             Span(date, cls=CLASS['event_date']),
             H3(title),
-            P(description, style="color: #495057;")
+            P(description, cls=CLASS['event_description'])
         ),
         A("Mehr →", href=link, cls=CLASS['event_cta']),
         cls=f"{CLASS['event_card']} {CLASS['fade_in']}",
@@ -312,7 +300,7 @@ def EventsSection():
             Div(
                 *[EventCard(date, title, desc, link, accent_colors[i % len(accent_colors)])
                   for i, (date, title, desc, link) in enumerate(CURRENT_EVENTS)],
-                style="max-width: 800px; margin: 0 auto;"
+                cls=CLASS['events_list']
             ),
             cls=CLASS['container']
         ),
@@ -332,7 +320,7 @@ def OrganizerSection():
             Div(
                 H2(
                     "Running Dinner Events",
-                    Span("veranstalten", cls="organizer-highlight"),
+                    Span("veranstalten", cls=CLASS['organizer_highlight']),
                     cls=CLASS['organizer_text']
                 ),
                 P(
@@ -350,8 +338,7 @@ def OrganizerSection():
                 P(
                     "Kein Excel, keine manuellen E-Mails, keine Kopfschmerzen. "
                     "Wir halten euch den Rücken frei – ihr kümmert euch um das Event.",
-                    style="font-size: 1.3rem; color: var(--text-dark); "
-                          "font-weight: 500; margin-bottom: 2rem;"
+                    cls=CLASS['organizer_note']
                 ),
                 Button(
                     "Jetzt Kontakt aufnehmen",
@@ -361,22 +348,18 @@ def OrganizerSection():
                 cls=CLASS['organizer_text']
             ),
             Div(
-                H3(
-                    "Für wen ist Spinfood?",
-                    style="color: var(--primary-pink); margin-bottom: 1rem; "
-                          "font-size: 1.9rem;"
-                ),
+                H3("Für wen ist Spinfood?", cls=CLASS['organizer_sidebar_title']),
                 P(
                     "Fachschaften, studentische Initiativen, AStAs und "
                     "Hochschulgruppen, die ein Running Dinner in ihrer Stadt "
                     "veranstalten möchten – ohne sich mit Excel-Tabellen und "
                     "E-Mail-Chaos herumzuschlagen.",
-                    style="margin-bottom: 1.5rem; font-size: 1.3rem; line-height: 1.7;"
+                    cls=CLASS['organizer_sidebar_text']
                 ),
                 P(
                     "Wir liefern nicht nur das Tool – wir stehen euch mit "
                     "Erfahrung zur Seite. Alles im Blick, alles unter Kontrolle.",
-                    style="font-weight: 500; font-size: 1.3rem; line-height: 1.7;"
+                    cls=CLASS['organizer_sidebar_emphasis']
                 ),
                 cls=CLASS['organizer_image']
             ),
@@ -400,8 +383,8 @@ def TestimonialCard(text: str, author: str):
         author: Person's name and location
     """
     return Div(
-        P(text, style="font-style: italic; margin-bottom: 1rem;"),
-        P(f"- {author}", style="color: var(--text-light);"),
+        P(text, cls=CLASS['testimonial_text']),
+        P(f"- {author}", cls=CLASS['testimonial_author']),
         cls=CLASS['testimonial_card']
     )
 
@@ -450,10 +433,9 @@ def FAQItem(question: str, answer: str, item_id: str):
             onclick=f"toggleFAQ('{item_id}')"
         ),
         Div(
-            P(answer, style="color: #000000 !important; font-weight: 400 !important;"),
+            P(answer, cls=CLASS['faq_answer_text']),
             cls=CLASS['faq_answer'],
-            id=f"faq-answer-{item_id}",
-            style="color: #000000 !important;"
+            id=f"faq-answer-{item_id}"
         ),
         cls=f"{CLASS['faq_item']} {CLASS['fade_in']}",
         id=item_id
@@ -467,7 +449,7 @@ def FAQSection():
             H2("Häufige Fragen", cls=CLASS['section_title']),
             Div(
                 *[FAQItem(q, a, f"faq-{i}") for i, (q, a) in enumerate(FAQ_LIST)],
-                style="max-width: 800px; margin: 0 auto;"
+                cls=CLASS['faq_list']
             ),
             cls=CLASS['container']
         ),
@@ -513,8 +495,7 @@ def TeamSection():
                     Img(
                         src="/images/team.png",
                         alt="Spinfood Team",
-                        style="width: 100%; height: 100%; object-fit: cover; "
-                              "border-radius: 30px;"
+                        cls=CLASS['team_img']
                     ),
                     cls=CLASS['team_image']
                 ),
@@ -524,7 +505,7 @@ def TeamSection():
                 H2(
                     "Und wer steckt hinter ",
                     Span("Spinfood?"),
-                    cls="team-title"
+                    cls=CLASS['team_title']
                 ),
                 Div(cls=CLASS['team_divider']),
                 P(
@@ -579,7 +560,7 @@ def PartnerSection():
                         Img(
                             src=img_path,
                             alt=alt_text,
-                            style="width: 100%; height: 100%; object-fit: contain;"
+                            cls=CLASS['partner_img']
                         ),
                         cls=CLASS['partner_logo']
                     ),
