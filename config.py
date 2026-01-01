@@ -199,32 +199,46 @@ SPONSOR_LIST = [
 # Format: (question, answer)
 FAQ_LIST = [
     (
-        "Muss ich gut kochen können?",
-        "Nein! Es geht nicht um Perfektion, sondern um Spaß. Auch einfache Gerichte "
-        "sind willkommen. Viele kochen Pasta, Salat oder bestellen sogar Pizza - "
-        "Hauptsache, ihr habt eine gute Zeit!"
+        "Was kostet Spinfood für uns als Veranstalter?",
+        "Ihr habt zwei Optionen: Entweder die Teilnahme ist kostenlos und ihr zahlt "
+        "eine einmalige Aufwandspauschale an uns. Oder die Teilnehmer zahlen eine "
+        "kleine Gebühr bei der Anmeldung, von der wir einen Anteil erhalten. "
+        "Welches Modell besser passt, besprechen wir gemeinsam."
     ),
     (
-        "Kann ich mich auch alleine anmelden?",
-        "Ja, absolut! Viele melden sich alleine an. Wir matchen dich dann mit einem "
-        "anderen Single zu einem Kochteam. So lernst du direkt noch mehr Leute kennen!"
+        "Wie viel Arbeit bleibt für uns übrig?",
+        "Ihr kümmert euch um die Bewerbung des Events und die After-Party-Location (optional) – "
+        "den Rest übernehmen wir. Anmeldung, Bezahlung, Rückerstattungen, Team-Zuteilung, Routen-Erstellung "
+        "und die gesamte technische Teilnehmer-Kommunikation laufen automatisch über die Plattform."
     ),
     (
-        "Was ist mit Allergien oder vegetarisch/vegan?",
-        "Bei der Anmeldung kannst du alle Allergien und Präferenzen angeben. Wir "
-        "berücksichtigen das beim Matching und informieren deine Gastgeber. "
-        "Vegetarische und vegane Optionen sind mittlerweile Standard!"
+        "Können wir das Event an unsere Bedürfnisse anpassen?",
+        "Ja! Ihr entscheidet über den Event-Namen, das Datum, die Anmeldefelder, das Einzugsgebiet, ob es "
+        "eine Teilnahmegebühr gibt und vieles mehr. Auch euer eigenes Logo und eure "
+        "Farben können integriert werden. Es ist euer Event – wir sind nur der technische Partner."
     ),
     (
-        "Wie viel kostet die Teilnahme?",
-        "Die Teilnahmegebühr variiert je nach Stadt, liegt aber meist zwischen 3-5€. "
-        "Das deckt die Organisationskosten und manchmal einen Welcome-Drink bei der After-Party."
+        "Was passiert bei kurzfristigen Absagen?",
+        "Kein Problem. Über das Teilnehmer-Management-System könnt ihr Absagen verarbeiten und "
+        "Nachrücker einsetzen. Alle betroffenen Teams werden automatisch per E-Mail "
+        "informiert – ihr müsst niemanden manuell kontaktieren. Was sonst ein unterschätzter "
+        "Zeitfresser wäre, ist mit wenigen Klicks erledigt."
     ),
     (
-        "Ist das sicher?",
-        "Ja! Alle Teilnehmende sind verifizierte Studierende. Du bekommst die Adressen "
-        "erst kurz vorher und gehst nie alleine zu einem Haus. Bei Problemen ist das "
-        "Orga-Team immer erreichbar."
+        "Brauchen wir technisches Know-how?",
+        "Nein. Die Plattform ist selbsterklärend, und wir begleiten euch beim ersten "
+        "Event Schritt für Schritt. Bei Fragen sind wir jederzeit erreichbar. Wir haben "
+        "jahrelange Erfahrung und wissen, worauf es bei der Organisation ankommt."
+    ),
+    (
+        "Wie viele Teilnehmende kann die Plattform verwalten?",
+        "Von 50 bis 5.000+ Teilnehmende – die Plattform skaliert problemlos. Ob kleine "
+        "Fachschafts-Events oder stadtweite Großveranstaltungen: Wir haben beides erfolgreich umgesetzt."
+    ),
+    (
+        "Wie schnell können wir starten?",
+        "Sobald ihr euch bei uns meldet, kann euer Event innerhalb weniger Tage live "
+        "gehen. Wir richten alles für euch ein – ihr müsst nur noch Werbung machen."
     ),
 ]
 
