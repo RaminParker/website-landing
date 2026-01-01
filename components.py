@@ -183,27 +183,27 @@ def HowItWorksSection():
                 StepCard(
                     1, "📝",
                     "Anmelden & Matchen",
-                    "Melde dich online an und werde einem Kochteam zugeteilt.",
-                    "Du meldest dich als 2er-Team oder alleine an. Wir teilen dich "
-                    "einem Gang zu (Vorspeise, Hauptgang oder Dessert) und matchen "
-                    "dich mit anderen Teilnehmern. Keine Sorge - auch Kochanfänger "
-                    "sind willkommen!"
+                    "Anmeldung online. Kochpartner wird zugelost oder als Paar anmelden.",
+                    "Teilnahme als 2er-Team oder solo möglich. Jedes Team wird einem "
+                    "Gang zugewiesen (Vorspeise, Hauptgang oder Dessert) und mit "
+                    "anderen Teilnehmern gematcht. Auch Kochanfänger sind herzlich "
+                    "willkommen!"
                 ),
                 StepCard(
                     2, "🍽️",
                     "Kochen & Besuchen",
-                    "Koche einen Gang zuhause und besuche zwei andere Teams.",
-                    "Du kochst nur einen Gang für 4-6 Personen bei dir zuhause. "
-                    "Die anderen beiden Gänge genießt du bei anderen Teilnehmern. "
-                    "So lernst du verschiedene Wohnungen und Stadtteile kennen!"
+                    "Ein Gang wird zuhause gekocht, zwei weitere bei anderen Teams genossen.",
+                    "Jedes Team kocht einen Gang für insgesamt 6 Personen in der eigenen Küche. "
+                    "Die anderen beiden Gänge werden bei anderen Teilnehmern serviert. "
+                    "So lernt man verschiedene Wohnungen und Stadtteile kennen!"
                 ),
                 StepCard(
                     3, "🎉",
                     "After Party",
-                    "Triff alle Teilnehmer bei der gemeinsamen Party.",
-                    "Nach dem Dinner treffen sich alle Teilnehmer zur After-Party. "
-                    "Hier kannst du die Leute wiedertreffen und neue Kontakte "
-                    "knüpfen. Die Party geht oft bis in die Nacht!"
+                    "Zum Abschluss treffen sich alle Teilnehmer zur gemeinsamen Party (optional).",
+                    "Nach dem Dinner kommen alle Teilnehmer zur After-Party zusammen. "
+                    "Hier entstehen neue Kontakte und Freundschaften. Die Party geht "
+                    "oft bis spät in die Nacht!"
                 ),
                 cls=CLASS['cards_grid']
             ),
@@ -534,9 +534,9 @@ def TeamSection():
                 Div(cls=CLASS['team_divider']),
                 P(
                     "Wir sind drei Hobby-Köche aus Berlin, Dresden und Nürnberg "
-                    "und arbeiten in unserer Freizeit an diesem Projekt. Wenn du "
+                    "und arbeiten in leidenschaftlich an diesem Projekt. Wenn du "
                     "Fragen oder Anregungen hast, melde dich gerne bei uns. Wir "
-                    "wollen Spinfood kontinuierlich verbessern!",
+                    "wollen Spinfood kontinuierlich verbessern und auch an deine Uni bringen!",
                     cls=CLASS['team_description']
                 ),
                 P(
@@ -550,7 +550,6 @@ def TeamSection():
                         onclick="showContactModal()",
                         cls=CLASS['team_btn_primary']
                     ),
-                    A("💡 Mehr über uns", href="#", cls=CLASS['team_btn_secondary']),
                     cls=CLASS['team_buttons']
                 ),
                 Div(
@@ -576,7 +575,7 @@ def PartnerSection():
         Div(
             H2("Vertraut von führenden Universitäten", cls=CLASS['partner_label']),
             P(
-                "Tausende Studierende haben bereits an unseren Events teilgenommen",
+                "Viele tausende Studierende haben bereits über unsere Plattform an den Uni-Events teilgenommen",
                 cls=CLASS['partner_subtitle']
             ),
             Div(
