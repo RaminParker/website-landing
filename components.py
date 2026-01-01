@@ -170,7 +170,7 @@ def StepCard(number: int, icon: str, title: str, description: str, details: str)
             id=card_id,
             cls=CLASS['expandable']
         ),
-        cls=CLASS['step_card']
+        cls=f"{CLASS['step_card']} {CLASS['fade_in']}"
     )
 
 
@@ -231,7 +231,7 @@ def BenefitCard(icon: str, title: str, text: str):
         Div(icon, cls=CLASS['benefit_icon']),
         H3(title),
         P(text),
-        cls=CLASS['benefit_card']
+        cls=f"{CLASS['benefit_card']} {CLASS['fade_in']}"
     )
 
 
@@ -251,13 +251,13 @@ def BenefitsSection():
             Div(
                 BenefitCard(
                     "🍝", "Food",
-                    "Leckere Gerichte bei dir und anderen. Von einfach bis "
+                    "Zusammen leckere Gerichte kochen. Von einfach bis "
                     "extravagant - alles dabei!"
                 ),
                 BenefitCard(
                     "✨", "Fun",
-                    "Ein Abend voller Überraschungen und die legendäre "
-                    "After-Party zum Abschluss."
+                    "Ein Abend voller Überraschungen. Falls gewünscht auch mit legendärer "
+                    "After-Dinner-Party zum Abschluss."
                 ),
                 BenefitCard(
                     "👥", "Friends",
@@ -276,16 +276,18 @@ def BenefitsSection():
 # Events Section
 # =============================================================================
 
-def EventCard(date: str, title: str, description: str, link: str = "#"):
+def EventCard(date: str, title: str, description: str, link: str = "#", accent_color: str = None):
     """
-    Create a single event card.
+    Create a single event card with optional accent color.
 
     Args:
         date: Event date/semester
         title: Event name
         description: Short event description
         link: URL for the 'Mehr' button
+        accent_color: Optional accent color for the left border
     """
+    style = f"border-left-color: {accent_color};" if accent_color else ""
     return Div(
         Div(
             Span(date, cls=CLASS['event_date']),
@@ -293,12 +295,16 @@ def EventCard(date: str, title: str, description: str, link: str = "#"):
             P(description, style="color: #495057;")
         ),
         A("Mehr →", href=link, cls=CLASS['event_cta']),
-        cls=CLASS['event_card']
+        cls=f"{CLASS['event_card']} {CLASS['fade_in']}",
+        style=style
     )
 
 
 def EventsSection():
     """Create the events section listing all current Running Dinner events."""
+    # City-based accent colors for visual variety
+    accent_colors = ["#E91E63", "#4CAF50", "#2196F3", "#FF9800"]
+
     return Section(
         Div(
             H2("Aktuelle Events", cls=CLASS['section_title']),
@@ -307,8 +313,8 @@ def EventsSection():
                 style="text-align: center; color: var(--text-light); margin-bottom: 2rem;"
             ),
             Div(
-                *[EventCard(date, title, desc, link)
-                  for date, title, desc, link in CURRENT_EVENTS],
+                *[EventCard(date, title, desc, link, accent_colors[i % len(accent_colors)])
+                  for i, (date, title, desc, link) in enumerate(CURRENT_EVENTS)],
                 style="max-width: 800px; margin: 0 auto;"
             ),
             cls=CLASS['container']
@@ -444,7 +450,7 @@ def FAQItem(question: str, answer: str, item_id: str):
     return Div(
         Div(
             Span(question),
-            Span("▼", style="color: var(--primary-teal);"),
+            Span("▼", cls=CLASS['faq_arrow']),
             cls=CLASS['faq_question'],
             onclick=f"toggleFAQ('{item_id}')"
         ),
@@ -454,7 +460,7 @@ def FAQItem(question: str, answer: str, item_id: str):
             id=f"faq-answer-{item_id}",
             style="color: #000000 !important;"
         ),
-        cls=CLASS['faq_item'],
+        cls=f"{CLASS['faq_item']} {CLASS['fade_in']}",
         id=item_id
     )
 

@@ -33,6 +33,7 @@ CLASS = {
     'bg_white': 'bg-white',
     'bg_gray': 'bg-gray',
     'cards_grid': 'cards-grid',
+    'fade_in': 'fade-in',
 
     # Typography
     'section_title': 'section-title',
@@ -81,6 +82,7 @@ CLASS = {
     'faq_item': 'faq-item',
     'faq_question': 'faq-question',
     'faq_answer': 'faq-answer',
+    'faq_arrow': 'faq-arrow',
 
     # Testimonials
     'testimonial_card': 'testimonial-card',

@@ -87,6 +87,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close modal when clicking outside
     initModalClickOutside();
+
+    // Scroll animations
+    initScrollAnimations();
 });
 
 /**
@@ -123,4 +126,33 @@ function initModalClickOutside() {
             closeContactModal();
         }
     };
+}
+
+// =============================================================================
+// Scroll Animations
+// =============================================================================
+
+/**
+ * Initialize scroll-triggered fade-in animations using Intersection Observer.
+ */
+function initScrollAnimations() {
+    const fadeElements = document.querySelectorAll('.fade-in');
+    if (fadeElements.length === 0) return;
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    fadeElements.forEach(el => observer.observe(el));
 }
