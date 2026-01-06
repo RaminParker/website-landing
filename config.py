@@ -9,6 +9,10 @@ Single source of truth for easy maintenance.
 # Application Settings
 # =============================================================================
 
+# Feature Flags
+USE_HERO_VIDEO = True  # Set to False to use static placeholder instead of video
+HERO_VIDEO_HEIGHT = 600  # Height in pixels (default: 600, max recommended: 800)
+
 APP_TITLE = "Running Dinner Events - Powered by Spinfood"
 APP_DESCRIPTION = (
     "Schlüsselfertig für Fachschaften, Unis und studentische Gruppen. "
@@ -60,6 +64,10 @@ CLASS = {
     'hero_image_placeholder': 'hero-image-placeholder',
     'hero_image_icon': 'hero-image-icon',
     'highlight': 'highlight',
+    # Hero Video
+    'hero_video_container': 'hero-video-container',
+    'hero_video': 'hero-video',
+    'hero_video_thumbnail': 'hero-video-thumbnail',
 
     # Step Cards
     'step_card': 'step-card',

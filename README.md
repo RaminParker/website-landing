@@ -1,137 +1,64 @@
 # Spinfood Landing Page
 
-A modern, conversion-focused landing page for Spinfood Running Dinner Events built with FastHTML and inspired by MonsterUI design principles.
+Landing Page für Spinfood - eine Plattform für Running Dinner Events an deutschen Universitäten.
 
-## Features
+**Tech Stack:** Python, FastHTML, Uvicorn
 
-- **Responsive Design**: Mobile-first approach with full responsiveness
-- **Brand Colors**: Uses Spinfood's signature pink (#E91E63) and teal (#00BFA5) colors
-- **Conversion Optimized**: Clear CTAs, progressive disclosure, and trust signals
-- **Modern Animations**: Smooth scrolling, fade-in effects, and hover animations
-- **Complete Sections**:
-  - Hero with "Food. Fun. Friends." tagline
-  - Problem-Solution flow
-  - 3-step process visualization
-  - Benefits cards
-  - Events listing for German university cities
-  - Testimonials
-  - FAQ section with collapsibles
-  - Team section
-  - Footer with links
-
-## Installation
-
-### Option 1: Using Conda (Recommended)
-
-1. Install Anaconda or Miniconda if not already installed:
-   - Download from: https://www.anaconda.com/products/distribution
-   - Or Miniconda: https://docs.conda.io/en/latest/miniconda.html
-
-2. Create the conda environment:
-```bash
-conda env create -f environment_dev.yml
-```
-
-3. Activate the environment:
-```bash
-conda activate landingpage_spinfood
-```
-
-4. The environment includes all necessary packages (FastHTML, uvicorn, etc.)
-
-### Option 2: Using pip
-
-1. Install Python 3.7+ if not already installed
-
-2. Install pip if not available:
-```bash
-# On Ubuntu/Debian
-sudo apt-get update
-sudo apt-get install python3-pip
-
-# On macOS
-python3 -m ensurepip --upgrade
-
-# On Windows
-python -m ensurepip --upgrade
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-# or
-python3 -m pip install -r requirements.txt
-```
-
-## Running the Application
-
-### With Conda Environment:
-```bash
-# Make sure the environment is activated
-conda activate landingpage_spinfood
-
-# Run the application
-python app.py
-```
-
-### Without Conda:
-```bash
-python3 app.py
-```
-
-Then open your browser and navigate to:
-```
-http://localhost:8000
-```
-
-## Project Structure
+## Projektstruktur
 
 ```
 website-landing/
-├── app.py              # Main FastHTML application
-├── requirements.txt    # Python dependencies
-└── README.md          # This file
+├── app.py                # Server-Setup, Routes, Logging
+├── config.py             # Konfiguration, Content-Daten, CSS-Klassen
+├── components.py         # UI-Komponenten (HeroSection, FAQSection, etc.)
+├── static/
+│   ├── css/styles.css    # Alle Styles (CSS Variables, responsive)
+│   └── js/main.js        # JavaScript (FAQ-Toggle, Modal, Video-Loading)
+├── images/               # Statische Bilder (Team, Uni-Logos)
+└── videos/landingpage/   # Hero-Video (WebM, MP4, Thumbnails)
 ```
 
-## Technologies Used
+## Quick Start
 
-- **FastHTML**: Python web framework for building modern web apps
-- **Uvicorn**: ASGI server for running the application
-- **Font Awesome**: Icons throughout the site
-- **Pure CSS**: Custom styling with CSS variables for theming
-
-## Customization
-
-### Colors
-Edit the CSS variables in `app.py` to change the color scheme:
-```css
---primary-pink: #E91E63;
---primary-green: #00BFA5;
+```bash
+conda activate landingpage_spinfood
+python app.py
+# -> http://localhost:5001
 ```
 
-### Content
-Update the following data structures in `app.py`:
-- `events`: List of upcoming Running Dinner events
-- `testimonials`: Customer testimonials
-- `faqs`: Frequently asked questions
+Alternativ mit pip:
+```bash
+pip install -r requirements.txt
+python app.py
+```
+
+## Architektur
+
+| Datei | Verantwortung |
+|-------|---------------|
+| `app.py` | FastHTML-App, statische Routen, Page-Composition |
+| `config.py` | Single Source of Truth: Events, FAQs, Sponsoren, CSS-Klassen |
+| `components.py` | Wiederverwendbare UI-Komponenten |
+
+**Prinzip:** Alle CSS-Klassennamen sind im `CLASS`-Dictionary in `config.py` definiert. Content-Änderungen erfordern nur Anpassungen in `config.py`.
+
+## Konfiguration
+
+In `config.py`:
+
+```python
+# Feature Flags
+USE_HERO_VIDEO = True     # False = statischer Placeholder
+HERO_VIDEO_HEIGHT = 600   # Video-Höhe in Pixel
+
+# Content
+CURRENT_EVENTS = [...]    # Running Dinner Events
+FAQ_LIST = [...]          # Häufige Fragen
+SPONSOR_LIST = [...]      # Partner & Sponsoren
+```
 
 ## Deployment
 
-For production deployment:
-
-1. Use a production ASGI server:
 ```bash
 uvicorn app:app --host 0.0.0.0 --port 8000 --workers 4
 ```
-
-2. Consider using a reverse proxy (nginx/Apache) for better performance
-
-3. Enable HTTPS with SSL certificates
-
-## License
-
-Created for Spinfood - Running Dinner Events
-
-## Support
-
-For questions or issues, contact: hello@spinfood.de

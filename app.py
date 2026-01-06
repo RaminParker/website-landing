@@ -42,6 +42,7 @@ app, rt = fast_app()
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/images", StaticFiles(directory="images"), name="images")
+app.mount("/videos", StaticFiles(directory="videos"), name="videos")
 
 logger.info("Application initialized")
 

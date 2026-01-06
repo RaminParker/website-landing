@@ -90,6 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Scroll animations
     initScrollAnimations();
+
+    // Hero video progressive loading
+    initHeroVideo();
 });
 
 /**
@@ -155,4 +158,44 @@ function initScrollAnimations() {
     }, observerOptions);
 
     fadeElements.forEach(el => observer.observe(el));
+}
+
+// =============================================================================
+// Hero Video Progressive Loading
+// =============================================================================
+
+/**
+ * Initialize hero video with progressive loading.
+ * Shows a blurred thumbnail while video loads, then fades to video.
+ */
+function initHeroVideo() {
+    const video = document.getElementById('hero-video');
+    const thumbnail = document.getElementById('hero-thumbnail');
+
+    // Exit if video elements don't exist (video feature disabled)
+    if (!video || !thumbnail) return;
+
+    // Set thumbnail background image
+    thumbnail.style.backgroundImage = 'url(/videos/landingpage/thumbnail@low.png)';
+
+    // Handler when video is ready to play
+    function showVideo() {
+        video.classList.add('loaded');
+        thumbnail.classList.add('hidden');
+    }
+
+    // Listen for video ready event
+    video.addEventListener('canplaythrough', showVideo);
+
+    // Fallback: If video doesn't load within 5 seconds, show it anyway
+    setTimeout(function() {
+        if (!video.classList.contains('loaded')) {
+            showVideo();
+        }
+    }, 5000);
+
+    // If video is already loaded (cached), show immediately
+    if (video.readyState >= 4) {
+        showVideo();
+    }
 }

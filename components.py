@@ -6,13 +6,14 @@ Each function creates a single, focused component.
 """
 
 from fasthtml.common import (
-    Nav, Div, A, H1, H2, H3, P, Span, Button, Section, Ul, Li, Img
+    Nav, Div, A, H1, H2, H3, P, Span, Button, Section, Ul, Li, Img, Video, Source
 )
 
 from config import (
     CLASS, CONTACT_EMAIL, CURRENT_EVENTS, SPONSOR_LIST, FAQ_LIST,
     PARTNER_UNIVERSITIES, TEAM_LOCATIONS,
-    HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE
+    HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE,
+    USE_HERO_VIDEO, HERO_VIDEO_HEIGHT
 )
 
 
@@ -40,8 +41,56 @@ def NavigationBar():
 # Hero Section
 # =============================================================================
 
+def HeroVideo():
+    """
+    Create a hero video element with progressive loading.
+
+    Uses a blur thumbnail that fades out once the video is ready.
+    WebM format is preferred with MP4 fallback.
+    """
+    return Div(
+        # Blur thumbnail (low-res, loads instantly)
+        Div(cls=CLASS['hero_video_thumbnail'], id="hero-thumbnail"),
+        # Video with multi-format support
+        Video(
+            Source(
+                src="/videos/landingpage/optim.webm",
+                type='video/webm; codecs="vp8, vorbis"'
+            ),
+            Source(
+                src="/videos/landingpage/optim.mp4",
+                type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+            ),
+            poster="/videos/landingpage/thumbnail@low.png",
+            autoplay=True,
+            loop=True,
+            muted=True,
+            playsinline=True,
+            preload="auto",
+            cls=CLASS['hero_video'],
+            id="hero-video"
+        ),
+        cls=CLASS['hero_video_container']
+    )
+
+
+def HeroImagePlaceholder():
+    """Create the static placeholder for the hero section (fallback/original)."""
+    return Div(
+        Div("👥", cls=CLASS['hero_image_icon']),
+        P("Studenten beim gemeinsamen Kochen"),
+        cls=CLASS['hero_image_placeholder']
+    )
+
+
 def HeroSection():
     """Create the main hero section with gradient background."""
+    # Use video or static placeholder based on feature flag
+    hero_media = HeroVideo() if USE_HERO_VIDEO else HeroImagePlaceholder()
+
+    # Dynamic height from config (allows customization without CSS changes)
+    hero_image_style = f"height: {HERO_VIDEO_HEIGHT}px;"
+
     return Div(
         Div(
             Div(
@@ -64,12 +113,9 @@ def HeroSection():
                 cls=CLASS['hero_content']
             ),
             Div(
-                Div(
-                    Div("👥", cls=CLASS['hero_image_icon']),
-                    P("Studenten beim gemeinsamen Kochen"),
-                    cls=CLASS['hero_image_placeholder']
-                ),
-                cls=CLASS['hero_image']
+                hero_media,
+                cls=CLASS['hero_image'],
+                style=hero_image_style
             ),
             cls=CLASS['hero_container']
         ),

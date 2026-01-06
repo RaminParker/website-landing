@@ -15,8 +15,9 @@ website-landing/
 ├── components.py       # UI-Komponenten
 ├── static/
 │   ├── css/styles.css  # Alle Styles
-│   └── js/main.js      # JavaScript (FAQ, Modal, etc.)
-└── images/             # Statische Bilder
+│   └── js/main.js      # JavaScript (FAQ, Modal, Video-Loading)
+├── images/             # Statische Bilder
+└── videos/landingpage/ # Hero-Video (WebM, MP4, Thumbnails)
 ```
 
 ## Architektur
@@ -66,6 +67,17 @@ python app.py
 - Events: `config.py` → `CURRENT_EVENTS`
 - FAQs: `config.py` → `FAQ_LIST`
 - Sponsoren: `config.py` → `SPONSOR_LIST`
+
+### Hero-Video konfigurieren
+In `config.py`:
+```python
+USE_HERO_VIDEO = True   # False = statischer Placeholder
+HERO_VIDEO_HEIGHT = 600 # Höhe in Pixel (Standard: 600)
+```
+
+Video-Dateien in `videos/landingpage/`:
+- `optim.webm` / `optim.mp4` - Video-Formate
+- `thumbnail@low.png` - Blur-Placeholder (12KB, lädt sofort)
 
 ### Neuen Abschnitt hinzufügen
 1. Komponente in `components.py` erstellen
