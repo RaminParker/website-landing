@@ -47,6 +47,7 @@ CLASS = {
     'navbar': 'navbar',
     'navbar_container': 'navbar-container',
     'navbar_logo': 'navbar-logo',
+    'navbar_logo_img': 'navbar-logo-img',
     'navbar_menu': 'navbar-menu',
     'navbar_link': 'navbar-link',
     'navbar_cta': 'navbar-cta',

@@ -25,7 +25,12 @@ def NavigationBar():
     """Create the fixed navigation bar at the top of the page."""
     return Nav(
         Div(
-            A("🍝 SPINFOOD", href="#", cls=CLASS['navbar_logo']),
+            A(
+                Img(src="/images/logo.png", alt="Spinfood Logo", cls=CLASS['navbar_logo_img']),
+                "SPINFOOD",
+                href="#",
+                cls=CLASS['navbar_logo']
+            ),
             Div(
                 A("Für Veranstalter", href="#organizer", cls=CLASS['navbar_link']),
                 A("Event finden", href="#events", cls=CLASS['navbar_cta']),
@@ -720,7 +725,12 @@ def AGBNavigation():
     """Create the simplified navigation bar for child pages."""
     return Nav(
         Div(
-            A("🍝 SPINFOOD", href="/", cls=CLASS['navbar_logo']),
+            A(
+                Img(src="/images/logo.png", alt="Spinfood Logo", cls=CLASS['navbar_logo_img']),
+                "SPINFOOD",
+                href="/",
+                cls=CLASS['navbar_logo']
+            ),
             cls=CLASS['navbar_container']
         ),
         cls=CLASS['navbar']

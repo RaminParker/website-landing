@@ -179,6 +179,12 @@ section {
     left: 40px;
 }
 
+.navbar-logo-img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+}
+
 .navbar-menu {
     display: flex;
     gap: 1.5rem;
