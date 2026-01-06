@@ -208,12 +208,6 @@ CURRENT_EVENTS = [
         "https://www.giessenkocht.de/"
     ),
     (
-        "Wintersemester 24/25",
-        "Marburg-kocht!",
-        "Organisiert durch die Studiengruppe der Uni Marburg",
-        "https://www.marburgkocht.de/"
-    ),
-    (
         "Sommersemester 2025",
         "BamBuS Dinner",
         "Organisiert durch die Studierendengruppe BamBuS",
