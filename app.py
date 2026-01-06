@@ -13,6 +13,7 @@ import logging
 
 from fasthtml.common import fast_app, serve, Title, Meta, Link, Script
 from starlette.staticfiles import StaticFiles
+from starlette.responses import FileResponse
 
 from config import APP_TITLE, APP_DESCRIPTION
 from components import (
@@ -50,6 +51,12 @@ logger.info("Application initialized")
 # Routes
 # =============================================================================
 
+@rt("/favicon.ico")
+def favicon():
+    """Serve favicon from logo image."""
+    return FileResponse("images/logo.png", media_type="image/png")
+
+
 @rt("/")
 def get():
     """
@@ -65,6 +72,7 @@ def get():
         Meta(name="description", content=APP_DESCRIPTION),
 
         # External CSS and JS
+        Link(rel="icon", type="image/png", href="/images/logo.png"),
         Link(rel="stylesheet", href="/static/css/styles.css"),
         Script(src="/static/js/main.js", defer=True),
 
