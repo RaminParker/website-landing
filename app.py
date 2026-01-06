@@ -20,7 +20,8 @@ from components import (
     NavigationBar, HeroSection, ProblemSection, SolutionSection,
     HowItWorksSection, BenefitsSection, EventsSection, OrganizerSection,
     TestimonialsSection, FAQSection, CTASection, TeamSection, PartnerSection,
-    SponsorsSection, FooterSection, ContactModal
+    SponsorsSection, FooterSection, ContactModal,
+    AGBNavigation, AGBPageContent
 )
 
 # =============================================================================
@@ -93,6 +94,31 @@ def get():
         SponsorsSection(),
         FooterSection(),
         ContactModal()
+    )
+
+
+@rt("/agb")
+def get_agb():
+    """
+    Route handler for the AGB (Terms & Conditions) page.
+    Displays all terms and conditions in a clean, readable format.
+    """
+    logger.info("Serving AGB page")
+
+    return (
+        # Page metadata
+        Title("AGB - Spinfood"),
+        Meta(name="viewport", content="width=device-width, initial-scale=1.0"),
+        Meta(name="description", content="Allgemeine Geschäftsbedingungen für Spinfood"),
+
+        # External CSS and JS
+        Link(rel="icon", type="image/png", href="/images/logo.png"),
+        Link(rel="stylesheet", href="/static/css/styles.css"),
+
+        # Page components
+        AGBNavigation(),
+        AGBPageContent(),
+        FooterSection()
     )
 
 # =============================================================================

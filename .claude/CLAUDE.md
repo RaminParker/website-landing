@@ -26,9 +26,9 @@ website-landing/
 
 | Datei | Verantwortung |
 |-------|---------------|
-| `app.py` | Server-Setup, Routes, Logging |
-| `config.py` | APP_TITLE, CURRENT_EVENTS, FAQ_LIST, CLASS-Dictionary |
-| `components.py` | Alle UI-Komponenten (NavigationBar, HeroSection, etc.) |
+| `app.py` | Server-Setup, Routes (`/`, `/agb`), Logging |
+| `config.py` | APP_TITLE, CURRENT_EVENTS, FAQ_LIST, AGB_LIST, CLASS-Dictionary |
+| `components.py` | Alle UI-Komponenten (NavigationBar, HeroSection, AGBPageContent, etc.) |
 
 ### CSS-Klassen (Single Source of Truth)
 
@@ -44,6 +44,7 @@ Das Dictionary ist in logische Gruppen unterteilt:
 - **Navigation**: `navbar`, `navbar_logo`, `navbar_menu`, etc.
 - **Hero**: `hero`, `hero_title`, `hero_buttons`, etc.
 - **Components**: `step_card`, `benefit_card`, `event_card`, `faq_item`, etc.
+- **Child Pages**: `agb_page`, `agb_block`, `agb_section`, `agb_nav`, etc.
 - **Utility Classes**: `section_emoji`, `problem_statement`, `solution_title`, etc.
 
 ### Dynamische Inline-Styles
@@ -67,6 +68,7 @@ python app.py
 - Events: `config.py` → `CURRENT_EVENTS`
 - FAQs: `config.py` → `FAQ_LIST`
 - Sponsoren: `config.py` → `SPONSOR_LIST`
+- AGBs: `config.py` → `AGB_SPINFOOD`, `AGB_GIESSEN_KOCHT`, `AGB_LIST`
 
 ### Hero-Video konfigurieren
 In `config.py`:
@@ -84,6 +86,29 @@ Video-Dateien in `videos/landingpage/`:
 2. CSS-Klassen in `config.py` → `CLASS` hinzufügen
 3. Styles in `static/css/styles.css` hinzufügen
 4. Komponente in `app.py` → `get()` einbinden
+
+### Neue Child-Page hinzufügen
+1. Content-Daten in `config.py` definieren (z.B. Dictionary-Struktur)
+2. CSS-Klassen in `config.py` → `CLASS` hinzufügen
+3. Komponenten in `components.py` erstellen
+4. Neue Route in `app.py` mit `@rt("/pagename")` hinzufügen
+5. Styles in `static/css/styles.css` hinzufügen
+6. Links im Footer oder Navigation anpassen
+
+Beispiel AGB-Page (`/agb`):
+```python
+# config.py - Content-Struktur
+AGB_EXAMPLE = {
+    'id': 'example',
+    'title': 'Titel - Untertitel',
+    'intro': 'Einleitungstext...',
+    'sections': [
+        ('§1 Überschrift', 'Inhalt des Paragraphen...'),
+    ],
+    'last_updated': 'Januar 2025'
+}
+AGB_LIST = [AGB_EXAMPLE]  # Alle AGBs hier auflisten
+```
 
 ## Wichtige Hinweise
 
@@ -115,4 +140,5 @@ Die CSS-Datei ist in nummerierte Abschnitte gegliedert:
 17. Footer Section
 18. Modal (Contact)
 19. Utility Classes (aus Inline-Styles extrahiert)
-20. Responsive Design
+20. AGB Page
+21. Responsive Design

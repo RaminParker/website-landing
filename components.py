@@ -11,7 +11,7 @@ from fasthtml.common import (
 
 from config import (
     CLASS, CONTACT_EMAIL, CURRENT_EVENTS, SPONSOR_LIST, FAQ_LIST,
-    PARTNER_UNIVERSITIES, TEAM_LOCATIONS,
+    PARTNER_UNIVERSITIES, TEAM_LOCATIONS, AGB_LIST,
     HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE,
     USE_HERO_VIDEO, HERO_VIDEO_HEIGHT
 )
@@ -677,7 +677,7 @@ def FooterSection():
                 H3("Rechtliches"),
                 A("Impressum", href="#"),
                 A("Datenschutz", href="#"),
-                A("AGB", href="#"),
+                A("AGB", href="/agb"),
                 cls=CLASS['footer_column']
             ),
             cls=CLASS['footer_container']
@@ -709,4 +709,73 @@ def ContactModal():
         ),
         id="contactModal",
         cls=CLASS['modal']
+    )
+
+
+# =============================================================================
+# AGB Page Components
+# =============================================================================
+
+def AGBNavigation():
+    """Create the simplified navigation bar for child pages."""
+    return Nav(
+        Div(
+            A("🍝 SPINFOOD", href="/", cls=CLASS['navbar_logo']),
+            cls=CLASS['navbar_container']
+        ),
+        cls=CLASS['navbar']
+    )
+
+
+def AGBSection(heading: str, content: str):
+    """
+    Create a single AGB section with heading and content.
+
+    Args:
+        heading: Section heading (e.g., "§1 Geltungsbereich")
+        content: Section content text
+    """
+    return Div(
+        H3(heading, cls=CLASS['agb_section_title']),
+        P(content, cls=CLASS['agb_section_content']),
+        cls=CLASS['agb_section']
+    )
+
+
+def AGBBlock(agb_data: dict):
+    """
+    Create a complete AGB block with title, intro, and all sections.
+
+    Args:
+        agb_data: Dictionary with keys: id, title, intro, sections, last_updated
+    """
+    return Div(
+        H2(agb_data['title'], cls=CLASS['agb_block_title'], id=agb_data['id']),
+        P(agb_data['intro'], cls=CLASS['agb_block_intro']),
+        *[AGBSection(heading, content) for heading, content in agb_data['sections']],
+        P(f"Stand: {agb_data['last_updated']}", cls=CLASS['agb_last_updated']),
+        cls=CLASS['agb_block']
+    )
+
+
+def AGBPageNav():
+    """Create the quick navigation for jumping between AGB sections."""
+    return Div(
+        *[A(agb['title'].split(' - ')[1], href=f"#{agb['id']}", cls=CLASS['agb_nav_item'])
+          for agb in AGB_LIST],
+        cls=CLASS['agb_nav']
+    )
+
+
+def AGBPageContent():
+    """Create the main content area with all AGB blocks."""
+    return Div(
+        Div(
+            A("← Zurück zur Startseite", href="/", cls=CLASS['agb_back_link']),
+            H1("Allgemeine Geschäftsbedingungen", cls=CLASS['section_title']),
+            AGBPageNav(),
+            *[AGBBlock(agb) for agb in AGB_LIST],
+            cls=CLASS['container']
+        ),
+        cls=CLASS['agb_page']
     )

@@ -156,6 +156,20 @@ CLASS = {
     'modal_close': 'modal-close',
     'modal_email': 'modal-email',
 
+    # AGB Page
+    'agb_page': 'agb-page',
+    'agb_header': 'agb-header',
+    'agb_back_link': 'agb-back-link',
+    'agb_nav': 'agb-nav',
+    'agb_nav_item': 'agb-nav-item',
+    'agb_block': 'agb-block',
+    'agb_block_title': 'agb-block-title',
+    'agb_block_intro': 'agb-block-intro',
+    'agb_section': 'agb-section',
+    'agb_section_title': 'agb-section-title',
+    'agb_section_content': 'agb-section-content',
+    'agb_last_updated': 'agb-last-updated',
+
     # Utility Classes (Extracted from Inline Styles)
     'section_emoji': 'section-emoji',
     'problem_statement': 'problem-statement',
@@ -280,3 +294,96 @@ PARTNER_UNIVERSITIES = [
 
 # Team locations
 TEAM_LOCATIONS = ["Berlin", "Dresden", "Nürnberg"]
+
+# =============================================================================
+# AGB (Terms & Conditions) Content
+# =============================================================================
+# Each AGB entry: (id, title, sections)
+# sections is a list of (heading, content) tuples
+
+AGB_SPINFOOD = {
+    'id': 'spinfood',
+    'title': 'Allgemeine Geschäftsbedingungen - Spinfood',
+    'intro': 'Nachfolgend finden Sie die Allgemeinen Geschäftsbedingungen für die Nutzung der Spinfood-Plattform.',
+    'sections': [
+        (
+            '§1 Geltungsbereich',
+            'Diese Allgemeinen Geschäftsbedingungen gelten für alle Nutzer der '
+            'Spinfood-Plattform. Mit der Registrierung akzeptieren Sie diese Bedingungen.'
+        ),
+        (
+            '§2 Leistungsbeschreibung',
+            'Spinfood bietet eine Plattform zur Organisation von Running Dinner Events. '
+            'Die Plattform ermöglicht die Anmeldung, Team-Zuteilung und Kommunikation '
+            'zwischen Teilnehmenden.'
+        ),
+        (
+            '§3 Anmeldung und Teilnahme',
+            'Die Anmeldung zu einem Event erfolgt über die jeweilige Event-Seite. '
+            'Mit der Anmeldung bestätigen Teilnehmende, dass sie die Teilnahmebedingungen '
+            'gelesen haben und akzeptieren.'
+        ),
+        (
+            '§4 Datenschutz',
+            'Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer '
+            'Datenschutzerklärung und den geltenden Datenschutzgesetzen.'
+        ),
+        (
+            '§5 Haftung',
+            'Spinfood haftet nicht für Schäden, die durch die Teilnahme an Events '
+            'entstehen. Die Teilnahme erfolgt auf eigene Verantwortung.'
+        ),
+        (
+            '§6 Schlussbestimmungen',
+            'Es gilt deutsches Recht. Gerichtsstand ist Berlin. Sollten einzelne '
+            'Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen '
+            'Bestimmungen unberührt.'
+        ),
+    ],
+    'last_updated': 'Januar 2025'
+}
+
+AGB_GIESSEN_KOCHT = {
+    'id': 'giessen-kocht',
+    'title': 'Teilnahmebedingungen - Gießen kocht!',
+    'intro': 'Nachfolgend finden Sie die Teilnahmebedingungen für das Event "Gießen kocht!".',
+    'sections': [
+        (
+            '§1 Veranstalter',
+            'Das Event "Gießen kocht!" wird von der Fachschaft [Name] der '
+            'Justus-Liebig-Universität Gießen in Zusammenarbeit mit Spinfood organisiert.'
+        ),
+        (
+            '§2 Teilnahmeberechtigung',
+            'Teilnahmeberechtigt sind alle Studierenden der Justus-Liebig-Universität '
+            'Gießen sowie deren Gäste. Eine gültige Anmeldung ist erforderlich.'
+        ),
+        (
+            '§3 Anmeldegebühr',
+            'Die Teilnahmegebühr beträgt [X] Euro pro Person. Die Zahlung erfolgt '
+            'bei der Anmeldung über die Plattform. Bei Absage bis [Datum] ist eine '
+            'Rückerstattung möglich.'
+        ),
+        (
+            '§4 Ablauf des Events',
+            'Teilnehmende kochen einen Gang (Vorspeise, Hauptgang oder Dessert) '
+            'in ihrer eigenen Küche für insgesamt 6 Personen. Die anderen beiden '
+            'Gänge werden bei anderen Teams eingenommen.'
+        ),
+        (
+            '§5 Absagen und Nachrücker',
+            'Bei Absage informieren Sie uns bitte umgehend über die Plattform. '
+            'Kurzfristige Absagen können zu einer anteiligen Erstattung führen. '
+            'Nachrücker werden automatisch benachrichtigt.'
+        ),
+        (
+            '§6 Haftung',
+            'Die Teilnahme erfolgt auf eigene Verantwortung. Die Veranstalter '
+            'haften nicht für Personen- oder Sachschäden während des Events.'
+        ),
+    ],
+    'last_updated': 'Januar 2025'
+}
+
+# List of all AGBs to display on the AGB page
+AGB_LIST = [AGB_SPINFOOD, AGB_GIESSEN_KOCHT]

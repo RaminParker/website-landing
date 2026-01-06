@@ -1481,7 +1481,109 @@ section {
 }
 
 /* ==========================================================================
-   20. Responsive Design
+   20. AGB Page
+   ========================================================================== */
+.agb-page {
+    padding-top: 100px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fefefe 0%, #f8f9fa 100%);
+}
+
+.agb-back-link {
+    display: inline-block;
+    color: var(--primary-teal);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.agb-back-link:hover {
+    color: var(--primary-pink);
+}
+
+.agb-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.agb-nav-item {
+    padding: 0.8rem 1.5rem;
+    background: var(--bg-gray);
+    border-radius: 8px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.agb-nav-item:hover {
+    background: var(--primary-teal);
+    color: white;
+}
+
+.agb-block {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.agb-block-title {
+    font-size: 1.8rem;
+    color: var(--primary-pink);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--bg-gray);
+}
+
+.agb-block-intro {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.agb-section {
+    margin-bottom: 2rem;
+}
+
+.agb-section:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
+.agb-section-title {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.agb-section-content {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+.agb-last-updated {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bg-gray);
+}
+
+/* ==========================================================================
+   21. Responsive Design
    ========================================================================== */
 @media (max-width: 968px) {
     /* Navigation */
@@ -1618,5 +1720,27 @@ section {
 
     .modal-content p {
         font-size: 1.1rem;
+    }
+
+    /* AGB Page */
+    .agb-page {
+        padding-top: 80px;
+    }
+
+    .agb-block {
+        padding: 1.5rem;
+    }
+
+    .agb-block-title {
+        font-size: 1.5rem;
+    }
+
+    .agb-nav {
+        padding: 1rem;
+    }
+
+    .agb-nav-item {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
     }
 }
