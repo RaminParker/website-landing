@@ -26,9 +26,10 @@ website-landing/
 
 | Datei | Verantwortung |
 |-------|---------------|
-| `app.py` | Server-Setup, Routes (`/`, `/agb`), Logging |
-| `config.py` | APP_TITLE, CURRENT_EVENTS, FAQ_LIST, AGB_LIST, CLASS-Dictionary |
-| `components.py` | Alle UI-Komponenten (NavigationBar, HeroSection, AGBPageContent, etc.) |
+| `app.py` | Server-Setup, Routes (`/`, `/agb`, `/impressum`), Logging |
+| `config.py` | APP_TITLE, CURRENT_EVENTS, FAQ_LIST, AGB_LIST, IMPRESSUM_DATA, CLASS-Dictionary |
+| `components.py` | Alle UI-Komponenten (NavigationBar, HeroSection, AGBPageContent, ImpressumPageContent, etc.) |
+| `environment_dev.yml` | Conda-Umgebung Definition mit allen Python-Dependencies |
 
 ### CSS-Klassen (Single Source of Truth)
 
@@ -44,7 +45,7 @@ Das Dictionary ist in logische Gruppen unterteilt:
 - **Navigation**: `navbar`, `navbar_logo`, `navbar_menu`, etc.
 - **Hero**: `hero`, `hero_title`, `hero_buttons`, etc.
 - **Components**: `step_card`, `benefit_card`, `event_card`, `faq_item`, etc.
-- **Child Pages**: `agb_page`, `agb_block`, `agb_section`, `agb_nav`, etc.
+- **Child Pages**: `agb_page`, `agb_block`, `agb_section`, `agb_nav`, `impressum_table`, `impressum_row`, etc.
 - **Utility Classes**: `section_emoji`, `problem_statement`, `solution_title`, etc.
 
 ### Dynamische Inline-Styles
@@ -58,10 +59,27 @@ style = f"border-left-color: {accent_color};" if accent_color else ""
 ## Workflows
 
 ### Server starten
+
+**WICHTIG:** Der Server kann nur gestartet werden, wenn die Conda-Umgebung zuvor aktiviert wurde!
+
 ```bash
+# Conda-Umgebung aktivieren (erforderlich!)
 conda activate landingpage_spinfood
+
+# Server starten
 python app.py
 # -> http://localhost:5001
+```
+
+Die Conda-Umgebung `landingpage_spinfood` ist in [environment_dev.yml](environment_dev.yml) definiert und enthält:
+- Python 3.11
+- python-fasthtml
+- uvicorn[standard]
+- python-multipart, httpx, jinja2, python-dotenv, monsterui
+
+Falls die Umgebung noch nicht existiert:
+```bash
+conda env create -f environment_dev.yml
 ```
 
 ### Content ändern
@@ -69,6 +87,7 @@ python app.py
 - FAQs: `config.py` → `FAQ_LIST`
 - Sponsoren: `config.py` → `SPONSOR_LIST`
 - AGBs: `config.py` → `AGB_SPINFOOD`, `AGB_GIESSEN_KOCHT`, `AGB_LIST`
+- Impressum: `config.py` → `IMPRESSUM_DATA`
 
 ### Hero-Video konfigurieren
 In `config.py`:
@@ -141,4 +160,5 @@ Die CSS-Datei ist in nummerierte Abschnitte gegliedert:
 18. Modal (Contact)
 19. Utility Classes (aus Inline-Styles extrahiert)
 20. AGB Page
-21. Responsive Design
+21. Impressum Page
+22. Responsive Design
