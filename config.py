@@ -203,19 +203,31 @@ CLASS = {
 # Format: (date/semester, title, description, link)
 CURRENT_EVENTS = [
     (
-        "Sommersemester 2025",
+        "Sommersemester 2026",
         "Gießen-kocht!",
         "Das Gießener Kult-Event - seit Jahren einmal pro Semester",
         "https://www.giessenkocht.de/"
     ),
     (
-        "Sommersemester 2025",
+        "Sommersemester 2026",
         "BamBuS Dinner",
-        "Organisiert durch die Studierendengruppe BamBuS",
+        "Organisiert durch die Studierendengruppe BamBuS der Uni Bamberg",
         "https://www.bambusev.de/bambus-dinner"
     ),
     (
-        "Sommersemester 2025",
+        "Sommersemester 2026",
+        "Studi-Dinner",
+        "Angebote vom Studentischen Gesundheitsmanagament der Uni Tübingen",
+        "https://uni-tuebingen.de/einrichtungen/zentrale-einrichtungen/hochschulsport/sgm-betabalance/studi-dinner/"
+    ),
+    (
+        "Sommersemester 2026",
+        "Koch Bachelor Osnabrück",
+        "Der kleine Brunder vom beliebten Bier Bachelor",
+        "https://www.kochbachelor.de/"
+    ),
+    (
+        "Sommersemester 2026",
         "Laufgelage Erlangen",
         "Hochschulgruppe Erlangen-Nürnberg",
         "https://www.laufgelage.de/"
