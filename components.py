@@ -11,9 +11,9 @@ from fasthtml.common import (
 
 from config import (
     CLASS, CONTACT_EMAIL, CURRENT_EVENTS, SPONSOR_LIST, FAQ_LIST,
-    PARTNER_UNIVERSITIES, TEAM_LOCATIONS, AGB_LIST,
+    PARTNER_UNIVERSITIES, TEAM_LOCATIONS, AGB_LIST, IMPRESSUM_DATA,
     HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE,
-    USE_HERO_VIDEO, HERO_VIDEO_HEIGHT
+    USE_HERO_VIDEO, HERO_VIDEO_HEIGHT, CURRENT_YEAR
 )
 
 
@@ -680,7 +680,7 @@ def FooterSection():
             ),
             Div(
                 H3("Rechtliches"),
-                A("Impressum", href="#"),
+                A("Impressum", href="/impressum"),
                 A("Datenschutz", href="#"),
                 A("AGB", href="/agb"),
                 cls=CLASS['footer_column']
@@ -688,7 +688,7 @@ def FooterSection():
             cls=CLASS['footer_container']
         ),
         Div(
-            P("© 2025 Spinfood. Made with ❤️ in Germany"),
+            P(f"© {CURRENT_YEAR} Spinfood. Made with ❤️ in Germany"),
             cls=CLASS['footer_bottom']
         ),
         cls=CLASS['footer_section']
@@ -788,4 +788,76 @@ def AGBPageContent():
             cls=CLASS['container']
         ),
         cls=CLASS['agb_page']
+    )
+
+
+# =============================================================================
+# Impressum Page Components
+# =============================================================================
+
+def ImpressumSection(heading: str, content: str):
+    """Create a single impressum section with heading and content.
+
+    Args:
+        heading: Section heading (e.g., "Anbieter", "Kontakt")
+        content: Section content text (supports line breaks via white-space: pre-line)
+    """
+    # Special handling for phone number display in Kontakt section
+    if heading == "Kontakt" and "(anzeigen)" in content:
+        # Split content into parts before and after phone number
+        parts = content.split("Telefon: (anzeigen)")
+        before_phone = parts[0] if len(parts) > 0 else ""
+        after_phone = parts[1] if len(parts) > 1 else ""
+
+        return Div(
+            H3(heading, cls=CLASS['impressum_section_title']),
+            P(
+                before_phone,
+                "Telefon: ",
+                Span(
+                    "(anzeigen)",
+                    id="phone-reveal-link",
+                    style="color: var(--primary-teal); cursor: pointer; text-decoration: underline;",
+                    onclick="this.textContent='0160 5819759'; this.style.cursor='default'; this.style.textDecoration='none';"
+                ),
+                after_phone,
+                cls=CLASS['impressum_section_content'],
+                style="white-space: pre-line;"
+            ),
+            cls=CLASS['impressum_section']
+        )
+
+    return Div(
+        H3(heading, cls=CLASS['impressum_section_title']),
+        P(content, cls=CLASS['impressum_section_content'], style="white-space: pre-line;"),
+        cls=CLASS['impressum_section']
+    )
+
+
+def ImpressumBlock(impressum_data: dict):
+    """Create the impressum content block with title, intro, and all sections.
+
+    Args:
+        impressum_data: Dictionary with keys: id, title, intro, sections, last_updated, copyright
+    """
+    return Div(
+        H2(impressum_data['title'], cls=CLASS['impressum_block_title'], id=impressum_data['id']),
+        P(impressum_data['intro'], cls=CLASS['impressum_block_intro']),
+        *[ImpressumSection(heading, content) for heading, content in impressum_data['sections']],
+        P(f"Stand: {impressum_data['last_updated']}", cls=CLASS['impressum_last_updated']),
+        P(impressum_data['copyright'], cls=CLASS['impressum_copyright']),
+        cls=CLASS['impressum_block']
+    )
+
+
+def ImpressumPageContent():
+    """Create the main content area with impressum block."""
+    return Div(
+        Div(
+            A("← Zurück zur Startseite", href="/", cls=CLASS['impressum_back_link']),
+            H1("Impressum", cls=CLASS['section_title']),
+            ImpressumBlock(IMPRESSUM_DATA),
+            cls=CLASS['container']
+        ),
+        cls=CLASS['impressum_page']
     )

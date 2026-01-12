@@ -54,6 +54,9 @@ Einzige Ausnahme für Inline-Styles sind **dynamische Werte**, z.B.:
 ```python
 # EventCard - Akzentfarbe wird zur Laufzeit gesetzt
 style = f"border-left-color: {accent_color};" if accent_color else ""
+
+# Impressum - Telefonnummer-Reveal (Anti-Spam)
+onclick="this.textContent='0160 5819759'; this.style.cursor='default';"
 ```
 
 ## Workflows
@@ -88,6 +91,7 @@ conda env create -f environment_dev.yml
 - Sponsoren: `config.py` → `SPONSOR_LIST`
 - AGBs: `config.py` → `AGB_SPINFOOD`, `AGB_GIESSEN_KOCHT`, `AGB_LIST`
 - Impressum: `config.py` → `IMPRESSUM_DATA`
+- **Jahreszahl (Copyright & Last-Updated)**: `config.py` → `CURRENT_YEAR` (wird automatisch in Footer, Impressum und AGB verwendet)
 
 ### Hero-Video konfigurieren
 In `config.py`:
@@ -128,6 +132,24 @@ AGB_EXAMPLE = {
 }
 AGB_LIST = [AGB_EXAMPLE]  # Alle AGBs hier auflisten
 ```
+
+Beispiel Impressum-Page (`/impressum`):
+```python
+# config.py - Content-Struktur
+IMPRESSUM_DATA = {
+    'id': 'impressum',
+    'title': 'Impressum',
+    'intro': 'Angaben gemäß § 5 TMG',
+    'sections': [
+        ('Anbieter', 'Firmenname\nAdresse\n\nVertreten durch: ...'),
+        ('Kontakt', 'Telefon: (anzeigen)\nE-Mail: kontakt@example.com'),
+    ],
+    'last_updated': 'Januar 2026',
+    'copyright': '© 2026 Firmenname – Alle Rechte vorbehalten'
+}
+```
+
+**Besonderheit Impressum:** Die Telefonnummer wird mit "(anzeigen)" versteckt und beim Klick sichtbar (Anti-Spam-Maßnahme). Die `ImpressumSection` Komponente erkennt automatisch "Telefon: (anzeigen)" und ersetzt es durch einen klickbaren Link.
 
 ## Wichtige Hinweise
 

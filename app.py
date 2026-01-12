@@ -21,7 +21,7 @@ from components import (
     HowItWorksSection, BenefitsSection, EventsSection, OrganizerSection,
     TestimonialsSection, FAQSection, CTASection, TeamSection, PartnerSection,
     SponsorsSection, FooterSection, ContactModal,
-    AGBNavigation, AGBPageContent
+    AGBNavigation, AGBPageContent, ImpressumPageContent
 )
 
 # =============================================================================
@@ -118,6 +118,31 @@ def get_agb():
         # Page components
         AGBNavigation(),
         AGBPageContent(),
+        FooterSection()
+    )
+
+
+@rt("/impressum")
+def get_impressum():
+    """
+    Route handler for the Impressum (Legal Notice) page.
+    Displays all legal information required by German law (§ 5 TMG).
+    """
+    logger.info("Serving Impressum page")
+
+    return (
+        # Page metadata
+        Title("Impressum - Spinfood"),
+        Meta(name="viewport", content="width=device-width, initial-scale=1.0"),
+        Meta(name="description", content="Impressum und rechtliche Angaben von Spinfood"),
+
+        # External CSS and JS
+        Link(rel="icon", type="image/png", href="/images/logo.png"),
+        Link(rel="stylesheet", href="/static/css/styles.css"),
+
+        # Page components
+        AGBNavigation(),
+        ImpressumPageContent(),
         FooterSection()
     )
 

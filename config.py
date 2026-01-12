@@ -13,6 +13,9 @@ Single source of truth for easy maintenance.
 USE_HERO_VIDEO = True  # Set to False to use static placeholder instead of video
 HERO_VIDEO_HEIGHT = 600  # Height in pixels (default: 600, max recommended: 800)
 
+# General Settings
+CURRENT_YEAR = 2026  # Used for copyright notices and last-updated dates
+
 APP_TITLE = "Running Dinner Events - Powered by Spinfood"
 APP_DESCRIPTION = (
     "Schlüsselfertig für Fachschaften, Unis und studentische Gruppen. "
@@ -170,6 +173,18 @@ CLASS = {
     'agb_section_title': 'agb-section-title',
     'agb_section_content': 'agb-section-content',
     'agb_last_updated': 'agb-last-updated',
+
+    # Impressum Page
+    'impressum_page': 'impressum-page',
+    'impressum_block': 'impressum-block',
+    'impressum_block_title': 'impressum-block-title',
+    'impressum_block_intro': 'impressum-block-intro',
+    'impressum_section': 'impressum-section',
+    'impressum_section_title': 'impressum-section-title',
+    'impressum_section_content': 'impressum-section-content',
+    'impressum_last_updated': 'impressum-last-updated',
+    'impressum_copyright': 'impressum-copyright',
+    'impressum_back_link': 'impressum-back-link',
 
     # Utility Classes (Extracted from Inline Styles)
     'section_emoji': 'section-emoji',
@@ -394,3 +409,41 @@ AGB_GIESSEN_KOCHT = {
 
 # List of all AGBs to display on the AGB page
 AGB_LIST = [AGB_SPINFOOD, AGB_GIESSEN_KOCHT]
+
+# =============================================================================
+# Impressum (Legal Notice) Content
+# =============================================================================
+
+IMPRESSUM_DATA = {
+    'id': 'impressum',
+    'title': 'Impressum',
+    'intro': 'Angaben gemäß § 5 TMG',
+    'sections': [
+        (
+            'Anbieter',
+            'Spinfood Beravat Ramin, Beravat Schirin, Eichhorn Rene GbR\nWilhelm-Späth-Straße 80\n90461 Nürnberg\n\nVertreten durch: Dr. Ramin Beravat, Schirin Beravat und René Eichhorn'
+        ),
+        (
+            'Kontakt',
+            'Telefon: (anzeigen)\nE-Mail: hi@spinfood.de'
+        ),
+        (
+            'Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV',
+            'Dr. Ramin Beravat, Schirin Beravat und René Eichhorn (Anschrift wie oben)'
+        ),
+        (
+            'EU-Streitbeilegung',
+            'Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr.\nUnsere E-Mail-Adresse finden Sie oben im Impressum.'
+        ),
+        (
+            'Verbraucherstreitbeilegung/Universalschlichtungsstelle',
+            'Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.'
+        ),
+        (
+            'Haftungsausschluss',
+            'Die Inhalte unserer Internetseite werden mit größter Sorgfalt recherchiert. Dennoch kann der Anbieter keine Haftung für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Informationen übernehmen.'
+        )
+    ],
+    'last_updated': f'Januar {CURRENT_YEAR}',
+    'copyright': f'© {CURRENT_YEAR} Spinfood – Alle Rechte vorbehalten'
+}

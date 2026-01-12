@@ -1491,7 +1491,7 @@ section {
    ========================================================================== */
 .agb-page {
     padding-top: 100px;
-    min-height: 100vh;
+    padding-bottom: 80px;
     background: linear-gradient(135deg, #fefefe 0%, #f8f9fa 100%);
 }
 
@@ -1589,7 +1589,106 @@ section {
 }
 
 /* ==========================================================================
-   21. Responsive Design
+   21. Impressum Page
+   ========================================================================== */
+
+.impressum-page {
+    padding-top: 100px;
+    padding-bottom: 80px;
+    background: linear-gradient(135deg, #fefefe 0%, #f8f9fa 100%);
+}
+
+.impressum-back-link {
+    display: inline-block;
+    color: var(--primary-teal);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.impressum-back-link:hover {
+    color: var(--primary-pink);
+}
+
+.impressum-block {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.impressum-block-title {
+    font-size: 2rem;
+    color: var(--primary-pink);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--bg-gray);
+}
+
+.impressum-block-intro {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+.impressum-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--bg-gray);
+}
+
+.impressum-section:last-of-type {
+    border-bottom: none;
+}
+
+.impressum-section-title {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.impressum-section-content {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+.impressum-section-content a {
+    color: var(--primary-teal);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.impressum-section-content a:hover {
+    color: var(--primary-pink);
+}
+
+.impressum-last-updated {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bg-gray);
+}
+
+.impressum-copyright {
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+/* ==========================================================================
+   22. Responsive Design
    ========================================================================== */
 @media (max-width: 968px) {
     /* Navigation */
@@ -1748,5 +1847,26 @@ section {
     .agb-nav-item {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
+    }
+
+    /* Impressum Page */
+    .impressum-page {
+        padding-top: 80px;
+    }
+
+    .impressum-block {
+        padding: 1.5rem;
+    }
+
+    .impressum-block-title {
+        font-size: 1.6rem;
+    }
+
+    .impressum-section-title {
+        font-size: 1.1rem;
+    }
+
+    .impressum-section-content {
+        font-size: 1rem;
     }
 }
