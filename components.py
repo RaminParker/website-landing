@@ -666,10 +666,11 @@ def FooterSection():
         Div(
             Div(
                 H3("Spinfood"),
-                P("Running Dinner Events für Studenten in Deutschland."),
+                P("Running Dinner Events für Studierende in Deutschland."),
                 Div(
-                    A("📺 YouTube", href="#"),
-                    A("📷 Instagram", href="#"),
+                    A("📺 YouTube", href="https://www.youtube.com/channel/UCKMWgTM0S1iix4U5z3C3BQw", target="_blank"),
+                    A("📷 Instagram", href="https://www.instagram.com/giessenkocht.de/", target="_blank"),
+                    A("🎵 TikTok", href="https://www.tiktok.com/@giessen.kocht?lang=en", target="_blank"),
                     cls=CLASS['social_links']
                 ),
                 cls=CLASS['footer_column']
