@@ -21,7 +21,7 @@ from components import (
     HowItWorksSection, BenefitsSection, EventsSection, OrganizerSection,
     TestimonialsSection, FAQSection, CTASection, TeamSection, PartnerSection,
     SponsorsSection, FooterSection, ContactModal,
-    AGBNavigation, AGBPageContent, ImpressumPageContent
+    AGBNavigation, AGBPageContent, ImpressumPageContent, DatenschutzPageContent
 )
 
 # =============================================================================
@@ -143,6 +143,31 @@ def get_impressum():
         # Page components
         AGBNavigation(),
         ImpressumPageContent(),
+        FooterSection()
+    )
+
+
+@rt("/datenschutz")
+def get_datenschutz():
+    """
+    Route handler for the Datenschutz (Privacy Policy) page.
+    Displays all privacy information according to DSGVO and BDSG.
+    """
+    logger.info("Serving Datenschutz page")
+
+    return (
+        # Page metadata
+        Title("Datenschutz - Spinfood"),
+        Meta(name="viewport", content="width=device-width, initial-scale=1.0"),
+        Meta(name="description", content="Datenschutzerklärung von Spinfood gemäß DSGVO"),
+
+        # External CSS and JS
+        Link(rel="icon", type="image/png", href="/images/logo.png"),
+        Link(rel="stylesheet", href="/static/css/styles.css"),
+
+        # Page components
+        AGBNavigation(),
+        DatenschutzPageContent(),
         FooterSection()
     )
 

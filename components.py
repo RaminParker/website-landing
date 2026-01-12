@@ -12,6 +12,7 @@ from fasthtml.common import (
 from config import (
     CLASS, CONTACT_EMAIL, CURRENT_EVENTS, SPONSOR_LIST, FAQ_LIST,
     PARTNER_UNIVERSITIES, TEAM_LOCATIONS, AGB_LIST, IMPRESSUM_DATA,
+    DATENSCHUTZ_DATA,
     HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE,
     USE_HERO_VIDEO, HERO_VIDEO_HEIGHT, CURRENT_YEAR
 )
@@ -681,7 +682,7 @@ def FooterSection():
             Div(
                 H3("Rechtliches"),
                 A("Impressum", href="/impressum"),
-                A("Datenschutz", href="#"),
+                A("Datenschutz", href="/datenschutz"),
                 A("AGB", href="/agb"),
                 cls=CLASS['footer_column']
             ),
@@ -860,4 +861,50 @@ def ImpressumPageContent():
             cls=CLASS['container']
         ),
         cls=CLASS['impressum_page']
+    )
+
+
+# =============================================================================
+# Datenschutz Page Components
+# =============================================================================
+
+def DatenschutzSection(heading: str, content: str):
+    """Create a single datenschutz section with heading and content.
+
+    Args:
+        heading: Section heading (e.g., "Cookies", "Google Analytics")
+        content: Section content text (supports line breaks via white-space: pre-line)
+    """
+    return Div(
+        H3(heading, cls=CLASS['datenschutz_section_title']),
+        P(content, cls=CLASS['datenschutz_section_content'], style="white-space: pre-line;"),
+        cls=CLASS['datenschutz_section']
+    )
+
+
+def DatenschutzBlock(datenschutz_data: dict):
+    """Create the datenschutz content block with title, intro, and all sections.
+
+    Args:
+        datenschutz_data: Dictionary with keys: id, title, intro, sections, last_updated
+    """
+    return Div(
+        H2(datenschutz_data['title'], cls=CLASS['datenschutz_block_title'], id=datenschutz_data['id']),
+        P(datenschutz_data['intro'], cls=CLASS['datenschutz_block_intro'], style="white-space: pre-line;"),
+        *[DatenschutzSection(heading, content) for heading, content in datenschutz_data['sections']],
+        P(f"Stand: {datenschutz_data['last_updated']}", cls=CLASS['datenschutz_last_updated']),
+        cls=CLASS['datenschutz_block']
+    )
+
+
+def DatenschutzPageContent():
+    """Create the main content area with datenschutz block."""
+    return Div(
+        Div(
+            A("← Zurück zur Startseite", href="/", cls=CLASS['datenschutz_back_link']),
+            H1("Datenschutz", cls=CLASS['section_title']),
+            DatenschutzBlock(DATENSCHUTZ_DATA),
+            cls=CLASS['container']
+        ),
+        cls=CLASS['datenschutz_page']
     )
