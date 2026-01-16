@@ -11,8 +11,8 @@ from fasthtml.common import (
 
 from config import (
     CLASS, CONTACT_EMAIL, CURRENT_EVENTS, SPONSOR_LIST, FAQ_LIST,
-    PARTNER_UNIVERSITIES, TEAM_LOCATIONS, AGB_LIST, IMPRESSUM_DATA,
-    DATENSCHUTZ_DATA,
+    PARTNER_UNIVERSITIES, PARTNER_EVENT_ORGANIZERS, TEAM_LOCATIONS,
+    AGB_LIST, IMPRESSUM_DATA, DATENSCHUTZ_DATA,
     HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE,
     USE_HERO_VIDEO, HERO_VIDEO_HEIGHT, CURRENT_YEAR
 )
@@ -598,14 +598,17 @@ def TeamSection():
 # =============================================================================
 
 def PartnerSection():
-    """Create the partner universities section."""
+    """Create the partner section with universities and event organizers."""
     return Div(
         Div(
+            # Main section title
             H2("Teil der Spinfood-Community", cls=CLASS['partner_label']),
             P(
-                "Von Nord bis Süd – diese Universitäten haben bereits auf unsere Plattform vertraut, um ihre Running Dinner Events zu organisieren.",
+                "Von Nord bis Süd – diese Partner haben bereits auf unsere Plattform vertraut.",
                 cls=CLASS['partner_subtitle']
             ),
+            # Universities subsection
+            H3("Universitäten & Fachschaften", cls=CLASS['partner_label_secondary']),
             Div(
                 *[Div(
                     Div(
@@ -619,6 +622,23 @@ def PartnerSection():
                     Span(name, cls=CLASS['partner_name']),
                     cls=CLASS['partner_logo_item']
                 ) for img_path, alt_text, name in PARTNER_UNIVERSITIES],
+                cls=CLASS['partner_logos']
+            ),
+            # Event organizers subsection
+            H3("Eventpartner", cls=CLASS['partner_label_secondary']),
+            Div(
+                *[Div(
+                    Div(
+                        Img(
+                            src=img_path,
+                            alt=alt_text,
+                            cls=CLASS['partner_img']
+                        ),
+                        cls=CLASS['partner_logo']
+                    ),
+                    Span(name, cls=CLASS['partner_name']),
+                    cls=CLASS['partner_logo_item']
+                ) for img_path, alt_text, name in PARTNER_EVENT_ORGANIZERS],
                 cls=CLASS['partner_logos']
             ),
             cls=CLASS['partner_container']

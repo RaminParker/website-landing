@@ -944,10 +944,24 @@ section {
     margin-bottom: 1rem;
 }
 
+.partner-label-secondary {
+    font-size: 1.5rem;
+    color: #000000 !important;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.partner-label-secondary:first-of-type {
+    margin-top: 0;
+}
+
 .partner-subtitle {
     font-size: 1.3rem;
     color: var(--text-light);
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .partner-logos {
@@ -956,6 +970,7 @@ section {
     justify-content: center;
     gap: 4rem;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
 }
 
 .partner-logo-item {

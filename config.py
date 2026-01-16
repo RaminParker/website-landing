@@ -121,8 +121,12 @@ CLASS = {
     # Partner Section
     'partner_section': 'partner-section',
     'partner_container': 'partner-container',
+    'partner_header': 'partner-header',
     'partner_label': 'partner-label',
+    'partner_label_secondary': 'partner-label-secondary',
     'partner_subtitle': 'partner-subtitle',
+    'partner_subsection_unis': 'partner-subsection partner-subsection--unis',
+    'partner_subsection_events': 'partner-subsection partner-subsection--events',
     'partner_logos': 'partner-logos',
     'partner_logo_item': 'partner-logo-item',
     'partner_logo': 'partner-logo',
@@ -327,6 +331,12 @@ PARTNER_UNIVERSITIES = [
     ("/images/uni_logos/uni_marburg.png", "Universität Marburg Logo", "Universität Marburg"),
     ("/images/uni_logos/uni_tuebingen.svg", "Universität Tübingen Logo", "Universität Tübingen"),
     ("/images/uni_logos/uni_wuerzburg.png", "Universität Würzburg Logo", "Universität Würzburg"),
+]
+
+# Partner event organizers
+# Format: (image_path, alt_text, name)
+PARTNER_EVENT_ORGANIZERS = [
+    ("/images/company_logos/koch_bachelor.png", "Koch Bachelor Logo", "Koch Bachelor"),
 ]
 
 # Team locations
