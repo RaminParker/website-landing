@@ -610,7 +610,7 @@ def PartnerSection():
             # Universities subsection
             H3("Universitäten & Fachschaften", cls=CLASS['partner_label_secondary']),
             Div(
-                *[Div(
+                *[A(
                     Div(
                         Img(
                             src=img_path,
@@ -620,14 +620,17 @@ def PartnerSection():
                         cls=CLASS['partner_logo']
                     ),
                     Span(name, cls=CLASS['partner_name']),
+                    href=url,
+                    target="_blank",
+                    rel="noopener noreferrer",
                     cls=CLASS['partner_logo_item']
-                ) for img_path, alt_text, name in PARTNER_UNIVERSITIES],
+                ) for img_path, alt_text, name, url in PARTNER_UNIVERSITIES],
                 cls=CLASS['partner_logos']
             ),
             # Event organizers subsection
             H3("Eventpartner", cls=CLASS['partner_label_secondary']),
             Div(
-                *[Div(
+                *[A(
                     Div(
                         Img(
                             src=img_path,
@@ -637,8 +640,11 @@ def PartnerSection():
                         cls=CLASS['partner_logo']
                     ),
                     Span(name, cls=CLASS['partner_name']),
+                    href=url,
+                    target="_blank",
+                    rel="noopener noreferrer",
                     cls=CLASS['partner_logo_item']
-                ) for img_path, alt_text, name in PARTNER_EVENT_ORGANIZERS],
+                ) for img_path, alt_text, name, url in PARTNER_EVENT_ORGANIZERS],
                 cls=CLASS['partner_logos']
             ),
             cls=CLASS['partner_container']

@@ -323,20 +323,20 @@ FAQ_LIST = [
 ]
 
 # Partner universities
-# Format: (image_path, alt_text, name)
+# Format: (image_path, alt_text, name, url)
 PARTNER_UNIVERSITIES = [
-    ("/images/uni_logos/uni_bamberg.png", "Universität Bamberg Logo", "Universität Bamberg"),
-    ("/images/uni_logos/uni_erlangen.svg", "Universität Erlangen Logo", "Universität Erlangen"),
-    ("/images/uni_logos/uni_giessen.png", "Universität Gießen Logo", "Universität Gießen"),
-    ("/images/uni_logos/uni_marburg.png", "Universität Marburg Logo", "Universität Marburg"),
-    ("/images/uni_logos/uni_tuebingen.svg", "Universität Tübingen Logo", "Universität Tübingen"),
-    ("/images/uni_logos/uni_wuerzburg.png", "Universität Würzburg Logo", "Universität Würzburg"),
+    ("/images/uni_logos/uni_bamberg.png", "Universität Bamberg Logo", "Universität Bamberg", "https://www.uni-bamberg.de"),
+    ("/images/uni_logos/uni_erlangen.svg", "Universität Erlangen Logo", "Universität Erlangen", "https://www.fau.de"),
+    ("/images/uni_logos/uni_giessen.png", "Universität Gießen Logo", "Universität Gießen", "https://www.uni-giessen.de"),
+    ("/images/uni_logos/uni_marburg.png", "Universität Marburg Logo", "Universität Marburg", "https://www.uni-marburg.de"),
+    ("/images/uni_logos/uni_tuebingen.svg", "Universität Tübingen Logo", "Universität Tübingen", "https://www.uni-tuebingen.de"),
+    ("/images/uni_logos/uni_wuerzburg.png", "Universität Würzburg Logo", "Universität Würzburg", "https://www.uni-wuerzburg.de"),
 ]
 
 # Partner event organizers
-# Format: (image_path, alt_text, name)
+# Format: (image_path, alt_text, name, url)
 PARTNER_EVENT_ORGANIZERS = [
-    ("/images/company_logos/koch_bachelor.png", "Koch Bachelor Logo", "Koch Bachelor"),
+    ("/images/company_logos/koch_bachelor.png", "Koch Bachelor Logo", "Koch Bachelor", "https://www.kochbachelor.de"),
 ]
 
 # Team locations
