@@ -321,8 +321,8 @@ FAQ_LIST = [
 # Partner universities
 # Format: (image_path, alt_text, name)
 PARTNER_UNIVERSITIES = [
-    ("/images/uni_giessen.png", "Universität Gießen Logo", "Universität Gießen"),
-    ("/images/uni_erlangen.svg", "Universität Erlangen Logo", "Universität Erlangen"),
+    ("/images/uni_logos/uni_giessen.png", "Universität Gießen Logo", "Universität Gießen"),
+    ("/images/uni_logos/uni_erlangen.svg", "Universität Erlangen Logo", "Universität Erlangen"),
 ]
 
 # Team locations

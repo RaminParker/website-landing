@@ -601,9 +601,9 @@ def PartnerSection():
     """Create the partner universities section."""
     return Div(
         Div(
-            H2("Vertraut von führenden Universitäten", cls=CLASS['partner_label']),
+            H2("Teil der Spinfood-Community", cls=CLASS['partner_label']),
             P(
-                "Viele tausende Studierende haben bereits über unsere Plattform an den Uni-Events teilgenommen",
+                "Von Nord bis Süd – diese Universitäten haben bereits auf unsere Plattform vertraut, um ihre Running Dinner Events zu organisieren.",
                 cls=CLASS['partner_subtitle']
             ),
             Div(
