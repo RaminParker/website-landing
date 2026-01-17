@@ -36,11 +36,13 @@ python app.py
 
 | Datei | Verantwortung |
 |-------|---------------|
-| `app.py` | FastHTML-App, statische Routen, Page-Composition |
-| `config.py` | Single Source of Truth: Events, FAQs, Sponsoren, CSS-Klassen |
+| `app.py` | FastHTML-App, Routes (`/`, `/agb`, `/impressum`, `/datenschutz`) |
+| `config.py` | Single Source of Truth: Events, FAQs, Sponsoren, Legal Pages, CSS-Klassen |
 | `components.py` | Wiederverwendbare UI-Komponenten |
 
 **Prinzip:** Alle CSS-Klassennamen sind im `CLASS`-Dictionary in `config.py` definiert. Content-Änderungen erfordern nur Anpassungen in `config.py`.
+
+Detaillierte Dokumentation: [.claude/CLAUDE.md](.claude/CLAUDE.md)
 
 ## Konfiguration
 
@@ -50,11 +52,18 @@ In `config.py`:
 # Feature Flags
 USE_HERO_VIDEO = True     # False = statischer Placeholder
 HERO_VIDEO_HEIGHT = 600   # Video-Höhe in Pixel
+CURRENT_YEAR = 2026       # Für Copyright & Last-Updated
 
 # Content
-CURRENT_EVENTS = [...]    # Running Dinner Events
-FAQ_LIST = [...]          # Häufige Fragen
-SPONSOR_LIST = [...]      # Partner & Sponsoren
+CURRENT_EVENTS = [...]       # Running Dinner Events
+EVENT_ACCENT_COLORS = [...]  # Farben für Event-Karten
+FAQ_LIST = [...]             # Häufige Fragen
+SPONSOR_LIST = [...]         # Partner & Sponsoren (icon/path, name, type, url)
+
+# Legal Pages
+AGB_LIST = [...]             # AGB-Dokumente
+IMPRESSUM_DATA = {...}       # Impressum-Daten
+DATENSCHUTZ_DATA = {...}     # Datenschutz-Daten
 ```
 
 ## Deployment
