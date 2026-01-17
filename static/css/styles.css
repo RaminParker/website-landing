@@ -22,7 +22,12 @@
    16. Organizer Section
    17. Footer Section
    18. Modal (Contact)
-   19. Responsive Design
+   19. Utility Classes
+   20. AGB Page
+   21. Impressum Page
+   22. Datenschutz Page
+   23. Über uns Page
+   24. Responsive Design
    ========================================================================== */
 
 /* ==========================================================================
@@ -1816,7 +1821,390 @@ img.sponsor-icon {
 }
 
 /* ==========================================================================
-   23. Responsive Design
+   23. Über uns Page
+   ========================================================================== */
+
+.ueber-uns-page {
+    padding-top: 80px;
+    background: linear-gradient(135deg, #fefefe 0%, #f8f9fa 100%);
+}
+
+.ueber-uns-back-link {
+    display: inline-block;
+    color: var(--primary-teal);
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.ueber-uns-back-link:hover {
+    color: var(--primary-pink);
+}
+
+/* Hero Section */
+.ueber-uns-hero {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.ueber-uns-hero-img {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FFE5B4 0%, #FFA07A 30%, #FF6347 60%, #4CAF50 100%);
+    object-fit: cover;
+}
+
+/* Section Container */
+.ueber-uns-section {
+    padding: 60px 20px;
+}
+
+.ueber-uns-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ueber-uns-title {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.ueber-uns-divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-teal));
+    margin-bottom: 2rem;
+    border-radius: 2px;
+}
+
+/* Team Grid */
+.team-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.team-member-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    background: var(--gray-light);
+    border-radius: 16px;
+    padding: 1.5rem;
+    align-items: start;
+}
+
+.team-member-image {
+    width: 180px;
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.team-member-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-member-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-teal));
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.team-member-content {
+    padding: 0.5rem 0;
+}
+
+.team-member-name {
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+}
+
+.team-member-role {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 0.8rem;
+}
+
+.team-member-description {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.team-member-responsibilities {
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.team-member-responsibilities li {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+/* Philosophie Section */
+.philosophie-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.philosophie-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.philosophie-content {
+    padding-right: 2rem;
+}
+
+.philosophie-title {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.philosophie-divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-teal));
+    margin-bottom: 2rem;
+    border-radius: 2px;
+}
+
+.philosophie-text {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+.philosophie-image {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 4/3;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.philosophie-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.philosophie-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+}
+
+/* Kooperationen Section */
+.kooperationen-section {
+    padding: 80px 20px;
+    background: var(--text-dark);
+    color: white;
+}
+
+.kooperationen-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.kooperationen-title {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.kooperationen-divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-teal));
+    margin-bottom: 2rem;
+    border-radius: 2px;
+}
+
+.kooperationen-intro {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.kooperationen-text {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.kooperationen-btn {
+    background: white;
+    color: var(--text-dark);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.kooperationen-btn:hover {
+    background: var(--primary-pink);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Fachschaften Section */
+.fachschaften-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.fachschaften-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.fachschaften-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem;
+}
+
+.fachschaften-images > :first-child {
+    grid-row: span 2;
+}
+
+.fachschaften-image {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.fachschaften-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.fachschaften-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 150px;
+    background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD9 100%);
+    border-radius: 12px;
+}
+
+.fachschaften-content {
+    padding-left: 1rem;
+}
+
+.fachschaften-title {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.fachschaften-divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--primary-teal));
+    margin-bottom: 2rem;
+    border-radius: 2px;
+}
+
+.fachschaften-text {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.fachschaften-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--primary-teal);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon-link:hover {
+    background: var(--primary-teal);
+    transform: scale(1.1);
+}
+
+.social-icon {
+    font-size: 1.5rem;
+}
+
+/* Team Button Secondary Style */
+.team-btn-secondary {
+    background: transparent;
+    color: var(--text-dark);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid var(--text-dark);
+}
+
+.team-btn-secondary:hover {
+    background: var(--text-dark);
+    color: white;
+}
+
+/* ==========================================================================
+   24. Responsive Design
    ========================================================================== */
 @media (max-width: 968px) {
     /* Navigation */
@@ -1924,6 +2312,59 @@ img.sponsor-icon {
         display: inline;
         margin-left: 0.3rem;
     }
+
+    /* Über uns Page - Tablet */
+    .team-member-card {
+        grid-template-columns: 150px 1fr;
+        gap: 1.5rem;
+    }
+
+    .team-member-image {
+        width: 140px;
+        height: 180px;
+    }
+
+    .philosophie-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .philosophie-content {
+        padding-right: 0;
+    }
+
+    .philosophie-image {
+        margin: 0 auto;
+    }
+
+    .philosophie-divider {
+        margin: 2rem auto;
+    }
+
+    .fachschaften-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .fachschaften-images {
+        order: -1;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .fachschaften-content {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .fachschaften-divider {
+        margin: 2rem auto;
+    }
+
+    .fachschaften-social {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2016,6 +2457,58 @@ img.sponsor-icon {
     }
 
     .datenschutz-section-content {
+        font-size: 1rem;
+    }
+
+    /* Über uns Page - Mobile */
+    .ueber-uns-hero {
+        height: 200px;
+    }
+
+    .ueber-uns-title {
+        font-size: 1.6rem;
+    }
+
+    .team-member-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .team-member-image {
+        width: 150px;
+        height: 180px;
+        margin: 0 auto;
+    }
+
+    .team-member-responsibilities {
+        text-align: left;
+    }
+
+    .philosophie-title,
+    .kooperationen-title,
+    .fachschaften-title {
+        font-size: 1.6rem;
+    }
+
+    .kooperationen-container {
+        text-align: center;
+    }
+
+    .kooperationen-divider {
+        margin: 2rem auto;
+    }
+
+    .fachschaften-images {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .fachschaften-images > :first-child {
+        grid-row: auto;
+    }
+
+    .team-btn-secondary {
+        padding: 0.8rem 2rem;
         font-size: 1rem;
     }
 }

@@ -15,7 +15,7 @@ from config import (
     AGB_LIST, IMPRESSUM_DATA, DATENSCHUTZ_DATA,
     HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE,
     USE_HERO_VIDEO, HERO_VIDEO_HEIGHT, CURRENT_YEAR,
-    EVENT_ACCENT_COLORS
+    EVENT_ACCENT_COLORS, TEAM_MEMBERS, UEBER_UNS_DATA
 )
 
 
@@ -576,6 +576,11 @@ def TeamSection():
                         onclick="showContactModal()",
                         cls=CLASS['team_btn_primary']
                     ),
+                    A(
+                        "Über uns",
+                        href="/ueber-uns",
+                        cls=CLASS['team_btn_secondary']
+                    ),
                     cls=CLASS['team_buttons']
                 ),
                 Div(
@@ -937,4 +942,177 @@ def DatenschutzPageContent():
             cls=CLASS['container']
         ),
         cls=CLASS['datenschutz_page']
+    )
+
+
+# =============================================================================
+# Über uns Page Components
+# =============================================================================
+
+def UeberUnsHero():
+    """Create the hero section with decorative food image."""
+    return Div(
+        Img(
+            src="/images/food/fruit-desert.png",
+            alt="Spinfood - Running Dinner",
+            cls=CLASS['ueber_uns_hero_img']
+        ),
+        cls=CLASS['ueber_uns_hero']
+    )
+
+
+def TeamMemberCard(member: dict):
+    """
+    Create a single team member card.
+
+    Args:
+        member: Dictionary with name, role, description, responsibilities, image
+    """
+    return Div(
+        Div(
+            Img(
+                src=member['image'],
+                alt=f"{member['name']} - Spinfood Team",
+                cls=CLASS['team_member_img']
+            ),
+            cls=CLASS['team_member_image']
+        ),
+        Div(
+            H3(member['name'], cls=CLASS['team_member_name']),
+            P(member['role'], cls=CLASS['team_member_role']),
+            P(member['description'], cls=CLASS['team_member_description']),
+            Ul(
+                *[Li(resp) for resp in member['responsibilities']],
+                cls=CLASS['team_member_responsibilities']
+            ),
+            cls=CLASS['team_member_content']
+        ),
+        cls=CLASS['team_member_card']
+    )
+
+
+def TeamGridSection():
+    """Create the team grid with all team members."""
+    return Div(
+        Div(
+            H2("Das Team", cls=CLASS['ueber_uns_title']),
+            Div(cls=CLASS['ueber_uns_divider']),
+            Div(
+                *[TeamMemberCard(member) for member in TEAM_MEMBERS],
+                cls=CLASS['team_grid']
+            ),
+            cls=CLASS['ueber_uns_container']
+        ),
+        cls=CLASS['ueber_uns_section']
+    )
+
+
+def UeberUnsPhilosophieSection():
+    """Create the philosophy section with text and image."""
+    data = UEBER_UNS_DATA['philosophie']
+    return Div(
+        Div(
+            Div(
+                H2(data['title'], cls=CLASS['philosophie_title']),
+                Div(cls=CLASS['philosophie_divider']),
+                P(data['text'], cls=CLASS['philosophie_text']),
+                cls=CLASS['philosophie_content']
+            ),
+            Div(
+                Img(
+                    src=data['image'],
+                    alt="Spinfood Philosophie",
+                    cls=CLASS['philosophie_img']
+                ),
+                cls=CLASS['philosophie_image']
+            ),
+            cls=CLASS['philosophie_container']
+        ),
+        cls=CLASS['philosophie_section']
+    )
+
+
+def UeberUnsKooperationenSection():
+    """Create the cooperation/partnership section."""
+    data = UEBER_UNS_DATA['kooperationen']
+    return Div(
+        Div(
+            H2(data['title'], cls=CLASS['kooperationen_title']),
+            Div(cls=CLASS['kooperationen_divider']),
+            P(data['intro'], cls=CLASS['kooperationen_intro']),
+            P(
+                Span("Schreib uns einfach an!", style="font-weight: bold;"),
+                f" {data['text']}",
+                cls=CLASS['kooperationen_text']
+            ),
+            Button(
+                "✉️ Kontaktiere uns",
+                onclick="showContactModal()",
+                cls=CLASS['kooperationen_btn']
+            ),
+            cls=CLASS['kooperationen_container']
+        ),
+        cls=CLASS['kooperationen_section']
+    )
+
+
+def UeberUnsFachschaftenSection():
+    """Create the Fachschaften and Social Media section."""
+    data = UEBER_UNS_DATA['fachschaften']
+    return Div(
+        Div(
+            Div(
+                *[Img(
+                    src=img_path,
+                    alt="Spinfood Behind the Scenes",
+                    cls=CLASS['fachschaften_img']
+                ) for img_path in data['images']],
+                cls=CLASS['fachschaften_images']
+            ),
+            Div(
+                H2(data['title'], cls=CLASS['fachschaften_title']),
+                Div(cls=CLASS['fachschaften_divider']),
+                P(data['text'], cls=f"{CLASS['fachschaften_text']} {CLASS['pre_line']}"),
+                Div(
+                    A(
+                        Span("📷", cls=CLASS['social_icon']),
+                        href="https://www.instagram.com/giessenkocht.de/",
+                        target="_blank",
+                        cls=CLASS['social_icon_link']
+                    ),
+                    A(
+                        Span("📘", cls=CLASS['social_icon']),
+                        href="https://www.facebook.com/giessenkocht",
+                        target="_blank",
+                        cls=CLASS['social_icon_link']
+                    ),
+                    A(
+                        Span("📺", cls=CLASS['social_icon']),
+                        href="https://www.youtube.com/channel/UCKMWgTM0S1iix4U5z3C3BQw",
+                        target="_blank",
+                        cls=CLASS['social_icon_link']
+                    ),
+                    cls=CLASS['fachschaften_social']
+                ),
+                cls=CLASS['fachschaften_content']
+            ),
+            cls=CLASS['fachschaften_container']
+        ),
+        cls=CLASS['fachschaften_section']
+    )
+
+
+def UeberUnsPageContent():
+    """Create the main content for the Über uns page."""
+    return Div(
+        UeberUnsHero(),
+        Div(
+            A("← Zurück zur Startseite", href="/", cls=CLASS['ueber_uns_back_link']),
+            cls=CLASS['container']
+        ),
+        TeamGridSection(),
+        UeberUnsPhilosophieSection(),
+        UeberUnsKooperationenSection(),
+        UeberUnsFachschaftenSection(),
+        cls=CLASS['ueber_uns_page']
     )

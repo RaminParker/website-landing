@@ -201,6 +201,63 @@ CLASS = {
     'datenschutz_last_updated': 'datenschutz-last-updated',
     'datenschutz_back_link': 'datenschutz-back-link',
 
+    # Über uns Page
+    'ueber_uns_page': 'ueber-uns-page',
+    'ueber_uns_back_link': 'ueber-uns-back-link',
+    'ueber_uns_hero': 'ueber-uns-hero',
+    'ueber_uns_hero_img': 'ueber-uns-hero-img',
+    'ueber_uns_section': 'ueber-uns-section',
+    'ueber_uns_container': 'ueber-uns-container',
+    'ueber_uns_title': 'ueber-uns-title',
+    'ueber_uns_divider': 'ueber-uns-divider',
+
+    # Team Grid (Über uns page)
+    'team_grid': 'team-grid',
+    'team_member_card': 'team-member-card',
+    'team_member_image': 'team-member-image',
+    'team_member_img': 'team-member-img',
+    'team_member_placeholder': 'team-member-placeholder',
+    'team_member_content': 'team-member-content',
+    'team_member_name': 'team-member-name',
+    'team_member_role': 'team-member-role',
+    'team_member_description': 'team-member-description',
+    'team_member_responsibilities': 'team-member-responsibilities',
+
+    # Philosophie Section (Über uns page)
+    'philosophie_section': 'philosophie-section',
+    'philosophie_container': 'philosophie-container',
+    'philosophie_content': 'philosophie-content',
+    'philosophie_title': 'philosophie-title',
+    'philosophie_divider': 'philosophie-divider',
+    'philosophie_text': 'philosophie-text',
+    'philosophie_image': 'philosophie-image',
+    'philosophie_img': 'philosophie-img',
+    'philosophie_placeholder': 'philosophie-placeholder',
+
+    # Kooperationen Section (Über uns page)
+    'kooperationen_section': 'kooperationen-section',
+    'kooperationen_container': 'kooperationen-container',
+    'kooperationen_title': 'kooperationen-title',
+    'kooperationen_divider': 'kooperationen-divider',
+    'kooperationen_intro': 'kooperationen-intro',
+    'kooperationen_text': 'kooperationen-text',
+    'kooperationen_btn': 'kooperationen-btn',
+
+    # Fachschaften Section (Über uns page)
+    'fachschaften_section': 'fachschaften-section',
+    'fachschaften_container': 'fachschaften-container',
+    'fachschaften_images': 'fachschaften-images',
+    'fachschaften_image': 'fachschaften-image',
+    'fachschaften_img': 'fachschaften-img',
+    'fachschaften_placeholder': 'fachschaften-placeholder',
+    'fachschaften_content': 'fachschaften-content',
+    'fachschaften_title': 'fachschaften-title',
+    'fachschaften_divider': 'fachschaften-divider',
+    'fachschaften_text': 'fachschaften-text',
+    'fachschaften_social': 'fachschaften-social',
+    'social_icon_link': 'social-icon-link',
+    'social_icon': 'social-icon',
+
     # Utility Classes (Extracted from Inline Styles)
     'section_emoji': 'section-emoji',
     'problem_statement': 'problem-statement',
@@ -341,6 +398,71 @@ PARTNER_EVENT_ORGANIZERS = [
 
 # Team locations
 TEAM_LOCATIONS = ["Berlin", "Dresden", "Nürnberg"]
+
+# =============================================================================
+# Über uns Page Content
+# =============================================================================
+
+# Team member data for the Über uns page
+# Format: dict with name, role, description, responsibilities list, image path
+TEAM_MEMBERS = [
+    {
+        'name': 'Ramin',
+        'role': 'Data Scientist und Physiker',
+        'description': 'Eigentlich kein Koch-Genie aber seit vielen Jahren aktiv dabei es zu lernen.',
+        'responsibilities': [
+            'Sorgt für die perfekte Verteilung mittels ausgetüftelten Algorithmus.',
+            'Versucht die internen Prozesse zu immer weiter zu automatisieren.',
+            'Mitgründer.'
+        ],
+        'image': '/images/intern/ramin.png'
+    },
+    {
+        'name': 'Schirin',
+        'role': 'Lehrerin und Mutter',
+        'description': 'Das Herz des Teams, mit kreativen Ideen und ein Auge für Design.',
+        'responsibilities': [
+            'Kommunikation nach außen. Impulsgeberin für kreative Ideen.',
+            'Kümmert sich um Social Media und alle verwendeten Grafiken.',
+            'Mitgründerin.'
+        ],
+        'image': '/images/intern/schirin.png'
+    },
+    {
+        'name': 'Rene',
+        'role': 'Software Engineer und Web Designer',
+        'description': 'Setzt unsere Ideen um in Bild und Schrift.',
+        'responsibilities': [
+            'Verantwortlich für die Website und Layout.',
+            'Einbau des Bezahlsystems in die Anmeldestrecke.',
+            'Mitgründer.'
+        ],
+        'image': '/images/intern/rene.png'
+    }
+]
+
+# Über uns page section data
+UEBER_UNS_DATA = {
+    'philosophie': {
+        'title': 'Unsere Philosophie',
+        'text': 'Spinfood ist bunt und offen für jeden! Egal welche Herkunft. Egal welches Geschlecht, egal welche Essensvorlieben. Du bist herzlich Willkommen! Wir wollen Brücken bauen und dich mit Menschen aus dem echten Leben verbinden.',
+        'image': '/images/intern/behind-the-scenes-1.png'
+    },
+    'kooperationen': {
+        'title': 'Kooperationen & Partnerschaften',
+        'intro': 'Du teilst unsere Philosophie und hast Lust mit uns zusammen zu arbeiten? Super, wir freuen uns immer über Partnerschaften und Kooperationen.',
+        'text': 'Schreib uns einfach an! Wir sind offen für deine Vorschläge und Ideen. Wir wollen mit dir auf Augenhöhe zusammen arbeiten. Vertrauen und gegenseiter Respekt sind uns sehr wichtig!'
+    },
+    'fachschaften': {
+        'title': 'Fachschaften und Social Media',
+        'text': 'Du bist Teil einer Fachschaft bei dir an der Uni und hast Lust mit uns zusammen ein Event in deiner Stadt zu organieren? Klingt super!\nSpinfood ist inbesondere bei Studierende sehr beliebt. Es ist die pefekte Möglichkeite seine Stadt, Kommilitonen und andere Studierende kennen zu lernen. Schau auch gerne mal in eine unsere WhatsApp Gruppe vorbei!',
+        'images': [
+            '/images/intern/behind-the-scenes-2.png',
+            '/images/intern/behind-the-scenes-3.png',
+            '/images/intern/behind-the-scenes-4.png'
+        ]
+    }
+}
 
 # =============================================================================
 # AGB (Terms & Conditions) Content

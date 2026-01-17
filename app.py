@@ -21,7 +21,8 @@ from components import (
     HowItWorksSection, BenefitsSection, EventsSection, OrganizerSection,
     TestimonialsSection, FAQSection, CTASection, TeamSection, PartnerSection,
     SponsorsSection, FooterSection, ContactModal,
-    AGBNavigation, AGBPageContent, ImpressumPageContent, DatenschutzPageContent
+    AGBNavigation, AGBPageContent, ImpressumPageContent, DatenschutzPageContent,
+    UeberUnsPageContent
 )
 
 # =============================================================================
@@ -170,6 +171,34 @@ def get_datenschutz():
         DatenschutzPageContent(),
         FooterSection()
     )
+
+
+@rt("/ueber-uns")
+def get_ueber_uns():
+    """
+    Route handler for the Über uns (About) page.
+    Presents the team, philosophy, and partnership information.
+    """
+    logger.info("Serving Über uns page")
+
+    return (
+        # Page metadata
+        Title("Über uns - Spinfood"),
+        Meta(name="viewport", content="width=device-width, initial-scale=1.0"),
+        Meta(name="description", content="Lerne das Team hinter Spinfood kennen"),
+
+        # External CSS and JS
+        Link(rel="icon", type="image/png", href="/images/intern/logo.png"),
+        Link(rel="stylesheet", href="/static/css/styles.css"),
+        Script(src="/static/js/main.js", defer=True),
+
+        # Page components
+        AGBNavigation(),
+        UeberUnsPageContent(),
+        FooterSection(),
+        ContactModal()
+    )
+
 
 # =============================================================================
 # Entry Point
