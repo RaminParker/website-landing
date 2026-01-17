@@ -657,6 +657,13 @@ def PartnerSection():
 # Sponsors Section
 # =============================================================================
 
+def _sponsor_icon(icon_or_path, name):
+    """Create sponsor icon element - image if path, text if emoji."""
+    if icon_or_path.startswith("/"):
+        return Img(src=icon_or_path, alt=f"{name} Logo", cls=CLASS['sponsor_icon'])
+    return Div(icon_or_path, cls=CLASS['sponsor_icon'])
+
+
 def SponsorsSection():
     """Create the sponsors section with a grid of sponsor cards."""
     return Div(
@@ -668,12 +675,14 @@ def SponsorsSection():
                 cls=CLASS['sponsors_subtitle']
             ),
             Div(
-                *[Div(
-                    Div(icon, cls=CLASS['sponsor_icon']),
+                *[A(
+                    _sponsor_icon(icon_or_path, name),
                     Div(name, cls=CLASS['sponsor_name']),
                     Div(sponsor_type, cls=CLASS['sponsor_type']),
+                    href=url,
+                    target="_blank",
                     cls=CLASS['sponsor_item']
-                ) for icon, name, sponsor_type in SPONSOR_LIST],
+                ) for icon_or_path, name, sponsor_type, url in SPONSOR_LIST],
                 cls=CLASS['sponsors_grid']
             ),
             cls=CLASS['sponsors_container']

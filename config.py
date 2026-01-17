@@ -265,14 +265,10 @@ CURRENT_EVENTS = [
 ]
 
 # Sponsors and partners
-# Format: (icon, name, type)
+# Format: (icon_or_image_path, name, type, url)
+# Use emoji for icon or path starting with "/" for image
 SPONSOR_LIST = [
-    ("🏪", "REWE", "Hauptsponsor"),
-    ("🍕", "Domino's Pizza", "Food Partner"),
-    ("🍺", "Krombacher", "Getränke Partner"),
-    ("🏦", "Sparkasse", "Finanzieller Partner"),
-    ("🎭", "Studentenwerk", "Unterstützer"),
-    ("📱", "TechStart GmbH", "Tech Partner"),
+    ("/images/company_logos/giessen_aktuell.png", "Gießen Aktuell", "Unterstützer", "https://www.giessen-aktuell.de/"),
 ]
 
 # Frequently Asked Questions
