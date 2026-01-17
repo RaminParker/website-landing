@@ -1277,6 +1277,12 @@ img.sponsor-icon {
     gap: 0.5rem;
 }
 
+.social-links .social-icon-img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
 .footer-bottom {
     text-align: center;
     margin-top: 3rem;
@@ -2180,6 +2186,12 @@ img.sponsor-icon {
 
 .social-icon {
     font-size: 1.5rem;
+}
+
+.social-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
 /* Team Button Secondary Style */

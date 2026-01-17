@@ -257,6 +257,7 @@ CLASS = {
     'fachschaften_social': 'fachschaften-social',
     'social_icon_link': 'social-icon-link',
     'social_icon': 'social-icon',
+    'social_icon_img': 'social-icon-img',
 
     # Utility Classes (Extracted from Inline Styles)
     'section_emoji': 'section-emoji',

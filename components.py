@@ -706,9 +706,9 @@ def FooterSection():
                 H3("Spinfood"),
                 P("Running Dinner Events für Studierende in Deutschland."),
                 Div(
-                    A("📺 YouTube", href="https://www.youtube.com/channel/UCKMWgTM0S1iix4U5z3C3BQw", target="_blank"),
-                    A("📷 Instagram", href="https://www.instagram.com/giessenkocht.de/", target="_blank"),
-                    A("🎵 TikTok", href="https://www.tiktok.com/@giessen.kocht?lang=en", target="_blank"),
+                    A(Img(src="/images/social/youtube.svg", alt="YouTube", cls=CLASS['social_icon_img']), " YouTube", href="https://www.youtube.com/channel/UCKMWgTM0S1iix4U5z3C3BQw", target="_blank"),
+                    A(Img(src="/images/social/instagram.svg", alt="Instagram", cls=CLASS['social_icon_img']), " Instagram", href="https://www.instagram.com/giessenkocht.de/", target="_blank"),
+                    A(Img(src="/images/social/tiktok.svg", alt="TikTok", cls=CLASS['social_icon_img']), " TikTok", href="https://www.tiktok.com/@giessen.kocht?lang=en", target="_blank"),
                     cls=CLASS['social_links']
                 ),
                 cls=CLASS['footer_column']
@@ -716,6 +716,7 @@ def FooterSection():
             Div(
                 H3("Support"),
                 A("Kontakt", href="#", onclick="showContactModal(); return false;"),
+                A("Über uns", href="/ueber-uns"),
                 cls=CLASS['footer_column']
             ),
             Div(
@@ -1075,19 +1076,19 @@ def UeberUnsFachschaftenSection():
                 P(data['text'], cls=f"{CLASS['fachschaften_text']} {CLASS['pre_line']}"),
                 Div(
                     A(
-                        Span("📷", cls=CLASS['social_icon']),
+                        Img(src="/images/social/instagram.svg", alt="Instagram", cls=CLASS['social_icon_img']),
                         href="https://www.instagram.com/giessenkocht.de/",
                         target="_blank",
                         cls=CLASS['social_icon_link']
                     ),
                     A(
-                        Span("📘", cls=CLASS['social_icon']),
-                        href="https://www.facebook.com/giessenkocht",
+                        Img(src="/images/social/tiktok.svg", alt="TikTok", cls=CLASS['social_icon_img']),
+                        href="https://www.tiktok.com/@giessen.kocht?lang=en",
                         target="_blank",
                         cls=CLASS['social_icon_link']
                     ),
                     A(
-                        Span("📺", cls=CLASS['social_icon']),
+                        Img(src="/images/social/youtube.svg", alt="YouTube", cls=CLASS['social_icon_img']),
                         href="https://www.youtube.com/channel/UCKMWgTM0S1iix4U5z3C3BQw",
                         target="_blank",
                         cls=CLASS['social_icon_link']

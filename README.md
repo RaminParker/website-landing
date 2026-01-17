@@ -14,7 +14,7 @@ website-landing/
 ├── static/
 │   ├── css/styles.css    # Alle Styles (CSS Variables, responsive)
 │   └── js/main.js        # JavaScript (FAQ-Toggle, Modal, Video-Loading)
-├── images/               # Statische Bilder (Team, Uni-Logos)
+├── images/               # Statische Bilder (Team, Uni-Logos, Social Icons)
 └── videos/landingpage/   # Hero-Video (WebM, MP4, Thumbnails)
 ```
 
@@ -36,8 +36,8 @@ python app.py
 
 | Datei | Verantwortung |
 |-------|---------------|
-| `app.py` | FastHTML-App, Routes (`/`, `/agb`, `/impressum`, `/datenschutz`) |
-| `config.py` | Single Source of Truth: Events, FAQs, Sponsoren, Legal Pages, CSS-Klassen |
+| `app.py` | FastHTML-App, Routes (`/`, `/agb`, `/impressum`, `/datenschutz`, `/ueber-uns`) |
+| `config.py` | Single Source of Truth: Events, FAQs, Sponsoren, Legal Pages, Über uns, CSS-Klassen |
 | `components.py` | Wiederverwendbare UI-Komponenten |
 
 **Prinzip:** Alle CSS-Klassennamen sind im `CLASS`-Dictionary in `config.py` definiert. Content-Änderungen erfordern nur Anpassungen in `config.py`.
@@ -64,6 +64,10 @@ SPONSOR_LIST = [...]         # Partner & Sponsoren (icon/path, name, type, url)
 AGB_LIST = [...]             # AGB-Dokumente
 IMPRESSUM_DATA = {...}       # Impressum-Daten
 DATENSCHUTZ_DATA = {...}     # Datenschutz-Daten
+
+# Über uns Page
+TEAM_MEMBERS = [...]         # Team-Mitglieder (Name, Rolle, Bild)
+UEBER_UNS_DATA = {...}       # Philosophie, Kooperationen, Fachschaften
 ```
 
 ## Deployment

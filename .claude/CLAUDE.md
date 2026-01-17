@@ -16,7 +16,10 @@ website-landing/
 ├── static/
 │   ├── css/styles.css  # Alle Styles
 │   └── js/main.js      # JavaScript (FAQ, Modal, Video-Loading)
-├── images/             # Statische Bilder
+├── images/
+│   ├── intern/         # Team-Bilder, Behind-the-Scenes
+│   ├── social/         # Social Media Icons (SVG)
+│   └── ...             # Weitere Bilder
 └── videos/landingpage/ # Hero-Video (WebM, MP4, Thumbnails)
 ```
 
@@ -26,9 +29,9 @@ website-landing/
 
 | Datei | Verantwortung |
 |-------|---------------|
-| `app.py` | Server-Setup, Routes (`/`, `/agb`, `/impressum`, `/datenschutz`), Logging |
-| `config.py` | APP_TITLE, CURRENT_EVENTS, FAQ_LIST, AGB_LIST, IMPRESSUM_DATA, DATENSCHUTZ_DATA, EVENT_ACCENT_COLORS, CLASS-Dictionary |
-| `components.py` | Alle UI-Komponenten (NavigationBar, HeroSection, LegalPageSection, AGBPageContent, ImpressumPageContent, DatenschutzPageContent, etc.) |
+| `app.py` | Server-Setup, Routes (`/`, `/agb`, `/impressum`, `/datenschutz`, `/ueber-uns`), Logging |
+| `config.py` | APP_TITLE, CURRENT_EVENTS, FAQ_LIST, AGB_LIST, IMPRESSUM_DATA, DATENSCHUTZ_DATA, TEAM_MEMBERS, UEBER_UNS_DATA, EVENT_ACCENT_COLORS, CLASS-Dictionary |
+| `components.py` | Alle UI-Komponenten (NavigationBar, HeroSection, LegalPageSection, AGBPageContent, ImpressumPageContent, DatenschutzPageContent, UeberUnsPageContent, etc.) |
 | `environment_dev.yml` | Conda-Umgebung Definition mit allen Python-Dependencies |
 
 ### CSS-Klassen (Single Source of Truth)
@@ -45,7 +48,8 @@ Das Dictionary ist in logische Gruppen unterteilt:
 - **Navigation**: `navbar`, `navbar_logo`, `navbar_menu`, etc.
 - **Hero**: `hero`, `hero_title`, `hero_buttons`, etc.
 - **Components**: `step_card`, `benefit_card`, `event_card`, `faq_item`, etc.
-- **Child Pages**: `agb_page`, `agb_block`, `agb_section`, `agb_nav`, `impressum_*`, `datenschutz_*`, etc.
+- **Child Pages**: `agb_page`, `agb_block`, `agb_section`, `agb_nav`, `impressum_*`, `datenschutz_*`, `ueber_uns_*`, etc.
+- **Über uns Page**: `team_grid`, `team_member_*`, `philosophie_*`, `kooperationen_*`, `fachschaften_*`, `social_icon_*`
 - **Utility Classes**: `section_emoji`, `problem_statement`, `solution_title`, `pre_line`, etc.
 
 ### Dynamische Inline-Styles
@@ -93,6 +97,7 @@ conda env create -f environment_dev.yml
 - AGBs: `config.py` → `AGB_SPINFOOD`, `AGB_GIESSEN_KOCHT`, `AGB_LIST`
 - Impressum: `config.py` → `IMPRESSUM_DATA`
 - Datenschutz: `config.py` → `DATENSCHUTZ_DATA`
+- Über uns / Team: `config.py` → `TEAM_MEMBERS`, `UEBER_UNS_DATA`
 - **Jahreszahl (Copyright & Last-Updated)**: `config.py` → `CURRENT_YEAR` (wird automatisch in Footer, Impressum, AGB und Datenschutz verwendet)
 
 ### Hero-Video konfigurieren
@@ -177,6 +182,57 @@ DATENSCHUTZ_DATA = {
 }
 ```
 
+### Über uns Page (`/ueber-uns`)
+
+Die Über-uns-Seite zeigt Team, Philosophie und Kooperationsmöglichkeiten:
+
+```python
+# config.py - Team-Mitglieder
+TEAM_MEMBERS = [
+    {
+        'name': 'Name',
+        'role': 'Rolle / Beruf',
+        'description': 'Kurzbeschreibung...',
+        'responsibilities': ['Aufgabe 1', 'Aufgabe 2'],
+        'image': '/images/intern/name.png'
+    },
+    # ...
+]
+
+# config.py - Sektionen
+UEBER_UNS_DATA = {
+    'philosophie': {
+        'title': 'Unsere Philosophie',
+        'text': 'Beschreibung...',
+        'image': '/images/intern/philosophie.png'
+    },
+    'kooperationen': {
+        'title': 'Kooperationen & Partnerschaften',
+        'intro': 'Einleitung...',
+        'text': 'Details...'
+    },
+    'fachschaften': {
+        'title': 'Fachschaften und Social Media',
+        'text': 'Beschreibung...',
+        'images': ['/images/intern/bild1.png', '/images/intern/bild2.png']
+    }
+}
+```
+
+**Komponenten:** `UeberUnsHero`, `TeamMemberCard`, `TeamGridSection`, `UeberUnsPhilosophieSection`, `UeberUnsKooperationenSection`, `UeberUnsFachschaftenSection`, `UeberUnsPageContent`
+
+### Social Media Icons
+
+Social Media Icons liegen als SVG in `images/social/`:
+- `youtube.svg` - YouTube (rot)
+- `instagram.svg` - Instagram (Gradient)
+- `tiktok.svg` - TikTok (schwarz)
+
+Verwendung in Komponenten:
+```python
+Img(src="/images/social/youtube.svg", alt="YouTube", cls=CLASS['social_icon_img'])
+```
+
 ## Wichtige Hinweise
 
 - **Keine Inline-Styles** in Komponenten (außer dynamische Werte)
@@ -210,4 +266,5 @@ Die CSS-Datei ist in nummerierte Abschnitte gegliedert:
 20. AGB Page
 21. Impressum Page
 22. Datenschutz Page
-23. Responsive Design
+23. Über uns Page
+24. Responsive Design
