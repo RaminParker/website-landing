@@ -28,7 +28,7 @@ def NavigationBar():
     return Nav(
         Div(
             A(
-                Img(src="/images/logo.png", alt="Spinfood Logo", cls=CLASS['navbar_logo_img']),
+                Img(src="/images/intern/logo.png", alt="Spinfood Logo", cls=CLASS['navbar_logo_img']),
                 "SPINFOOD",
                 href="#",
                 cls=CLASS['navbar_logo']
@@ -543,7 +543,7 @@ def TeamSection():
             Div(
                 Div(
                     Img(
-                        src="/images/team.png",
+                        src="/images/intern/team.png",
                         alt="Spinfood Team",
                         cls=CLASS['team_img']
                     ),
@@ -761,7 +761,7 @@ def AGBNavigation():
     return Nav(
         Div(
             A(
-                Img(src="/images/logo.png", alt="Spinfood Logo", cls=CLASS['navbar_logo_img']),
+                Img(src="/images/intern/logo.png", alt="Spinfood Logo", cls=CLASS['navbar_logo_img']),
                 "SPINFOOD",
                 href="/",
                 cls=CLASS['navbar_logo']

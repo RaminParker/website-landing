@@ -55,7 +55,7 @@ logger.info("Application initialized")
 @rt("/favicon.ico")
 def favicon():
     """Serve favicon from logo image."""
-    return FileResponse("images/logo.png", media_type="image/png")
+    return FileResponse("images/intern/logo.png", media_type="image/png")
 
 
 @rt("/")
@@ -73,7 +73,7 @@ def get():
         Meta(name="description", content=APP_DESCRIPTION),
 
         # External CSS and JS
-        Link(rel="icon", type="image/png", href="/images/logo.png"),
+        Link(rel="icon", type="image/png", href="/images/intern/logo.png"),
         Link(rel="stylesheet", href="/static/css/styles.css"),
         Script(src="/static/js/main.js", defer=True),
 
@@ -112,7 +112,7 @@ def get_agb():
         Meta(name="description", content="Allgemeine Geschäftsbedingungen für Spinfood"),
 
         # External CSS and JS
-        Link(rel="icon", type="image/png", href="/images/logo.png"),
+        Link(rel="icon", type="image/png", href="/images/intern/logo.png"),
         Link(rel="stylesheet", href="/static/css/styles.css"),
 
         # Page components
@@ -137,7 +137,7 @@ def get_impressum():
         Meta(name="description", content="Impressum und rechtliche Angaben von Spinfood"),
 
         # External CSS and JS
-        Link(rel="icon", type="image/png", href="/images/logo.png"),
+        Link(rel="icon", type="image/png", href="/images/intern/logo.png"),
         Link(rel="stylesheet", href="/static/css/styles.css"),
 
         # Page components
@@ -162,7 +162,7 @@ def get_datenschutz():
         Meta(name="description", content="Datenschutzerklärung von Spinfood gemäß DSGVO"),
 
         # External CSS and JS
-        Link(rel="icon", type="image/png", href="/images/logo.png"),
+        Link(rel="icon", type="image/png", href="/images/intern/logo.png"),
         Link(rel="stylesheet", href="/static/css/styles.css"),
 
         # Page components
