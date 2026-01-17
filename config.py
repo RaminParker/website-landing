@@ -223,6 +223,7 @@ CLASS = {
     'team_title': 'team-title',
     'team_img': 'team-img',
     'partner_img': 'partner-img',
+    'pre_line': 'pre-line',
 }
 
 # =============================================================================
@@ -263,6 +264,9 @@ CURRENT_EVENTS = [
         "https://www.laufgelage.de/"
     ),
 ]
+
+# Event card accent colors for visual variety
+EVENT_ACCENT_COLORS = ["#E91E63", "#4CAF50", "#2196F3", "#FF9800"]
 
 # Sponsors and partners
 # Format: (icon_or_image_path, name, type, url)

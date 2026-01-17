@@ -26,9 +26,9 @@ website-landing/
 
 | Datei | Verantwortung |
 |-------|---------------|
-| `app.py` | Server-Setup, Routes (`/`, `/agb`, `/impressum`), Logging |
-| `config.py` | APP_TITLE, CURRENT_EVENTS, FAQ_LIST, AGB_LIST, IMPRESSUM_DATA, CLASS-Dictionary |
-| `components.py` | Alle UI-Komponenten (NavigationBar, HeroSection, AGBPageContent, ImpressumPageContent, etc.) |
+| `app.py` | Server-Setup, Routes (`/`, `/agb`, `/impressum`, `/datenschutz`), Logging |
+| `config.py` | APP_TITLE, CURRENT_EVENTS, FAQ_LIST, AGB_LIST, IMPRESSUM_DATA, DATENSCHUTZ_DATA, EVENT_ACCENT_COLORS, CLASS-Dictionary |
+| `components.py` | Alle UI-Komponenten (NavigationBar, HeroSection, LegalPageSection, AGBPageContent, ImpressumPageContent, DatenschutzPageContent, etc.) |
 | `environment_dev.yml` | Conda-Umgebung Definition mit allen Python-Dependencies |
 
 ### CSS-Klassen (Single Source of Truth)
@@ -45,8 +45,8 @@ Das Dictionary ist in logische Gruppen unterteilt:
 - **Navigation**: `navbar`, `navbar_logo`, `navbar_menu`, etc.
 - **Hero**: `hero`, `hero_title`, `hero_buttons`, etc.
 - **Components**: `step_card`, `benefit_card`, `event_card`, `faq_item`, etc.
-- **Child Pages**: `agb_page`, `agb_block`, `agb_section`, `agb_nav`, `impressum_table`, `impressum_row`, etc.
-- **Utility Classes**: `section_emoji`, `problem_statement`, `solution_title`, etc.
+- **Child Pages**: `agb_page`, `agb_block`, `agb_section`, `agb_nav`, `impressum_*`, `datenschutz_*`, etc.
+- **Utility Classes**: `section_emoji`, `problem_statement`, `solution_title`, `pre_line`, etc.
 
 ### Dynamische Inline-Styles
 
@@ -87,11 +87,13 @@ conda env create -f environment_dev.yml
 
 ### Content ändern
 - Events: `config.py` → `CURRENT_EVENTS`
+- Event-Akzentfarben: `config.py` → `EVENT_ACCENT_COLORS`
 - FAQs: `config.py` → `FAQ_LIST`
-- Sponsoren: `config.py` → `SPONSOR_LIST`
+- Sponsoren: `config.py` → `SPONSOR_LIST` (Format: icon/image_path, name, type, url)
 - AGBs: `config.py` → `AGB_SPINFOOD`, `AGB_GIESSEN_KOCHT`, `AGB_LIST`
 - Impressum: `config.py` → `IMPRESSUM_DATA`
-- **Jahreszahl (Copyright & Last-Updated)**: `config.py` → `CURRENT_YEAR` (wird automatisch in Footer, Impressum und AGB verwendet)
+- Datenschutz: `config.py` → `DATENSCHUTZ_DATA`
+- **Jahreszahl (Copyright & Last-Updated)**: `config.py` → `CURRENT_YEAR` (wird automatisch in Footer, Impressum, AGB und Datenschutz verwendet)
 
 ### Hero-Video konfigurieren
 In `config.py`:
@@ -118,6 +120,15 @@ Video-Dateien in `videos/landingpage/`:
 5. Styles in `static/css/styles.css` hinzufügen
 6. Links im Footer oder Navigation anpassen
 
+### Generische Legal Page Section
+
+Alle rechtlichen Seiten (AGB, Impressum, Datenschutz) nutzen die generische `LegalPageSection()` Komponente:
+```python
+# components.py
+def LegalPageSection(heading, content, css_prefix, preserve_linebreaks=False):
+    """Generische Section für AGB/Impressum/Datenschutz"""
+```
+
 Beispiel AGB-Page (`/agb`):
 ```python
 # config.py - Content-Struktur
@@ -128,7 +139,7 @@ AGB_EXAMPLE = {
     'sections': [
         ('§1 Überschrift', 'Inhalt des Paragraphen...'),
     ],
-    'last_updated': 'Januar 2025'
+    'last_updated': f'Januar {CURRENT_YEAR}'
 }
 AGB_LIST = [AGB_EXAMPLE]  # Alle AGBs hier auflisten
 ```
@@ -144,12 +155,27 @@ IMPRESSUM_DATA = {
         ('Anbieter', 'Firmenname\nAdresse\n\nVertreten durch: ...'),
         ('Kontakt', 'Telefon: (anzeigen)\nE-Mail: kontakt@example.com'),
     ],
-    'last_updated': 'Januar 2026',
-    'copyright': '© 2026 Firmenname – Alle Rechte vorbehalten'
+    'last_updated': f'Januar {CURRENT_YEAR}',
+    'copyright': f'© {CURRENT_YEAR} Firmenname – Alle Rechte vorbehalten'
 }
 ```
 
 **Besonderheit Impressum:** Die Telefonnummer wird mit "(anzeigen)" versteckt und beim Klick sichtbar (Anti-Spam-Maßnahme). Die `ImpressumSection` Komponente erkennt automatisch "Telefon: (anzeigen)" und ersetzt es durch einen klickbaren Link.
+
+Beispiel Datenschutz-Page (`/datenschutz`):
+```python
+# config.py - Content-Struktur
+DATENSCHUTZ_DATA = {
+    'id': 'datenschutz',
+    'title': 'Datenschutz',
+    'intro': 'Einleitungstext zur Datenschutzerklärung...',
+    'sections': [
+        ('Cookies', 'Informationen zu Cookies...'),
+        ('Google Analytics', 'Informationen zu Google Analytics...'),
+    ],
+    'last_updated': f'Januar {CURRENT_YEAR}'
+}
+```
 
 ## Wichtige Hinweise
 
@@ -180,7 +206,8 @@ Die CSS-Datei ist in nummerierte Abschnitte gegliedert:
 16. Organizer Section
 17. Footer Section
 18. Modal (Contact)
-19. Utility Classes (aus Inline-Styles extrahiert)
+19. Utility Classes (inkl. `.pre-line` für Zeilenumbrüche)
 20. AGB Page
 21. Impressum Page
-22. Responsive Design
+22. Datenschutz Page
+23. Responsive Design

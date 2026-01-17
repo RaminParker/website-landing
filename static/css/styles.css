@@ -1519,6 +1519,11 @@ img.sponsor-icon {
     object-fit: contain;
 }
 
+/* Preserve line breaks in text content */
+.pre-line {
+    white-space: pre-line;
+}
+
 /* ==========================================================================
    20. AGB Page
    ========================================================================== */

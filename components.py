@@ -14,7 +14,8 @@ from config import (
     PARTNER_UNIVERSITIES, PARTNER_EVENT_ORGANIZERS, TEAM_LOCATIONS,
     AGB_LIST, IMPRESSUM_DATA, DATENSCHUTZ_DATA,
     HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE,
-    USE_HERO_VIDEO, HERO_VIDEO_HEIGHT, CURRENT_YEAR
+    USE_HERO_VIDEO, HERO_VIDEO_HEIGHT, CURRENT_YEAR,
+    EVENT_ACCENT_COLORS
 )
 
 
@@ -339,9 +340,6 @@ def EventCard(date: str, title: str, description: str, link: str = "#", accent_c
 
 def EventsSection():
     """Create the events section listing all current Running Dinner events."""
-    # City-based accent colors for visual variety
-    accent_colors = ["#E91E63", "#4CAF50", "#2196F3", "#FF9800"]
-
     return Section(
         Div(
             H2("Aktuelle Events", cls=CLASS['section_title']),
@@ -350,7 +348,7 @@ def EventsSection():
                 cls=CLASS['section_subtitle']
             ),
             Div(
-                *[EventCard(date, title, desc, link, accent_colors[i % len(accent_colors)])
+                *[EventCard(date, title, desc, link, EVENT_ACCENT_COLORS[i % len(EVENT_ACCENT_COLORS)])
                   for i, (date, title, desc, link) in enumerate(CURRENT_EVENTS)],
                 cls=CLASS['events_list']
             ),
@@ -774,19 +772,30 @@ def AGBNavigation():
     )
 
 
-def AGBSection(heading: str, content: str):
+def LegalPageSection(heading: str, content: str, css_prefix: str, preserve_linebreaks: bool = False):
     """
-    Create a single AGB section with heading and content.
+    Generische Section-Komponente für rechtliche Seiten (AGB, Impressum, Datenschutz).
 
     Args:
-        heading: Section heading (e.g., "§1 Geltungsbereich")
+        heading: Section heading
         content: Section content text
+        css_prefix: Prefix für CSS-Klassen ('agb', 'impressum', 'datenschutz')
+        preserve_linebreaks: True für white-space: pre-line
     """
+    content_cls = CLASS[f'{css_prefix}_section_content']
+    if preserve_linebreaks:
+        content_cls = f"{content_cls} {CLASS['pre_line']}"
+
     return Div(
-        H3(heading, cls=CLASS['agb_section_title']),
-        P(content, cls=CLASS['agb_section_content']),
-        cls=CLASS['agb_section']
+        H3(heading, cls=CLASS[f'{css_prefix}_section_title']),
+        P(content, cls=content_cls),
+        cls=CLASS[f'{css_prefix}_section']
     )
+
+
+def AGBSection(heading: str, content: str):
+    """Create a single AGB section with heading and content."""
+    return LegalPageSection(heading, content, 'agb', preserve_linebreaks=False)
 
 
 def AGBBlock(agb_data: dict):
@@ -835,17 +844,15 @@ def AGBPageContent():
 def ImpressumSection(heading: str, content: str):
     """Create a single impressum section with heading and content.
 
-    Args:
-        heading: Section heading (e.g., "Anbieter", "Kontakt")
-        content: Section content text (supports line breaks via white-space: pre-line)
+    Special handling for phone number display in Kontakt section (anti-spam).
     """
     # Special handling for phone number display in Kontakt section
     if heading == "Kontakt" and "(anzeigen)" in content:
-        # Split content into parts before and after phone number
         parts = content.split("Telefon: (anzeigen)")
         before_phone = parts[0] if len(parts) > 0 else ""
         after_phone = parts[1] if len(parts) > 1 else ""
 
+        content_cls = f"{CLASS['impressum_section_content']} {CLASS['pre_line']}"
         return Div(
             H3(heading, cls=CLASS['impressum_section_title']),
             P(
@@ -858,17 +865,12 @@ def ImpressumSection(heading: str, content: str):
                     onclick="this.textContent='0160 5819759'; this.style.cursor='default'; this.style.textDecoration='none';"
                 ),
                 after_phone,
-                cls=CLASS['impressum_section_content'],
-                style="white-space: pre-line;"
+                cls=content_cls
             ),
             cls=CLASS['impressum_section']
         )
 
-    return Div(
-        H3(heading, cls=CLASS['impressum_section_title']),
-        P(content, cls=CLASS['impressum_section_content'], style="white-space: pre-line;"),
-        cls=CLASS['impressum_section']
-    )
+    return LegalPageSection(heading, content, 'impressum', preserve_linebreaks=True)
 
 
 def ImpressumBlock(impressum_data: dict):
@@ -905,17 +907,8 @@ def ImpressumPageContent():
 # =============================================================================
 
 def DatenschutzSection(heading: str, content: str):
-    """Create a single datenschutz section with heading and content.
-
-    Args:
-        heading: Section heading (e.g., "Cookies", "Google Analytics")
-        content: Section content text (supports line breaks via white-space: pre-line)
-    """
-    return Div(
-        H3(heading, cls=CLASS['datenschutz_section_title']),
-        P(content, cls=CLASS['datenschutz_section_content'], style="white-space: pre-line;"),
-        cls=CLASS['datenschutz_section']
-    )
+    """Create a single datenschutz section with heading and content."""
+    return LegalPageSection(heading, content, 'datenschutz', preserve_linebreaks=True)
 
 
 def DatenschutzBlock(datenschutz_data: dict):
@@ -924,9 +917,10 @@ def DatenschutzBlock(datenschutz_data: dict):
     Args:
         datenschutz_data: Dictionary with keys: id, title, intro, sections, last_updated
     """
+    intro_cls = f"{CLASS['datenschutz_block_intro']} {CLASS['pre_line']}"
     return Div(
         H2(datenschutz_data['title'], cls=CLASS['datenschutz_block_title'], id=datenschutz_data['id']),
-        P(datenschutz_data['intro'], cls=CLASS['datenschutz_block_intro'], style="white-space: pre-line;"),
+        P(datenschutz_data['intro'], cls=intro_cls),
         *[DatenschutzSection(heading, content) for heading, content in datenschutz_data['sections']],
         P(f"Stand: {datenschutz_data['last_updated']}", cls=CLASS['datenschutz_last_updated']),
         cls=CLASS['datenschutz_block']
