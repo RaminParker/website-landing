@@ -11,7 +11,7 @@ from fasthtml.common import (
 
 from config import (
     CLASS, CONTACT_EMAIL, CURRENT_EVENTS, SPONSOR_LIST, FAQ_LIST,
-    PARTNER_UNIVERSITIES, PARTNER_EVENT_ORGANIZERS, TEAM_LOCATIONS,
+    PARTNER_UNIVERSITIES, PARTNER_EVENT_ORGANIZERS,
     AGB_LIST, IMPRESSUM_DATA, DATENSCHUTZ_DATA,
     HERO_TITLE_LINE1, HERO_TITLE_LINE2, HERO_SUBTITLE,
     USE_HERO_VIDEO, HERO_VIDEO_HEIGHT, CURRENT_YEAR,
@@ -582,11 +582,6 @@ def TeamSection():
                         cls=CLASS['team_btn_secondary']
                     ),
                     cls=CLASS['team_buttons']
-                ),
-                Div(
-                    *[Div("📍", Span(loc), cls=CLASS['team_location'])
-                      for loc in TEAM_LOCATIONS],
-                    cls=CLASS['team_locations']
                 ),
                 cls=CLASS['team_content']
             ),

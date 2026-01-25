@@ -397,9 +397,6 @@ PARTNER_EVENT_ORGANIZERS = [
     ("/images/company_logos/koch_bachelor.png", "Koch Bachelor Logo", "Koch Bachelor", "https://www.kochbachelor.de"),
 ]
 
-# Team locations
-TEAM_LOCATIONS = ["Berlin", "Dresden", "Nürnberg"]
-
 # =============================================================================
 # Über uns Page Content
 # =============================================================================
